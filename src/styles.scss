@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif !important;
+    min-width: 300px;
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+ul {
+    background: #ffffff !important;
+    width: 100% !important;
+}

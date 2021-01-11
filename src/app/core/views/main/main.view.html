@@ -1,0 +1,14 @@
+<nz-layout>
+    <nz-sider [class.side-bar-isClosed]="!isOpen">
+        <app-side-bar></app-side-bar>
+    </nz-sider>
+    <nz-layout class="main-layout" [class.main-layout-isOpen]="!isOpen">
+        <nz-header>
+            <app-top-bar></app-top-bar>
+        </nz-header>
+        <nz-content>
+            <router-outlet></router-outlet>
+        </nz-content>
+        <!-- <nz-footer>Footer</nz-footer> -->
+    </nz-layout>
+</nz-layout>

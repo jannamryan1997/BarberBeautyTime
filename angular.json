@@ -25,10 +25,20 @@
             "aot": true,
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@ant-design/icons-angular/src/inline-svg/",
+                "output": "/assets/"
+              }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/theme.less",
+              "src/styles.scss",
+              "src/assets/styles/_global.scss",
+              "src/assets/styles/_reset.scss",
+              "src/assets/styles/_response.scss",
+              "src/assets/styles/_animation.scss"
             ],
             "scripts": []
           },
@@ -123,6 +133,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "barber-beauty-time"
 }

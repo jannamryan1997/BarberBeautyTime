@@ -1,0 +1,17 @@
+<nav class="nav">
+    <div class="nav-bar-content">
+        <img src="assets/icons/menu-icon.PNG" class="tob-bar-icon menu-icon" (click)="onClickIsOpen()">
+        <img src="assets/icons/menu-icon.PNG" class="tob-bar-icon response-icon" (click)="onClickOpenResponseMenu()">
+        <p class="title">{{title}}</p>
+        <img src="assets/icons/log-out.PNG" class="tob-bar-icon" routerLink="/auth">
+
+    </div>
+    <div class="wrapper side-bar-response" *ngIf="isOpenResponseMenu">
+        <ul nz-menu nzMode="inline" nzTheme="dark">
+            <li *ngFor="let item of menuItem" (click)="getBehiviorSubject(item?.label)" (click)="onClickRouter(item?.path)" nz-menu-item nz-tooltip nzTooltipPlacement="right">
+                <i nz-icon nzType="user"></i>
+                <span>{{item?.label}}</span>
+            </li>
+        </ul>
+    </div>
+</nav>

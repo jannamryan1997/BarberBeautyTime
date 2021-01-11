@@ -1,0 +1,36 @@
+    .nav-bar-content {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .tob-bar-icon {
+            cursor: pointer;
+        }
+        .title {
+            font-size: 25px;
+            color: #d357f8;
+        }
+        .menu-icon {
+            display: block;
+        }
+        .response-icon {
+            display: none;
+        }
+    }
+    
+    .side-bar-response {
+        display: none;
+        width: 100%;
+        transition: all .5s ease-out !important;
+    }
+    
+     :host ::ng-deep {
+        .ant-menu-item {
+            padding: 0 !important;
+        }
+    }
+    
+    .height44 {
+        height: unset !important;
+        transition: all .5s ease-out !important;
+    }
