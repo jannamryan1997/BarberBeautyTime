@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { finalize, takeUntil } from 'rxjs/operators';
@@ -18,7 +18,8 @@ export class ForgotPasswordViewComponent implements OnInit, OnDestroy {
     public forgotPassswordForm: FormGroup;
     public message: string;
     public loading = false;
-    public otp: boolean = false;
+    public showFull: boolean = false;
+    public showPersonal: boolean = true;
 
     constructor(private _router: Router, private _fb: FormBuilder, private _forgotPasswordService: ForgotPasswordService) { }
 
@@ -28,83 +29,93 @@ export class ForgotPasswordViewComponent implements OnInit, OnDestroy {
 
     private _formBuilder(): void {
         this.forgotPassswordForm = this._fb.group({
-            email: ['', Validators.required],
-            otp: [''],
-            new_password: [''],
-            confirm_new_password: [''],
-        },
-        {validator: this._checkPasswords }
-        );
+            personal: this._fb.group({
+                email: ['', [Validators.email, Validators.required]],
+            }),
+            full: this._fb.group({
+                otp: ['', Validators.required],
+                new_password: ['', Validators.required],
+                confirm_new_password: ['', [this._confirmValidator, Validators.required]],
+            })
+        })
+
     }
 
-    private _checkPasswords(group: FormGroup) { 
-  let pass = group.get('new_password').value;
-  let confirmPass = group.get('confirm_new_password').value;
-
-  return pass === confirmPass ? null : { notSame: true }     
-}
-
-  public   submitForm(): void {
-        for (const i in this.forgotPassswordForm.controls) {
-            this.forgotPassswordForm.controls[i].markAsDirty();
-            this.forgotPassswordForm.controls[i].updateValueAndValidity();
+    private _confirmValidator = (control: FormControl): { [s: string]: boolean } => {
+        if (!control.value) {
+            return { error: true, required: true };
+        } else if (control.value !== this.forgotPassswordForm.get('full')['controls'].new_password.value) {
+            return { confirm: true, error: true };
         }
+        return {};
+    };
+
+    public submitForm(value: { userName: string; email: string; password: string; confirm: string; comment: string }): void {
+        for (const key in this.forgotPassswordForm.controls) {
+            this.forgotPassswordForm.controls[key].markAsDirty();
+            this.forgotPassswordForm.controls[key].updateValueAndValidity();
+        }
+        console.log(value);
     }
+
+    public validateConfirmPassword(): void {
+        setTimeout(() => this.forgotPassswordForm.get('full')['controls'].confirm.updateValueAndValidity());
+    }
+
 
     public onClickForgotPassword(): void {
-        if (this.forgotPassswordForm.invalid) {
-            this.forgotPassswordForm.markAllAsTouched();
-            return;
-        }
         this.loading = true;
-        if (!this.otp) {
-            const {
-                email
-            } = this.forgotPassswordForm.value;
-            const fotgotPasswordDetails: IForgotPassword = {
-                email,
-            }
-            this._forgotPasswordService.forgotPassword(fotgotPasswordDetails)
-                .pipe(takeUntil(this._unsubscribe$),
-                    finalize(() => {
-                        this.loading = false;
-                    })
-                )
-                .subscribe((data) => {
-                    this.message = 'please look at your mail';
-                    this.otp = true;
-                    console.log(data);
-
-                }, err => {
-                    this.message = err.message;
-                })
+        const { personal } = this.forgotPassswordForm.value;
+        const fotgotPasswordDetails: IForgotPassword = {
+            email: personal.email,
         }
-        else if (this.otp) {
-            const {
-                otp,
-                new_password,
-                confirm_new_password,
-            } = this.forgotPassswordForm.value;
-            const resetPasswordDetails: IResetPassword = {
-                otp,
-                new_password,
-                confirm_new_password,
-            }
-            this._forgotPasswordService.resetPassword(resetPasswordDetails)
-                .pipe(takeUntil(this._unsubscribe$),
-                    finalize(() => {
-                        this.loading = false;
-                    })
-                )
-                .subscribe((data) => {
-                    console.log(data);
-                    this._router.navigate(['/auth/login']);
-
-                }, err => {
-                    this.message = err.message;
+        this._forgotPasswordService.forgotPassword(fotgotPasswordDetails)
+            .pipe(takeUntil(this._unsubscribe$),
+                finalize(() => {
+                    this.loading = false;
                 })
+            )
+            .subscribe((data) => {
+                this.message = 'please look at your mail';
+                this.showPersonal = false;
+                this.showFull = true;
 
+            }, err => {
+                this.message = err.message;
+            })
+    }
+
+
+    public onClickResetPassword(): void {
+        this.loading = true;
+        const { full } = this.forgotPassswordForm.value;
+        const resetPasswordDetails: IResetPassword = {
+            otp: full.otp,
+            new_password: full.new_password,
+            confirm_new_password: full.confirm_new_password,
         }
+        this._forgotPasswordService.resetPassword(resetPasswordDetails)
+            .pipe(takeUntil(this._unsubscribe$),
+                finalize(() => {
+                    this.loading = false;
+                })
+            )
+            .subscribe((data) => {
+                console.log(data);
+                this._router.navigate(['/auth/login']);
+
+            }, err => {
+                this.message = err.message;
+            })
+    }
+
+
+    get personalGroup(): FormGroup {
+        return this.forgotPassswordForm.get('personal') as FormGroup;
+    }
+
+    get fullGroup(): FormGroup {
+        return this.forgotPassswordForm.get('full') as FormGroup;
     }
 
     ngOnDestroy() {

@@ -37,3 +37,7 @@
         background: #58b6f444;
     }
 }
+
+::ng-deep .ant-form-item-has-success {
+    color: #d357f8 !important;
+}

@@ -12,6 +12,7 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzMessageModule } from 'ng-zorro-antd/message';
 
 @NgModule({
     declarations: [],
@@ -25,7 +26,8 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
         NzCheckboxModule,
         NzBreadCrumbModule,
         NzMenuModule,
-        NzModalModule
+        NzModalModule,
+        NzMessageModule
     ],
     entryComponents: [],
     providers: [MenuService],
@@ -39,7 +41,8 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
         NzCheckboxModule,
         NzBreadCrumbModule,
         NzMenuModule,
-        NzModalModule
+        NzModalModule,
+        NzMessageModule
     ]
 })
 

@@ -22,10 +22,6 @@ const authRouter: Routes = [
                 path:'forgot-password',
                 loadChildren:() =>import('./forgot-password/forgot-password.module').then(m=>m.ForgotPasswordModule),
             },
-            {
-                path:'password-change',
-                loadChildren:() =>import('./password-change/password-change.module').then(m=>m.PasswordChangeModule)
-            }
         ]
     }
 ]

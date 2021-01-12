@@ -25,7 +25,7 @@ export class ApiInterceptor implements HttpInterceptor {
         //     url += '/';
         // }
         if (!params.has('authorization') || (params.has('authorization') && params.get('authorization') === 'true')) {
-            const accessToken: string = this._cookieService.get('access') || '';
+            const accessToken: string = this._cookieService.get('accessToken') || '';
             if (accessToken) {
                 headers = headers.append('Authorization', 'Bearer ' + accessToken);
             }

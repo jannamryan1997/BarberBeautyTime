@@ -36,8 +36,7 @@ export class RegistrationViewComponent implements OnInit, OnDestroy {
             username: ['', Validators.required],
             first_name: ['', Validators.required],
             last_name: ['', Validators.required],
-            email: ['', Validators.required],
-            // phoneNumber: ['', Validators.required],
+            email: ['', [Validators.email,Validators.required]],
             password: ['', Validators.required]
         });
     }
@@ -78,7 +77,6 @@ export class RegistrationViewComponent implements OnInit, OnDestroy {
                 })
             )
             .subscribe((data) => {
-                console.log(data);
                 this._cookieService.put('accessToken', data.access_token);
                 this._cookieService.put('refreshToken', data.refresh_token)
                 this._router.navigate(['/auth/login'])

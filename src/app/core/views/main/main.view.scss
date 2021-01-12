@@ -23,6 +23,10 @@ nz-content {
     padding: 20px;
 }
 
+::ng-deep .ant-layout {
+    background: #ffffff !important;
+}
+
 .main-layout {
     width: calc(100% - 400px);
     margin-left: 200px;
