@@ -1,0 +1,32 @@
+<div class="providers">
+    <button nz-button style="width: 200px" (click)="onClickOpenCreateProviderModal()">Create Providers</button>
+    <header>
+        <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+            <input type="text" nz-input placeholder="input search text" />
+        </nz-input-group>
+        <ng-template #suffixIconButton>
+            <button nz-button nzSearch style="margin: 0;padding: 0; width: 40px;"><i nz-icon nzType="search"></i></button>
+        </ng-template>
+    </header>
+
+
+    <nz-table #basicTable [nzData]="providersData" [nzFrontPagination]="false" [nzShowPagination]="false">
+        <thead>
+            <tr>
+                <th>Index</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Rating</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of providersData;let ind=index">
+                <td>{{ind+1}}</td>
+                <td>{{ item?.name }}</td>
+                <td>{{ item?.type }}</td>
+                <td>{{ item.rating }}</td>
+            </tr>
+        </tbody>
+    </nz-table>
+    <nz-pagination [nzPageIndex]="1" [nzTotal]="50"></nz-pagination>
+</div>

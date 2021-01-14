@@ -13,6 +13,8 @@ import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzMessageModule } from 'ng-zorro-antd/message';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 
 @NgModule({
     declarations: [],
@@ -27,7 +29,10 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
         NzBreadCrumbModule,
         NzMenuModule,
         NzModalModule,
-        NzMessageModule
+        NzMessageModule,
+        NzDropDownModule,
+        NzPaginationModule
+
     ],
     entryComponents: [],
     providers: [MenuService],
@@ -42,7 +47,9 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
         NzBreadCrumbModule,
         NzMenuModule,
         NzModalModule,
-        NzMessageModule
+        NzMessageModule,
+        NzDropDownModule,
+        NzPaginationModule
     ]
 })
 

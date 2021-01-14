@@ -1,0 +1,47 @@
+<form nz-form [formGroup]="providerForm" (ngSubmit)="submitForm()">
+    <p>{{message}}</p>
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>Name</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl">
+            <input nz-input formControlName="name" placeholder="" />
+            <ng-template #userErrorTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                    Please input your name!
+                </ng-container>
+                <ng-container *ngIf="control.hasError('duplicated')">
+                    The name is redundant!
+                </ng-container>
+            </ng-template>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>Type</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzValidatingTip="Validating..." [nzErrorTip]="typeErrorTpl">
+            <p-dropdown [options]="type" optionLabel="name" nz-input formControlName="type" placeholder="Type"></p-dropdown>
+            <ng-template #typeErrorTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                    Please input your type!
+                </ng-container>
+                <ng-container *ngIf="control.hasError('duplicated')">
+                    The type is redundant!
+                </ng-container>
+            </ng-template>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7">Region</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="regionErrorTpl">
+            <input nz-input formControlName="region" placeholder="" />
+            <ng-template #regionErrorTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                    Please input your region!
+                </ng-container>
+                <ng-container *ngIf="control.hasError('duplicated')">
+                    The region is redundant!
+                </ng-container>
+            </ng-template>
+        </nz-form-control>
+    </nz-form-item>
+    <div id="map"></div>
+    <button nz-button style="width: 200px;margin: auto;" [disabled]="!providerForm.valid" (click)="onClickCreateProvider()">Create</button>
+</form>
