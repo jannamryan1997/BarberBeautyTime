@@ -1,5 +1,7 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, Injectable, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NZ_EMPTY_COMPONENT_NAME } from 'ng-zorro-antd/empty';
+import { NZ_DATE_CONFIG, NZ_DATE_CONFIG_DEFAULT, NZ_DATE_LOCALE } from 'ng-zorro-antd/i18n';
 import { NzModalRef } from 'ng-zorro-antd/modal';
 import { Subject } from 'rxjs';
 import { finalize, takeUntil } from 'rxjs/operators';
@@ -24,6 +26,7 @@ export class CreateProviderModalComponent implements OnInit, OnDestroy {
     private _marker;
     public loading=false;
     public message:string;
+    @Input() _data;
     public type:IProvidersType[] = [
         {name: 'Barber shop', value: 'B'},
         {name: 'Beauty salon', value: 'S'},
@@ -33,7 +36,10 @@ export class CreateProviderModalComponent implements OnInit, OnDestroy {
 
     public providerForm:FormGroup;
 
-    constructor(private _fb:FormBuilder,private _providersService:ProvidersService,private _dialogRef:NzModalRef) { }
+    constructor(private _fb:FormBuilder,private _providersService:ProvidersService,private _dialogRef:NzModalRef) { 
+        console.log(this._data,'777777777');
+        
+    }
 
     ngOnInit() { 
         this._forBuilder();
