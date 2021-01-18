@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { OnDestroy, OnInit } from '@angular/core';
+import { NzModalRef } from 'ng-zorro-antd/modal';
 import { Subject } from 'rxjs';
 
 @Component({
@@ -11,13 +12,17 @@ import { Subject } from 'rxjs';
 export class ConfirmDeleteModal implements OnInit, OnDestroy {
 
     private _unsubscribe$ = new Subject<void>();
-    constructor() { }
+    constructor(private _modal: NzModalRef) { }
 
     ngOnInit() { }
+
+    public onClickDeleteProvider(): void {
+        this._modal.destroy('delete');
+    }
 
     ngOnDestroy() {
         this._unsubscribe$.next();
         this._unsubscribe$.complete();
-     }
+    }
 
 }

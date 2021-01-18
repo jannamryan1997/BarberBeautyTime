@@ -1,12 +1,10 @@
-import { Component, Inject, Injectable, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NZ_EMPTY_COMPONENT_NAME } from 'ng-zorro-antd/empty';
-import { NZ_DATE_CONFIG, NZ_DATE_CONFIG_DEFAULT, NZ_DATE_LOCALE } from 'ng-zorro-antd/i18n';
 import { NzModalRef } from 'ng-zorro-antd/modal';
 import { Subject } from 'rxjs';
 import { finalize, takeUntil } from 'rxjs/operators';
-import { Icordination } from 'src/app/core/models/cordination';
 import { IProvider, IProvidersType } from 'src/app/core/models/provider';
+import { IRegion } from 'src/app/core/models/region';
 import { mapStyle } from 'src/assets/styles/_map_style';
 import { ProvidersService } from '../../providers.service';
 
@@ -20,92 +18,159 @@ declare const google;
 export class CreateProviderModalComponent implements OnInit, OnDestroy {
 
     private _unsubscribe$ = new Subject<void>();
-    private _latitude:string="55.751244";
-    private _longitude:string="37.618423";
+    private _latitude: string = "55.751244";
+    private _longitude: string = "37.618423";
     private _map;
     private _marker;
-    public loading=false;
-    public message:string;
-    @Input() _data;
-    public type:IProvidersType[] = [
-        {name: 'Barber shop', value: 'B'},
-        {name: 'Beauty salon', value: 'S'},
-        {name: 'Individual', value: 'I'},
+    public providerForm: FormGroup;
+    public loading = false;
+    public message: string;
+    public providerDetails:IProvider;
+    public type: IProvidersType[] = [
+        { name: 'Barber shop', value: 'B' },
+        { name: 'Beauty salon', value: 'S' },
+        { name: 'Individual', value: 'I' },
 
     ];
+    public region:IRegion[]=[];
+    @Input() providerId?: number;
 
-    public providerForm:FormGroup;
+    
 
-    constructor(private _fb:FormBuilder,private _providersService:ProvidersService,private _dialogRef:NzModalRef) { 
-        console.log(this._data,'777777777');
-        
-    }
+    constructor(private _fb: FormBuilder, private _providersService: ProvidersService, private _dialogRef: NzModalRef) {}
 
-    ngOnInit() { 
+    ngOnInit() {
         this._forBuilder();
+        this._getRegion();
         this._initMap();
+        if(this.providerId){
+            this._getProviderById();
+        }
     }
 
 
-    private _forBuilder():void{
-        this.providerForm=this._fb.group({
-            name:['',Validators.required],
-            type:['',Validators.required],
-            region:['']
+    private _forBuilder(): void {
+        this.providerForm = this._fb.group({
+            name: ['', Validators.required],
+            type: ['', Validators.required],
+            region: ['',Validators.required]
         })
     }
 
 
     private _initMap() {
         this._map = new google.maps.Map(document.getElementById('map'), {
-          center: { lat: 55.751244, lng: 37.618423 },
-          zoom: 6,
-          styles: mapStyle
+            center: { lat: 55.751244, lng: 37.618423 },
+            zoom: 6,
+            styles: mapStyle
         });
         this._marker = new google.maps.Marker({
-          map: this._map,
-          draggable: true,
-          animation: google.maps.Animation.DROP,
-          position: { lat: -34.397, lng: 150.644 },
-          icon: '/assets/icons/marker.png'
+            map: this._map,
+            draggable: true,
+            animation: google.maps.Animation.DROP,
+            position: { lat: -34.397, lng: 150.644 },
+            icon: '/assets/icons/marker.png'
         });
-      }
-    
+    }
 
-  public  submitForm(): void {
+    private _getRegion():void{
+        this._providersService.getRegion()
+        .pipe(takeUntil(this._unsubscribe$))
+        .subscribe((data:IRegion[])=>{
+            this.region=data;   
+        })
+    }
+
+    private _getProviderById(): void {
+        this.loading = true;
+        this._providersService.getProviderById(this.providerId)
+            .pipe(takeUntil(this._unsubscribe$),
+                finalize(() => {
+                    this.loading = false;
+                }))
+            .subscribe((data:IProvider) => {
+                this.providerDetails =data;
+                if( this.providerDetails){
+                    this._setPatchValue();
+                }
+            },
+                err => {
+                    this.message = err.error;
+                }
+            )
+    }
+
+    private _setPatchValue():void{
+    const type = this.type.find((e) => e.value === this.providerDetails.type);
+    const region:any=this.providerDetails.region;
+    const regionValue = this.region.find((e) => e.name === region.name);
+        this.providerForm.patchValue({
+            name:  this.providerDetails.name,
+            type:type || null,
+            region:regionValue || null,
+        
+        })
+    }
+
+    public submitForm(): void {
         for (const i in this.providerForm.controls) {
             this.providerForm.controls[i].markAsDirty();
             this.providerForm.controls[i].updateValueAndValidity();
         }
     }
 
-    public onClickCreateProvider():void{
+    public onClickCreateProvider(): void {
         this.loading = true;
-        const{
-            name,   
-            region,
-        }=this.providerForm.value;
-        const providerDetails:IProvider={
+        const {
             name,
-            type:this.providerForm.value.type.value,
-            region:Number(region),
-            latitude:this._latitude,
-            longitude:this._longitude,
+        } = this.providerForm.value;
+        const providerDetails: IProvider = {
+            name,
+            type: this.providerForm.value.type.value,
+            region: this.providerForm.value.region.id,
+            latitude: this._latitude,
+            longitude: this._longitude,
         }
         this._providersService.createProvider(providerDetails)
-        .pipe(takeUntil(this._unsubscribe$),
-        finalize(()=>{
-            this.loading = false;
-        })
-        )
-        .subscribe((data)=>{
-            console.log(data);
-            this._dialogRef.destroy('provider Create1');
-        },
-        err=>{
-            this.message= err.message;
+            .pipe(takeUntil(this._unsubscribe$),
+                finalize(() => {
+                    this.loading = false;
+                })
+            )
+            .subscribe((data) => {
+                this._dialogRef.destroy('provider Create');
+            },
+                err => {
+                    this.message = err.message;
+                }
+            )
+    }
+
+    public onClickPutchProvider():void{
+        this.loading = true;
+        const {
+            name,
+        } = this.providerForm.value;
+        const providerDetails: IProvider = {
+            name,
+            type: this.providerForm.value.type.value,
+            region: this.providerForm.value.region.id,
+            latitude: this._latitude,
+            longitude: this._longitude,
         }
-        )
+        this._providersService.putchProviderById(this.providerId,providerDetails)
+            .pipe(takeUntil(this._unsubscribe$),
+                finalize(() => {
+                    this.loading = false;
+                })
+            )
+            .subscribe((data) => {
+                this._dialogRef.destroy('provider Changed');
+            },
+                err => {
+                    this.message = err.message;
+                }
+            )
     }
 
 
@@ -114,3 +179,5 @@ export class CreateProviderModalComponent implements OnInit, OnDestroy {
         this._unsubscribe$.complete();
     }
 }
+
+
