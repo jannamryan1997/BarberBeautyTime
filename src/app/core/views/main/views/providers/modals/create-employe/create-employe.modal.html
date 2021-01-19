@@ -1,0 +1,61 @@
+<form nz-form [formGroup]="employeForm" (ngSubmit)="submitForm()">
+    <p>{{message}}</p>
+
+    <nz-form-item>
+        <div style="display: flex;flex-direction: column; justify-content: center;width: 50%; margin:auto;">
+            <img nz-image width="200px" height="200px" nzSrc="error" [src]="fallback" alt="" />
+            <input type="file" name="image" (change)="onChangeFile($event)" />
+        </div>
+    </nz-form-item>
+
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>First Name</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl">
+            <input nz-input formControlName="first_name" placeholder="" />
+            <ng-template #userErrorTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                    Please input your First Name!
+                </ng-container>
+                <ng-container *ngIf="control.hasError('duplicated')">
+                    The First Name is redundant!
+                </ng-container>
+            </ng-template>
+        </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>Last Name</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="lastNameErrorTpl">
+            <input nz-input formControlName="last_name" placeholder="" />
+            <ng-template #lastNameErrorTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                    Please input your Last Name!
+                </ng-container>
+                <ng-container *ngIf="control.hasError('duplicated')">
+                    The Last Name is redundant!
+                </ng-container>
+            </ng-template>
+        </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7">Rating</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="ratingErrorTpl">
+            <input nz-input formControlName="rating" placeholder="" />
+            <ng-template #ratingErrorTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                    Please input your Rating!
+                </ng-container>
+                <ng-container *ngIf="control.hasError('duplicated')">
+                    The Last Name is Rating!
+                </ng-container>
+            </ng-template>
+        </nz-form-control>
+    </nz-form-item>
+
+    <div style="display:flex;justify-content: center;">
+        <button nz-button style="width: 150px" [disabled]="!employeForm.valid" (click)="patchEmploye()">Edit</button>
+        <button nz-button style="width: 150px;margin-left:35px;" (click)="onClickDeleteEmploye()">Delete</button>
+    </div>
+
+</form>

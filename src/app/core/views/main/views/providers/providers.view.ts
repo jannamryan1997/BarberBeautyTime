@@ -6,7 +6,7 @@ import { finalize, takeUntil } from 'rxjs/operators';
 import { ConfirmDeleteModal } from 'src/app/core/modals';
 import { IEmployees } from 'src/app/core/models/employees';
 import { IProvider, IProviderDetails, IProvidersType, } from 'src/app/core/models/provider';
-import { CreateProviderModalComponent } from './modals';
+import { AddEmployeModalComponent, CreateEmployemodalComponent, CreateProviderModalComponent } from './modals';
 import { ProvidersService } from './providers.service';
 
 @Component({
@@ -22,10 +22,10 @@ export class ProvidersViewComponent implements OnInit, OnDestroy {
     public message: string;
     public searchCtrl: FormControl = new FormControl(null);
     public providersData: IProvider[] = [];
-    public employeesDetails:IEmployees[]=[];
-    public typeValue:string;
+    public employeesDetails: IEmployees[] = [];
+    public typeValue: string;
 
-    constructor(private _modalService: NzModalService, private _providersService: ProvidersService,private viewContainerRef:ViewContainerRef) { }
+    constructor(private _modalService: NzModalService, private _providersService: ProvidersService, private viewContainerRef: ViewContainerRef) { }
 
     ngOnInit() {
         this._getProviders();
@@ -73,10 +73,18 @@ export class ProvidersViewComponent implements OnInit, OnDestroy {
                 this._getProviders();
 
             },
-            err=>{
-                this.message=err.error;
-            }
+                err => {
+                    this.message = err.error;
+                }
             )
+    }
+
+    private _getEmployees(id): void {
+        this._providersService.getEmployees(id)
+            .pipe(takeUntil(this._unsubscribe$))
+            .subscribe((data: IEmployees[]) => {
+                this.employeesDetails = data;
+            })
     }
 
     public onClickOpenCreateProviderModal(): void {
@@ -91,15 +99,15 @@ export class ProvidersViewComponent implements OnInit, OnDestroy {
         })
     }
 
-    public onClickOpenProviderModalById(providerId:number): void {
+    public onClickOpenProviderModalById(providerId: number): void {
         const dialogRef = this._modalService.create({
             nzTitle: 'Create Providers',
             nzContent: CreateProviderModalComponent,
             nzViewContainerRef: this.viewContainerRef,
-            nzComponentParams: {providerId:providerId} 
-                
+            nzComponentParams: { providerId: providerId }
+
         })
-        dialogRef.afterClose.subscribe((data)=>{
+        dialogRef.afterClose.subscribe((data) => {
             if (data === 'provider Changed') {
                 this._getProviders();
             }
@@ -119,19 +127,49 @@ export class ProvidersViewComponent implements OnInit, OnDestroy {
         })
     }
 
-    onExpandChange(id: number, checked: boolean): void {
+    public onExpandChange(id: number, checked: boolean): void {
         if (checked) {
-          this.expandSet.add(id);
-          this._providersService.getEmployees(id)
-          .pipe(takeUntil(this._unsubscribe$))
-          .subscribe((data:IEmployees[])=>{
-              this.employeesDetails=data;
-              console.log(data);
-          })
+            this.expandSet.add(id);
+            this._getEmployees(id);
         } else {
-          this.expandSet.delete(id);
+            this.expandSet.delete(id);
         }
-        
+
+    }
+
+    public onClickOpenCreateEmployeModal(providerId: number, employeId: number): void {
+        const dialogRef = this._modalService.create({
+            nzTitle: 'Create Employe',
+            nzContent: CreateEmployemodalComponent,
+            nzFooter: 'false',
+            nzViewContainerRef: this.viewContainerRef,
+            nzComponentParams: {
+                providerId: providerId,
+                employeId: employeId
+            }
+        })
+        dialogRef.afterClose.subscribe((data)=>{
+            if(data && data==='deletedEmploye'){
+                this._getEmployees(providerId);
+            }
+        })
+    }
+
+    public onClickOpenAddEmployeModal(providerId: number): void {
+        const dialogRef = this._modalService.create({
+            nzTitle: 'Add an Employe',
+            nzContent: AddEmployeModalComponent,
+            nzFooter: 'false',
+            nzViewContainerRef: this.viewContainerRef,
+            nzComponentParams: {
+                providerId: providerId,
+            }
+        })
+        dialogRef.afterClose.subscribe((data) => {
+            if (data && data === 'AddEmploye') {
+                this._getEmployees(providerId);
+            }
+        })
     }
 
     ngOnDestroy() {

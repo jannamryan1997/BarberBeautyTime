@@ -3,11 +3,33 @@ header {
     width: 350px;
 }
 
+.tree-table {
+    margin: 30px;
+}
+
 nz-pagination {
     margin: 20px 0;
     text-align: end;
 }
 
-::ng-deep .ant-table-pagination {
-    display: none;
+::ng-deep {
+    .ant-table-pagination {
+        display: none;
+    }
+    .tree-table {
+        .ant-table-row {
+            background: #fbfbfb;
+        }
+        .ant-table-thead>tr>th {
+            font-weight: 600;
+        }
+    }
+    .ant-table-content {
+        overflow: auto;
+        display: flex;
+        flex-direction: column;
+    }
+    .ant-table table {
+        width: unset;
+    }
 }

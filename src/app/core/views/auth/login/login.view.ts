@@ -5,6 +5,7 @@ import { CookieService } from 'ngx-cookie';
 import { Subject } from 'rxjs';
 import { finalize, takeUntil } from 'rxjs/operators';
 import { ILogin } from 'src/app/core/models/login';
+import { IUser } from 'src/app/core/models/user';
 import { LoginService } from './login.service';
 
 @Component({
@@ -62,10 +63,11 @@ export class LoginViewComponent implements OnInit, OnDestroy {
             this.loading = false;
         })
         )
-        .subscribe((data)=>{
+        .subscribe((data:IUser)=>{
+           let ownerId =  data.user.additional_data.owner.id;
             this._cookieService.put('accessToken', data.access_token);
-            this._cookieService.put('refreshToken', data.refresh_token)
-            console.log(data);
+            this._cookieService.put('refreshToken', data.refresh_token);
+            this._cookieService.put('ownerId', ownerId);
             this._router.navigate(['home']);
         },
         err=>{

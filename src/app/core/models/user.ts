@@ -12,4 +12,13 @@ export interface IUserDetais {
     pk: number;
     role: string;
     username: string;
+    additional_data: IAdditional;
+}
+
+export interface IAdditional{
+    owner:IOwner;
+}
+export interface IOwner {
+    approved: boolean;
+    id: string;
 }

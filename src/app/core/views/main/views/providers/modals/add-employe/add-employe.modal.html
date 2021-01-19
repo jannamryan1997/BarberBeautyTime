@@ -1,0 +1,79 @@
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+    <p>{{message}}</p>
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>User Name</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl">
+            <input nz-input formControlName="username" placeholder="" />
+            <ng-template #userErrorTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                    Please input your User Name!
+                </ng-container>
+                <ng-container *ngIf="control.hasError('username')">
+                    The User Name is redundant!
+                </ng-container>
+            </ng-template>
+        </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>First Name</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="firstErrorTpl">
+            <input nz-input formControlName="first_name" placeholder="" />
+            <ng-template #firstErrorTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                    Please input your First Name!
+                </ng-container>
+                <ng-container *ngIf="control.hasError('first_name')">
+                    The First Name is redundant!
+                </ng-container>
+            </ng-template>
+        </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>Last Name</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="lastErrorTpl">
+            <input nz-input formControlName="last_name" placeholder="" />
+            <ng-template #lastErrorTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                    Please input your Last Name!
+                </ng-container>
+                <ng-container *ngIf="control.hasError('last_name')">
+                    The Last Name is redundant!
+                </ng-container>
+            </ng-template>
+        </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>Email</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="emailErrorTpl">
+            <input nz-input formControlName="email" placeholder="" />
+            <ng-template #emailErrorTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                    Please input your email!
+                </ng-container>
+                <ng-container *ngIf="control.hasError('email')">
+                    The input is not valid E-mail!
+                </ng-container>
+            </ng-template>
+        </nz-form-control>
+    </nz-form-item>
+
+
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>Password</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="passErrorTpl">
+            <input nz-input formControlName="password" placeholder="" />
+            <ng-template #passErrorTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                    Please input your Password!
+                </ng-container>
+                <ng-container *ngIf="control.hasError('password')">
+                    The Password is redundant!
+                </ng-container>
+            </ng-template>
+        </nz-form-control>
+    </nz-form-item>
+    <button nz-button style="width:200px;margin: auto;" [disabled]="!validateForm.valid" (click)="addEmploye()">Add Employe</button>
+</form>
