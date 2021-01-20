@@ -1,3 +1,4 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -64,10 +65,17 @@ export class LoginViewComponent implements OnInit, OnDestroy {
         })
         )
         .subscribe((data:IUser)=>{
-           let ownerId =  data.user.additional_data.owner.id;
+            console.log(data.user.additional_data.employee);
+            
+            if( data.user.role === 'O'){
+                let ownerId =  data.user.additional_data.owner.id;
+                this._cookieService.put('ownerId', ownerId);
+            }
+         
             this._cookieService.put('accessToken', data.access_token);
             this._cookieService.put('refreshToken', data.refresh_token);
-            this._cookieService.put('ownerId', ownerId);
+         
+            this._cookieService.put('role',data.user.role);
             this._router.navigate(['home']);
         },
         err=>{

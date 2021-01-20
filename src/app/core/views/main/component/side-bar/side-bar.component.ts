@@ -1,9 +1,10 @@
-import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { MENU_ITEMS } from 'src/app/core/globals/menu-items';
 import { IMenu } from 'src/app/core/models/menu';
 import { MenuService } from 'src/app/core/services/menu.service';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
     selector: 'app-side-bar',
@@ -13,13 +14,14 @@ import { MenuService } from 'src/app/core/services/menu.service';
 
 export class SideBarComponent implements OnInit, OnDestroy {
     private _unsubscribe$: Subject<void> = new Subject<void>();
-    public menuItem: IMenu[] = MENU_ITEMS;
+    public menuItem: IMenu[] =MENU_ITEMS;
+    ;
 
-    constructor(private _menuService: MenuService, private _router: Router) { }
-
-    ngOnInit() {
-
+    constructor(private _menuService: MenuService, private _router: Router, private _userService:UserService) { 
     }
+
+    ngOnInit() { }
+
 
     public getBehiviorSubject(value): void {
         this._menuService.setPageTitle(value);

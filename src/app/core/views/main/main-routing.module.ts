@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { RoleGuard } from '../../guards/role.guard';
+import { EUserRole } from '../../models/auth-user';
+
 import { MainViewComponent } from './main.view';
 
 const mainRoutes: Routes = [{
@@ -7,19 +10,32 @@ const mainRoutes: Routes = [{
         { path: '', pathMatch: 'full', redirectTo: 'home' },
         {
             path: 'home',
-            loadChildren: () => import('./views/home/home.module').then(m => m.HomeModule)
+            loadChildren: () => import('./views/home/home.module').then(m => m.HomeModule),
+            data: {
+                enabledRoles: [EUserRole.Admin,
+                EUserRole.Employee, EUserRole.Client]
+            },
         },
         {
             path: 'account',
-            loadChildren: () => import('./views/account/account.module').then(m => m.AccountModule)
+            loadChildren: () => import('./views/account/account.module').then(m => m.AccountModule),
+            data: {
+                enabledRoles: [EUserRole.Admin, EUserRole.Owner, EUserRole.Employee, EUserRole.Client]
+            },
         },
         {
-            path:'providers',
-            loadChildren:() =>import('./views/providers/providers.module').then(m=>m.ProvidersModule)
+            path: 'providers',
+            loadChildren: () => import('./views/providers/providers.module').then(m => m.ProvidersModule),
+            data: {
+                enabledRoles: [EUserRole.Admin, EUserRole.Owner, EUserRole.Employee, EUserRole.Client]
+            },
         },
         {
             path: 'changed-password',
-            loadChildren: () => import('./views/password-change/password-change.module').then(m => m.PasswordChangeModule)
+            loadChildren: () => import('./views/password-change/password-change.module').then(m => m.PasswordChangeModule),
+            data: {
+                enabledRoles: [EUserRole.Admin, EUserRole.Owner, EUserRole.Employee, EUserRole.Client]
+            },
         }
 
     ]

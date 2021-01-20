@@ -9,7 +9,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    loadChildren: () => import('./core/views/main/main.module').then(m => m.MainModule)
+    loadChildren: () => import('./core/views/main/main.module').then(m => m.MainModule),
   },
   {
     path: 'not-found',
