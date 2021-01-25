@@ -1,11 +1,12 @@
 import { Component, OnDestroy, OnInit, ViewContainerRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { Subject } from 'rxjs';
 import { finalize, takeUntil } from 'rxjs/operators';
 import { ConfirmDeleteModal } from 'src/app/core/modals';
 import { IEmployees } from 'src/app/core/models/employees';
-import { IProvider, IProviderDetails, IProvidersType, } from 'src/app/core/models/provider';
+import { IProvider, IProviderDetails } from 'src/app/core/models/provider';
 import { AddEmployeModalComponent, CreateEmployemodalComponent, CreateProviderModalComponent } from './modals';
 import { ProvidersService } from './providers.service';
 
@@ -25,7 +26,12 @@ export class ProvidersViewComponent implements OnInit, OnDestroy {
     public employeesDetails: IEmployees[] = [];
     public typeValue: string;
 
-    constructor(private _modalService: NzModalService, private _providersService: ProvidersService, private viewContainerRef: ViewContainerRef) { }
+    constructor(
+        private _modalService: NzModalService, 
+        private _providersService: ProvidersService, 
+        private viewContainerRef: ViewContainerRef,
+        private _router:Router,
+        ) { }
 
     ngOnInit() {
         this._getProviders();
@@ -170,6 +176,10 @@ export class ProvidersViewComponent implements OnInit, OnDestroy {
                 this._getEmployees(providerId);
             }
         })
+    }
+
+    public onClickBooking(providerId:number,employId:number):void{
+this._router.navigate([`timesheet/${providerId}/${employId}`]);
     }
 
     ngOnDestroy() {

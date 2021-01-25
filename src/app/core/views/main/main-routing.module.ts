@@ -1,3 +1,4 @@
+import { importType } from '@angular/compiler/src/output/output_ast';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RoleGuard } from '../../guards/role.guard';
@@ -36,6 +37,13 @@ const mainRoutes: Routes = [{
             data: {
                 enabledRoles: [EUserRole.Admin, EUserRole.Owner, EUserRole.Employee, EUserRole.Client]
             },
+        },
+        {
+            path:'timesheet/:providerId/:employId',
+            loadChildren:()=>import('./views/timesheet/timesheet.module').then(m=>m.TimesheetModule),
+            data:{
+                enabledRoles: [EUserRole.Admin, EUserRole.Owner, EUserRole.Employee, EUserRole.Client]   
+            }
         }
 
     ]

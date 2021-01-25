@@ -1,0 +1,13 @@
+<div class="timesheet">
+
+    <header class="d-flex">
+        <button nz-button style="width: 200px" (click)="onClickOpenCreateBookingModal()">Create Booking</button>
+        <button nz-button style="width: 200px;margin-left: 20px;">Create Service</button>
+    </header>
+    <div [ngStyle]="{ width: '300px', borderRadius: '4px' }" class="nz-calendar">
+        <nz-calendar [nzFullscreen]="false" (nzSelectChange)="onValueChange($event)"></nz-calendar>
+    </div>
+    <main>
+        <p class="date-title">{{date}}</p>
+    </main>
+</div>
