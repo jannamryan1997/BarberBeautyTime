@@ -21,12 +21,13 @@ export class ProvidersService {
     }
 
     public getProviders(search: string): Observable<IProviderDetails> {
-        let ownerId = this._cookieService.get('ownerId')
+        let ownerId = this._cookieService.get('ownerId');
         let params = new HttpParams();
         if (search) {
             params = params.append('search', search)
         }
-        return this._httpClient.get<IProviderDetails>(`service-providers/?owner=${ownerId}`, { params });
+            return this._httpClient.get<IProviderDetails>(`service-providers/?owner=${ownerId}`, { params });
+     
     }
     public createProvider(body: IProvider): Observable<IProvider> {
         return this._httpClient.post<IProvider>('service-providers/', body);

@@ -17,6 +17,10 @@ return this._httpClient.get<ITimesheet[]>(`service-providers/${providerId}/emplo
     public getServices(providerId:number,employId:number):Observable<IService[]>{
         return this._httpClient.get<IService[]>(`service-providers/${providerId}/employees/${employId}/services/`);
     }
+
+    public createService(body:IService,providerId:number,employId:number):Observable<any>{
+        return this._httpClient.post<any>(`service-providers/${providerId}/employees/${employId}/services/`,body)
+    }
 }
 
 

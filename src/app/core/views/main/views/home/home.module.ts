@@ -5,7 +5,7 @@ import { HomeViewComponent } from './home.view';
 import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
-import { ActionModal } from "./modals";
+
 
 ///ng-zorro
 import { NzCardModule } from 'ng-zorro-antd/card';
@@ -14,7 +14,7 @@ import { NzCalendarModule } from 'ng-zorro-antd/calendar';
 
 
 @NgModule({
-    declarations: [HomeViewComponent,ActionModal],
+    declarations: [HomeViewComponent],
     imports: [
         HomeRoutingModule,
         CommonModule,
@@ -26,7 +26,7 @@ import { NzCalendarModule } from 'ng-zorro-antd/calendar';
         NzCalendarModule
     ],
     providers: [],
-    entryComponents: [ActionModal]
+    entryComponents: []
 })
 
 export class HomeModule { }

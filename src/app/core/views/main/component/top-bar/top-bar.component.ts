@@ -51,6 +51,7 @@ export class TopBarComponent implements OnInit, OnDestroy {
 
     public onClickLogOut(): void {
         this._cookieService.remove('ownerId');
+        this._cookieService.remove('service_provider_id');
         this._cookieService.remove('role');
         this._cookieService.remove('refreshToken');
         this._cookieService.remove('accessToken');

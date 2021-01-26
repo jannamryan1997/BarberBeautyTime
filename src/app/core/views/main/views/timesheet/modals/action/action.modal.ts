@@ -1,6 +1,7 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { NzModalRef } from 'ng-zorro-antd/modal';
 import { Subject } from 'rxjs';
+import { ITimesheet } from 'src/app/core/models/timesheet';
 
 @Component({
     selector: 'app-action',
@@ -11,8 +12,11 @@ import { Subject } from 'rxjs';
 export class ActionModal implements OnInit, OnDestroy {
 
     private _unsubscribe$ = new Subject<void>();
+    @Input() item:ITimesheet;
   
-    constructor(private _modal: NzModalRef) { }
+    constructor(private _modal: NzModalRef) {
+        
+     }
 
     ngOnInit() { }
 

@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit, ViewContainerRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { CookieService } from 'ngx-cookie';
 import { Subject } from 'rxjs';
 import { finalize, takeUntil } from 'rxjs/operators';
 import { ConfirmDeleteModal } from 'src/app/core/modals';
@@ -25,13 +26,16 @@ export class ProvidersViewComponent implements OnInit, OnDestroy {
     public providersData: IProvider[] = [];
     public employeesDetails: IEmployees[] = [];
     public typeValue: string;
+    public ownerId:string;
+    public service_provider_id:string;
 
     constructor(
         private _modalService: NzModalService, 
         private _providersService: ProvidersService, 
         private viewContainerRef: ViewContainerRef,
         private _router:Router,
-        ) { }
+        ) { 
+        }
 
     ngOnInit() {
         this._getProviders();
@@ -61,6 +65,8 @@ export class ProvidersViewComponent implements OnInit, OnDestroy {
             .subscribe((data: IProviderDetails) => {
                 console.log(data);
                 this.providersData = data.results;
+                console.log(this.providersData);
+                
             },
                 err => {
                 }
@@ -90,6 +96,8 @@ export class ProvidersViewComponent implements OnInit, OnDestroy {
             .pipe(takeUntil(this._unsubscribe$))
             .subscribe((data: IEmployees[]) => {
                 this.employeesDetails = data;
+                console.log(  this.employeesDetails);
+                
             })
     }
 

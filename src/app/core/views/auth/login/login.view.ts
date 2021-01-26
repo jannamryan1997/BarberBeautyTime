@@ -35,7 +35,7 @@ export class LoginViewComponent implements OnInit, OnDestroy {
         });
     }
 
-    submitForm(): void {
+   public submitForm(): void {
         for (const i in this.loginForm.controls) {
             this.loginForm.controls[i].markAsDirty();
             this.loginForm.controls[i].updateValueAndValidity();
@@ -70,6 +70,10 @@ export class LoginViewComponent implements OnInit, OnDestroy {
             if( data.user.role === 'O'){
                 let ownerId =  data.user.additional_data.owner.id;
                 this._cookieService.put('ownerId', ownerId);
+            }
+            else if(data.user.role === 'E'){
+                let service_provider_id = data.user.additional_data.employee.service_provider_id;
+                this._cookieService.put('service_provider_id',service_provider_id)
             }
          
             this._cookieService.put('accessToken', data.access_token);

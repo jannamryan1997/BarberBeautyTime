@@ -21,7 +21,6 @@ export class UserService {
 
     public setUser(user: IAuthUser): void {
         this._user = user;
-        console.log(this._user,'-----------');
         this._userState$.next(user);
     }
 

@@ -1,6 +1,7 @@
 import { importType } from '@angular/compiler/src/output/output_ast';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from '../../guards/auth.guards';
 import { RoleGuard } from '../../guards/role.guard';
 import { EUserRole } from '../../models/auth-user';
 
@@ -17,13 +18,13 @@ const mainRoutes: Routes = [{
                 EUserRole.Employee, EUserRole.Client]
             },
         },
-        {
-            path: 'account',
-            loadChildren: () => import('./views/account/account.module').then(m => m.AccountModule),
-            data: {
-                enabledRoles: [EUserRole.Admin, EUserRole.Owner, EUserRole.Employee, EUserRole.Client]
-            },
-        },
+        // {
+        //     path: 'account',
+        //     loadChildren: () => import('./views/account/account.module').then(m => m.AccountModule),
+        //     data: {
+        //         enabledRoles: [EUserRole.Admin, EUserRole.Owner, EUserRole.Employee, EUserRole.Client]
+        //     },
+        // },
         {
             path: 'providers',
             loadChildren: () => import('./views/providers/providers.module').then(m => m.ProvidersModule),
@@ -44,6 +45,14 @@ const mainRoutes: Routes = [{
             data:{
                 enabledRoles: [EUserRole.Admin, EUserRole.Owner, EUserRole.Employee, EUserRole.Client]   
             }
+        },
+        {
+            path:'user',
+            loadChildren:()=>import('./views/user/user.module').then(m=>m.UserModule),
+            data:{
+                enabledRoles: [EUserRole.Employee]   
+            },
+            canActivate:[AuthGuard]
         }
 
     ]

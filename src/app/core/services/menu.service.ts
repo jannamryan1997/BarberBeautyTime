@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 @Injectable()
 
 export class MenuService {
-    private _titleEvent$ = new BehaviorSubject<string>('Home');
+    private _titleEvent$ = new BehaviorSubject<string>('Providers');
     private _isOpenEvent$ = new BehaviorSubject<boolean>(true);
 
     constructor() { }

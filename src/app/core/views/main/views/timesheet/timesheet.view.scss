@@ -1,6 +1,5 @@
 main {
     box-shadow: 0px 16px 12px 7px #f8f9fa;
-    height: 300px;
     margin: 40px auto;
     border-radius: 6px;
     text-align: center;
@@ -11,6 +10,10 @@ main {
         text-align: center;
         color: #d357f8;
         font-size: 25px;
+    }
+    .icon-img {
+        width: 15px;
+        display: flex;
     }
 }
 
@@ -39,5 +42,29 @@ main {
     }
     .ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled)::before {
         border-color: #918bf3;
+    }
+    .free-item {
+        border-image-source: linear-gradient(45deg, #7b70fe, #ad2df1, #918bf3);
+        box-shadow: 0px 6px 15px 0px rgba(50, 50, 50, 0.52);
+        border-image-slice: 1;
+        margin: 10px;
+    }
+    // .rese-item {
+    //     border-image-slice: 1;
+    //     border-image-source: linear-gradient(45deg, #b6349c, #ef0a6a, #b6349c);
+    //     box-shadow: 0px 10px 20px 0px rgba(50, 50, 50, 0.52);
+    //     margin: 10px;
+    // }
+    .ant-card-body {
+        padding: 5px;
+    }
+    .ant-card-head {
+        font-weight: 600;
+    }
+    .ant-card-head-title {
+        padding: 5px 0;
+    }
+    .ng-star-inserted {
+        color: #424242;
     }
 }

@@ -1,13 +1,24 @@
 <div class="timesheet">
 
-    <header class="d-flex">
+    <header class="d-flex" *ngIf="!owner">
         <button nz-button style="width: 200px" (click)="onClickOpenCreateBookingModal()">Create Booking</button>
-        <button nz-button style="width: 200px;margin-left: 20px;">Create Service</button>
+        <button nz-button style="width: 200px;margin-left: 20px;" (click)="onClickOpenCreateServiceModal()">Create Service</button>
     </header>
     <div [ngStyle]="{ width: '300px', borderRadius: '4px' }" class="nz-calendar">
         <nz-calendar [nzFullscreen]="false" (nzSelectChange)="onValueChange($event)"></nz-calendar>
     </div>
     <main>
         <p class="date-title">{{date}}</p>
+
+        <div class="nz-row">
+            <div nz-row [nzGutter]="6">
+                <div nz-col [nzSpan]="3" class="nz-col-item" *ngFor="let item of timesheetDetails" (click)="showModalAction(item)">
+                    <nz-card class="free-item" nzTitle="{{item?.start_datetime | date :'shortTime'}}">
+                        <img src="assets/icons/checked.png" class="icon-img" *ngIf="item?.reserved===true">
+                        <label *ngIf="item?.reserved===false">reseved</label>
+                    </nz-card>
+                </div>
+            </div>
+        </div>
     </main>
 </div>

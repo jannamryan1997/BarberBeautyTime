@@ -26,6 +26,6 @@ export interface IOwner {
 
 export interface IEmployee {
     id: number;
-    service_provider_id: number;
+    service_provider_id: string;
 }
 

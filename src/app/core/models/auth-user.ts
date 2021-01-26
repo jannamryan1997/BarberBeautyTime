@@ -1,3 +1,5 @@
+import { IAdditional } from "./user";
+
 export interface IAuthUser {
     pk: number;
     first_name: string;
@@ -6,7 +8,7 @@ export interface IAuthUser {
     username: string;
     avatar: string;
     role: EUserRole;
-    additional_data: string;
+    additional_data: IAdditional;
 }
 export enum EUserRole {
     Admin = 'A',

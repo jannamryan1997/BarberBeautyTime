@@ -1,0 +1,28 @@
+<form nz-form [formGroup]="serviceForm" class="login-form" (ngSubmit)="submitForm()">
+    <p>{{message}}</p>
+    <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your action!" nzHasFeedback>
+            <nz-input-group nzPrefixIcon="user">
+                <input type="text" nz-input formControlName="name" placeholder="action" />
+            </nz-input-group>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-control nzErrorTip="Please input Price!" nzHasFeedback>
+            <nz-input-group nzPrefixIcon="money-collect">
+                <input type="text" nz-input formControlName="price" placeholder="Price" />
+            </nz-input-group>
+        </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+        <nz-form-control nzErrorTip="Please input duration in minutes!" nzHasFeedback>
+            <nz-input-group nzPrefixIcon="field-time">
+                <input type="text" nz-input formControlName="duration_in_minutes" placeholder="duration in minutes" />
+            </nz-input-group>
+        </nz-form-control>
+    </nz-form-item>
+
+
+    <button nz-button (click)="onCreateService()">Createw Service</button>
+</form>

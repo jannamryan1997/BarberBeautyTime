@@ -1,0 +1,22 @@
+<nz-table #basicTable>
+    <thead>
+        <tr>
+            <th>Email</th>
+            <th>User Name</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Booking</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{user?.email}}</td>
+            <td>{{user?.username}}</td>
+            <td>{{user?.first_name}}</td>
+            <td>{{user?.last_name}}</td>
+            <td>
+                <i nz-icon nzType="field-time" nzTheme="outline" (click)="onClickBooking()"></i>
+            </td>
+        </tr>
+    </tbody>
+</nz-table>
