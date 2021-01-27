@@ -55,7 +55,6 @@ export class ForgotPasswordViewComponent implements OnInit, OnDestroy {
             this.forgotPassswordForm.controls[key].markAsDirty();
             this.forgotPassswordForm.controls[key].updateValueAndValidity();
         }
-        console.log(value);
     }
 
     public validateConfirmPassword(): void {
@@ -101,7 +100,6 @@ export class ForgotPasswordViewComponent implements OnInit, OnDestroy {
                 })
             )
             .subscribe((data) => {
-                console.log(data);
                 this._router.navigate(['/auth/login']);
 
             }, err => {

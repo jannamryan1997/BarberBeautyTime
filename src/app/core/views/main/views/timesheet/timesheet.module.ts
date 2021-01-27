@@ -10,6 +10,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzCalendarModule } from 'ng-zorro-antd/calendar';
+import { NzBadgeModule } from 'ng-zorro-antd/badge';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
+
 
 @NgModule({
     declarations: [
@@ -24,7 +28,11 @@ import { NzCalendarModule } from 'ng-zorro-antd/calendar';
         FormsModule,
         NzCalendarModule,
         NzCardModule,
-        NzGridModule],
+        NzGridModule,
+        NzBadgeModule,
+        NzSelectModule,
+        NzAutocompleteModule
+    ],
     providers: [TimesheetService,DatePipe],
     entryComponents: [
         CreateTimesheetModalComponent,

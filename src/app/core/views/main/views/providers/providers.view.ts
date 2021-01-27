@@ -63,10 +63,7 @@ export class ProvidersViewComponent implements OnInit, OnDestroy {
                 })
             )
             .subscribe((data: IProviderDetails) => {
-                console.log(data);
                 this.providersData = data.results;
-                console.log(this.providersData);
-                
             },
                 err => {
                 }
@@ -96,8 +93,6 @@ export class ProvidersViewComponent implements OnInit, OnDestroy {
             .pipe(takeUntil(this._unsubscribe$))
             .subscribe((data: IEmployees[]) => {
                 this.employeesDetails = data;
-                console.log(  this.employeesDetails);
-                
             })
     }
 

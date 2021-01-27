@@ -1,5 +1,9 @@
-     ::ng-deep {
-        .ant-modal-footer {
-            display: none;
-        }
-    }
+      ::ng-deep {
+         .ant-modal-footer {
+             display: none;
+         }
+     }
+     
+     nz-select {
+         width: 100%;
+     }

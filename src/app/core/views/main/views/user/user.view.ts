@@ -36,10 +36,6 @@ export class UserViewComponent implements OnInit, OnDestroy {
      }
 
      public onClickBooking():void{
-         console.log(this.user);
-         
-         console.log("Dfdf");
-         
         this._router.navigate([`timesheet/${this.service_provider_id}/${this.user.additional_data.employee.id}`]);
             }
         

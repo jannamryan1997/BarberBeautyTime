@@ -1,4 +1,3 @@
-import { importType } from '@angular/compiler/src/output/output_ast';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '../../guards/auth.guards';
@@ -9,7 +8,7 @@ import { MainViewComponent } from './main.view';
 
 const mainRoutes: Routes = [{
     path: '', component: MainViewComponent, children: [
-        { path: '', pathMatch: 'full', redirectTo: 'home' },
+        // { path: '', pathMatch: 'full', redirectTo: 'home' },
         {
             path: 'home',
             loadChildren: () => import('./views/home/home.module').then(m => m.HomeModule),
@@ -44,7 +43,7 @@ const mainRoutes: Routes = [{
             loadChildren:()=>import('./views/timesheet/timesheet.module').then(m=>m.TimesheetModule),
             data:{
                 enabledRoles: [EUserRole.Admin, EUserRole.Owner, EUserRole.Employee, EUserRole.Client]   
-            }
+            },
         },
         {
             path:'user',
@@ -52,7 +51,6 @@ const mainRoutes: Routes = [{
             data:{
                 enabledRoles: [EUserRole.Employee]   
             },
-            canActivate:[AuthGuard]
         }
 
     ]

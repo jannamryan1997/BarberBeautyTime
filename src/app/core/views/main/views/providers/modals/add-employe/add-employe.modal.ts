@@ -70,7 +70,6 @@ export class AddEmployeModalComponent implements OnInit, OnDestroy {
                 })
             )
             .subscribe((data)=>{
-                console.log(data);
                 this._modal.destroy('AddEmploye');
                 
             },

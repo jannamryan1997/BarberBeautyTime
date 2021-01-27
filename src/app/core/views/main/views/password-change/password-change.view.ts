@@ -69,7 +69,6 @@ export class PasswordChangeViewComponent implements OnInit, OnDestroy {
             this.validateForm.controls[key].markAsDirty();
             this.validateForm.controls[key].updateValueAndValidity();
         }
-        console.log(value);
     }
 
 

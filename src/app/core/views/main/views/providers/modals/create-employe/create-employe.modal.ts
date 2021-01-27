@@ -124,8 +124,6 @@ export class CreateEmployemodalComponent implements OnInit, OnDestroy {
                     this.loading = false;
                 }))
             .subscribe((data) => {
-                console.log(data);
-
             },
                 err => {
                     this.message = err.message;
@@ -139,8 +137,6 @@ export class CreateEmployemodalComponent implements OnInit, OnDestroy {
         .pipe(takeUntil(this._unsubscribe$))
         .subscribe((data) => {
             this._modal.destroy('deletedEmploye');
-            console.log(data);
-
         })
     }
 

@@ -61,7 +61,7 @@ export class TimesheetViewComponent implements OnInit, OnDestroy {
                     this.loading = false;
                 }))
             .subscribe((data: ITimesheet[]) => {
-                this.timesheetDetails = data;
+                this.timesheetDetails = data; 
             })
 
     }
@@ -73,11 +73,17 @@ export class TimesheetViewComponent implements OnInit, OnDestroy {
 
 
 
-    public onClickOpenCreateBookingModal(): void {
+    public onClickOpenCreateBookingModal(bookingId:number): void {
+        const today = new Date();
         const dialogRef = this._modalSrvice.create({
             nzTitle: 'Create Booking',
             nzContent: CreateTimesheetModalComponent,
-            nzComponentParams: { providerId: this.providerId, employId: this.employId }
+            nzComponentParams: { providerId: this.providerId, employId: this.employId,bookingId:bookingId }
+        });
+        dialogRef.afterClose.subscribe((data)=>{
+            if(data && data === 'createBooking' || data==='deleteBooking'){
+                 this._getTimesheet(today);
+            }
         })
     }
 

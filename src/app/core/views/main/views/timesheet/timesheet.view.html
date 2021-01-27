@@ -1,8 +1,7 @@
 <div class="timesheet">
 
     <header class="d-flex" *ngIf="!owner">
-        <button nz-button style="width: 200px" (click)="onClickOpenCreateBookingModal()">Create Booking</button>
-        <button nz-button style="width: 200px;margin-left: 20px;" (click)="onClickOpenCreateServiceModal()">Create Service</button>
+        <button nz-button style="width: 200px" (click)="onClickOpenCreateServiceModal()">Create Service</button>
     </header>
     <div [ngStyle]="{ width: '300px', borderRadius: '4px' }" class="nz-calendar">
         <nz-calendar [nzFullscreen]="false" (nzSelectChange)="onValueChange($event)"></nz-calendar>
@@ -12,10 +11,16 @@
 
         <div class="nz-row">
             <div nz-row [nzGutter]="6">
-                <div nz-col [nzSpan]="3" class="nz-col-item" *ngFor="let item of timesheetDetails" (click)="showModalAction(item)">
-                    <nz-card class="free-item" nzTitle="{{item?.start_datetime | date :'shortTime'}}">
-                        <img src="assets/icons/checked.png" class="icon-img" *ngIf="item?.reserved===true">
-                        <label *ngIf="item?.reserved===false">reseved</label>
+                <div nz-col [nzSpan]="3" class="nz-col-item" *ngFor="let item of timesheetDetails">
+                    <nz-card [ngClass]="{'free-item':item?.reserved===true,'rese-item':item?.reserved===false}">
+                        <div class="card-header" (click)="showModalAction(item)">
+                            <p>{{item?.start_datetime | date : 'shortTime'}}</p>
+                        </div>
+                        <div style="display: flex;justify-content: space-between;align-items: center;margin: 5px 0;">
+                            <img src="assets/icons/checked.png" class="icon-img" *ngIf="item?.reserved===true">
+                            <i nz-icon nzType="edit" *ngIf="!owner" (click)="onClickOpenCreateBookingModal(item?.id)"></i>
+                            <label *ngIf="item?.reserved===false ">reseved</label>
+                        </div>
                     </nz-card>
                 </div>
             </div>

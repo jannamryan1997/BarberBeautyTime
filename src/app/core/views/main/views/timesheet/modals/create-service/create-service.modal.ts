@@ -63,7 +63,6 @@ export class CreateServiceModalComponent implements OnInit,OnDestroy{
        })
        )
        .subscribe((data)=>{
-           console.log(data);
            if(data){
                this._message.create('success', `This is a message of success`)
                this._modal.destroy();

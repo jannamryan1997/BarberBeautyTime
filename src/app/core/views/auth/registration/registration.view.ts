@@ -83,8 +83,6 @@ export class RegistrationViewComponent implements OnInit, OnDestroy {
 
             },
                 err => {
-                    console.log(err);
-
                     this.message = err.message;
                 }
             )
