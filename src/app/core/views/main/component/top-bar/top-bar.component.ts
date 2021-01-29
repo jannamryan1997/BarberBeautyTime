@@ -23,7 +23,9 @@ export class TopBarComponent implements OnInit, OnDestroy {
     constructor(public _menuService: MenuService, private _router: Router, private _cookieService: CookieService) {
         this._menuService.getPageTitle().subscribe((data) => {
             this.title = data;
-        })
+            console.log(data);
+            
+                })
 
     }
 

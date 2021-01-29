@@ -139,11 +139,12 @@ export class ProvidersViewComponent implements OnInit, OnDestroy {
     public onExpandChange(id: number, checked: boolean): void {
         if (checked) {
             this.expandSet.add(id);
-            this._getEmployees(id);
-        } else {
+      this._getEmployees(id);
+             
+        }
+         else {
             this.expandSet.delete(id);
         }
-
     }
 
     public onClickOpenCreateEmployeModal(providerId: number, employeId: number): void {
