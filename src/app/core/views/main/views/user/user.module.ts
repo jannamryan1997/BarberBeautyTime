@@ -6,8 +6,8 @@ import { UserRoutingModule } from './user-routing.module';
 import { UserViewComponent } from './user.view';
 import { NzTableModule } from 'ng-zorro-antd/table';
 @NgModule({
-    declarations:[UserViewComponent],
-    imports:[
+    declarations: [UserViewComponent],
+    imports: [
         UserRoutingModule,
         SharedModule,
         CommonModule,
@@ -15,8 +15,8 @@ import { NzTableModule } from 'ng-zorro-antd/table';
         FormsModule,
         NzTableModule
     ],
-    providers:[],
-    entryComponents:[]
+    providers: [],
+    entryComponents: []
 })
 
 export class UserModule{}

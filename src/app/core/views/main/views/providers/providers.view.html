@@ -12,20 +12,19 @@
     <nz-table #nzTable [nzData]="providersData" nzTableLayout="fixed">
         <thead>
             <tr>
-                <th nzWidth="60px"></th>
                 <th>Index</th>
                 <th>Name</th>
                 <th>Type</th>
                 <th>Rating</th>
                 <th>Edit</th>
                 <th>Delete</th>
-                <th>Create an employe</th>
+                <th>Create an employee</th>
+                <th>See employee</th>
             </tr>
         </thead>
         <tbody>
             <ng-container *ngFor="let data of nzTable.data;let ind=index">
                 <tr>
-                    <td [nzExpand]="expandSet.has(data.id)" (nzExpandChange)="onExpandChange(data.id, $event)"></td>
                     <td>{{ind+1}}</td>
                     <td>{{ data?.name }}</td>
                     <td>{{ data?.type }}</td>
@@ -33,8 +32,9 @@
                     <td> <i (click)="onClickOpenProviderModalById(data?.id)" nz-icon nzType="edit" nzTheme="outline"></i></td>
                     <td><i (click)="onClickDeleteProvider(data?.id)" nz-icon nzType="delete" nzTheme="outline"></i></td>
                     <td><i (click)="onClickOpenAddEmployeModal(data?.id)" nz-icon nzType="user-add" nzTheme="outline"></i></td>
+                    <td><i nz-icon nzType="user-switch" nzTheme="outline" (click)="onClickRouterEmployee(data?.id)"></i></td>
                 </tr>
-                <tr [nzExpand]="expandSet.has(data.id)">
+                <!-- <tr [nzExpand]="expandSet.has(data.id)">
                     <nz-table #nzTable [nzData]="employeesDetails" [nzFrontPagination]="false" [nzShowPagination]="false" nzTableLayout="fixed" class="tree-table">
                         <thead>
                             <tr>
@@ -55,7 +55,7 @@
                             </tr>
                         </tbody>
                     </nz-table>
-                </tr>
+                </tr> -->
             </ng-container>
         </tbody>
     </nz-table>

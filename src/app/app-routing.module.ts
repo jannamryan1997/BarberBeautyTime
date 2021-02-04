@@ -11,7 +11,7 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./core/views/main/main.module').then(m => m.MainModule),
-    canActivate: [AuthGuard], 
+    canActivate: [AuthGuard],
   },
   {
     path: 'not-found',

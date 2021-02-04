@@ -14,13 +14,13 @@ export class ConfirmDeleteModal implements OnInit, OnDestroy {
     private _unsubscribe$ = new Subject<void>();
     constructor(private _modal: NzModalRef) { }
 
-    ngOnInit() { }
+    ngOnInit(): void { }
 
     public onClickDeleteProvider(): void {
         this._modal.destroy('delete');
     }
 
-    ngOnDestroy() {
+    ngOnDestroy(): void {
         this._unsubscribe$.next();
         this._unsubscribe$.complete();
     }

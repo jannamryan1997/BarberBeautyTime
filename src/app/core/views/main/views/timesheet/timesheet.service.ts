@@ -23,11 +23,11 @@ export class TimesheetService {
         return this._httpClient.post<any>(`service-providers/${providerId}/employees/${employId}/services/`, body);
     }
 
-    public createBooking(providerId: number, employId: number,body: IBooking): Observable<any> {
+    public createBooking(providerId: number, employId: number, body: IBooking): Observable<any> {
         return this._httpClient.post<any>(`service-providers/${providerId}/employees/${employId}/bookings/`,body);
     }
 
-    public deleteBooking(providerId: number,employId: number,bookingId:number,):Observable<any>{
+    public deleteBooking(providerId: number,employId: number,bookingId: number): Observable<any>{
         return this._httpClient.delete<any>(`service-providers/${providerId}/employees/${employId}/bookings/${bookingId}/`);
     }
 

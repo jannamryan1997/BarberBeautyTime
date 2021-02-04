@@ -5,7 +5,7 @@ import { AuthMainViewComponent } from './auth-main.view';
 
 @NgModule({
     declarations: [AuthMainViewComponent],
-    imports: [AuthMainRoutingModule,SharedModule],
+    imports: [AuthMainRoutingModule, SharedModule],
     providers: [],
     entryComponents: []
 })

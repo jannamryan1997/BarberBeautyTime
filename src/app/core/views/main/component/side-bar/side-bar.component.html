@@ -3,7 +3,7 @@
         <img class="logo" src="assets/icons/logo.PNG">
     </header>
     <ul nz-menu nzMode="inline" nzTheme="dark">
-        <li *ngFor="let item of menuItem" (click)="getBehiviorSubject(item?.label)" (click)="onClickRouter(item?.path)" nz-menu-item nz-tooltip nzTooltipPlacement="right" routerLinkActive="activeRouter">
+        <li *ngFor="let item of menuItem" [routerLink]="item.path" (click)="getBehiviorSubject(item?.label)" nz-menu-item nz-tooltip nzTooltipPlacement="right" routerLinkActive="activeRouter">
             <i nz-icon nzType="user"></i>
             <span>{{item?.label}}</span>
         </li>

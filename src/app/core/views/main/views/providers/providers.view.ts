@@ -2,11 +2,9 @@ import { Component, OnDestroy, OnInit, ViewContainerRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
-import { CookieService } from 'ngx-cookie';
 import { Subject } from 'rxjs';
 import { finalize, takeUntil } from 'rxjs/operators';
 import { ConfirmDeleteModal } from 'src/app/core/modals';
-import { IEmployees } from 'src/app/core/models/employees';
 import { IProvider, IProviderDetails } from 'src/app/core/models/provider';
 import { AddEmployeModalComponent, CreateEmployemodalComponent, CreateProviderModalComponent } from './modals';
 import { ProvidersService } from './providers.service';
@@ -24,20 +22,19 @@ export class ProvidersViewComponent implements OnInit, OnDestroy {
     public message: string;
     public searchCtrl: FormControl = new FormControl(null);
     public providersData: IProvider[] = [];
-    public employeesDetails: IEmployees[] = [];
     public typeValue: string;
-    public ownerId:string;
-    public service_provider_id:string;
+    public ownerId: string;
+    public service_provider_id: string;
 
     constructor(
-        private _modalService: NzModalService, 
-        private _providersService: ProvidersService, 
-        private viewContainerRef: ViewContainerRef,
-        private _router:Router,
-        ) { 
+        private _modalService: NzModalService,
+        private _providersService: ProvidersService,
+        private _viewContainerRef: ViewContainerRef,
+        private _router: Router,
+        ) {
         }
 
-    ngOnInit() {
+    ngOnInit(): void {
         this._getProviders();
         this._searchCtrlValueChanges();
     }
@@ -51,11 +48,11 @@ export class ProvidersViewComponent implements OnInit, OnDestroy {
                     this._getProviders();
                 }
                 this._getProviders();
-            })
+            });
     }
     private _getProviders(): void {
         this.loading = true;
-        let search: string = this.searchCtrl.value;
+        const search: string = this.searchCtrl.value;
         this._providersService.getProviders(search)
             .pipe(takeUntil(this._unsubscribe$),
                 finalize(() => {
@@ -67,7 +64,7 @@ export class ProvidersViewComponent implements OnInit, OnDestroy {
             },
                 err => {
                 }
-            )
+            );
 
     }
 
@@ -85,16 +82,9 @@ export class ProvidersViewComponent implements OnInit, OnDestroy {
                 err => {
                     this.message = err.error;
                 }
-            )
+            );
     }
 
-    private _getEmployees(id): void {
-        this._providersService.getEmployees(id)
-            .pipe(takeUntil(this._unsubscribe$))
-            .subscribe((data: IEmployees[]) => {
-                this.employeesDetails = data;
-            })
-    }
 
     public onClickOpenCreateProviderModal(): void {
         const dialogRef = this._modalService.create({
@@ -105,22 +95,22 @@ export class ProvidersViewComponent implements OnInit, OnDestroy {
             if (data === 'provider Create') {
                 this._getProviders();
             }
-        })
+        });
     }
 
     public onClickOpenProviderModalById(providerId: number): void {
         const dialogRef = this._modalService.create({
             nzTitle: 'Create Providers',
             nzContent: CreateProviderModalComponent,
-            nzViewContainerRef: this.viewContainerRef,
-            nzComponentParams: { providerId: providerId }
+            nzViewContainerRef: this._viewContainerRef,
+            nzComponentParams: { providerId}
 
         })
         dialogRef.afterClose.subscribe((data) => {
             if (data === 'provider Changed') {
                 this._getProviders();
             }
-        })
+        });
     }
 
     public onClickDeleteProvider(providerId: number): void {
@@ -133,18 +123,7 @@ export class ProvidersViewComponent implements OnInit, OnDestroy {
                 this._onClickDeleteProvider(providerId);
             }
 
-        })
-    }
-
-    public onExpandChange(id: number, checked: boolean): void {
-        if (checked) {
-            this.expandSet.add(id);
-      this._getEmployees(id);
-             
-        }
-         else {
-            this.expandSet.delete(id);
-        }
+        });
     }
 
     public onClickOpenCreateEmployeModal(providerId: number, employeId: number): void {
@@ -152,17 +131,17 @@ export class ProvidersViewComponent implements OnInit, OnDestroy {
             nzTitle: 'Create Employe',
             nzContent: CreateEmployemodalComponent,
             nzFooter: 'false',
-            nzViewContainerRef: this.viewContainerRef,
+            nzViewContainerRef: this._viewContainerRef,
             nzComponentParams: {
-                providerId: providerId,
-                employeId: employeId
+                providerId,
+                employeId
             }
-        })
-        dialogRef.afterClose.subscribe((data)=>{
-            if(data && data==='deletedEmploye'){
-                this._getEmployees(providerId);
+        });
+        dialogRef.afterClose.subscribe((data) => {
+            if (data && data === 'deletedEmploye'){
+                // this._getEmployees(providerId);
             }
-        })
+        });
     }
 
     public onClickOpenAddEmployeModal(providerId: number): void {
@@ -170,23 +149,29 @@ export class ProvidersViewComponent implements OnInit, OnDestroy {
             nzTitle: 'Add an Employe',
             nzContent: AddEmployeModalComponent,
             nzFooter: 'false',
-            nzViewContainerRef: this.viewContainerRef,
+            nzViewContainerRef: this._viewContainerRef,
             nzComponentParams: {
-                providerId: providerId,
+                providerId,
             }
-        })
+        });
         dialogRef.afterClose.subscribe((data) => {
             if (data && data === 'AddEmploye') {
-                this._getEmployees(providerId);
+                // this._getEmployees(providerId);
             }
-        })
+        });
     }
 
-    public onClickBooking(providerId:number,employId:number):void{
+    public onClickBooking(providerId: number, employId: number): void{
 this._router.navigate([`timesheet/${providerId}/${employId}`]);
     }
 
-    ngOnDestroy() {
+
+
+    public onClickRouterEmployee(providerId: number): void{
+        this._router.navigate([`employees/${providerId}`]);
+    }
+
+    ngOnDestroy(): void {
         this._unsubscribe$.next();
         this._unsubscribe$.complete();
     }

@@ -1,4 +1,4 @@
-import { IAdditional } from "./user";
+import { IAdditional } from './user';
 
 export interface IAuthUser {
     pk: number;

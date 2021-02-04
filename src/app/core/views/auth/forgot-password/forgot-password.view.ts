@@ -18,12 +18,12 @@ export class ForgotPasswordViewComponent implements OnInit, OnDestroy {
     public forgotPassswordForm: FormGroup;
     public message: string;
     public loading = false;
-    public showFull: boolean = false;
-    public showPersonal: boolean = true;
+    public showFull = false;
+    public showPersonal = true;
 
     constructor(private _router: Router, private _fb: FormBuilder, private _forgotPasswordService: ForgotPasswordService) { }
 
-    ngOnInit() {
+    ngOnInit(): void {
         this._formBuilder();
     }
 
@@ -37,8 +37,7 @@ export class ForgotPasswordViewComponent implements OnInit, OnDestroy {
                 new_password: ['', Validators.required],
                 confirm_new_password: ['', [this._confirmValidator, Validators.required]],
             })
-        })
-
+        });
     }
 
     private _confirmValidator = (control: FormControl): { [s: string]: boolean } => {
@@ -48,7 +47,7 @@ export class ForgotPasswordViewComponent implements OnInit, OnDestroy {
             return { confirm: true, error: true };
         }
         return {};
-    };
+    }
 
     public submitForm(value: { userName: string; email: string; password: string; confirm: string; comment: string }): void {
         for (const key in this.forgotPassswordForm.controls) {
@@ -58,7 +57,7 @@ export class ForgotPasswordViewComponent implements OnInit, OnDestroy {
     }
 
     public validateConfirmPassword(): void {
-        setTimeout(() => this.forgotPassswordForm.get('full')['controls'].confirm.updateValueAndValidity());
+        setTimeout(() => this.forgotPassswordForm.get('full') ['controls'].confirm.updateValueAndValidity());
     }
 
 
@@ -81,7 +80,7 @@ export class ForgotPasswordViewComponent implements OnInit, OnDestroy {
 
             }, err => {
                 this.message = err.message;
-            })
+            });
     }
 
 
@@ -104,7 +103,7 @@ export class ForgotPasswordViewComponent implements OnInit, OnDestroy {
 
             }, err => {
                 this.message = err.message;
-            })
+            });
     }
 
 
@@ -116,7 +115,7 @@ export class ForgotPasswordViewComponent implements OnInit, OnDestroy {
         return this.forgotPassswordForm.get('full') as FormGroup;
     }
 
-    ngOnDestroy() {
+    ngOnDestroy(): void {
         this._unsubscribe$.next();
         this._unsubscribe$.complete();
 

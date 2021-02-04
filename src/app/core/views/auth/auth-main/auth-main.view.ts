@@ -12,9 +12,9 @@ export class AuthMainViewComponent implements OnInit, OnDestroy {
 
     constructor() { }
 
-    ngOnInit() { }
+    ngOnInit(): void { }
 
-    ngOnDestroy() {
+    ngOnDestroy(): void {
         this._unsubscribe$.next();
         this._unsubscribe$.complete();
     }

@@ -1,4 +1,4 @@
-import { TUserRole } from "./auth-user";
+import { TUserRole } from './auth-user';
 
 export interface IMenu {
     label: string;

@@ -45,9 +45,6 @@ export class ProvidersService {
         return this._httpClient.patch<IProviderDetails>(`service-providers/${providerId}/`, body);
     }
 
-    public getEmployees(providerId: number): Observable<IEmployees[]> {
-        return this._httpClient.get<IEmployees[]>(`service-providers/${providerId}/employees/`);
-    }
     public addEmployees(body: EmployeData): Observable<EmployeData> {
         return this._httpClient.post<EmployeData>('accounts/employees/registration/', body);
     }

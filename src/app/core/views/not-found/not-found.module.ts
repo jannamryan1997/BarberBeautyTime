@@ -7,7 +7,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 
 @NgModule({
     declarations: [NotFoundViewComponent],
-    imports: [NotFoundRoutingModule,NzResultModule,NzButtonModule],
+    imports: [NotFoundRoutingModule, NzResultModule, NzButtonModule],
     providers: [],
     entryComponents: []
 })

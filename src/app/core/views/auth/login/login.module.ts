@@ -10,8 +10,8 @@ import { LoginViewComponent } from './login.view';
     declarations: [LoginViewComponent],
     imports: [
         LoginRoutingModule,
-        SharedModule, 
-        CommonModule, 
+        SharedModule,
+        CommonModule,
         ReactiveFormsModule,
          FormsModule],
     providers: [LoginService],

@@ -23,7 +23,7 @@ export class AddEmployeModalComponent implements OnInit, OnDestroy {
     constructor(private _fb: FormBuilder, private _providersService: ProvidersService,private _modal:NzModalRef) { }
 
 
-    ngOnInit() {
+    ngOnInit(): void {
         this._initForm();
     }
 
@@ -34,7 +34,7 @@ export class AddEmployeModalComponent implements OnInit, OnDestroy {
             last_name: ['janna', Validators.required],
             email: ['janna.mryan1997@mail.ru', [Validators.required, Validators.email]],
             password: ['111111', Validators.required]
-        })
+        });
     }
 
 
@@ -71,14 +71,13 @@ export class AddEmployeModalComponent implements OnInit, OnDestroy {
             )
             .subscribe((data)=>{
                 this._modal.destroy('AddEmploye');
-                
             },
-            err=>{
+            err => {
                 this.message = err.message;
             }
-            )
+            );
     }
-    ngOnDestroy() {
+    ngOnDestroy(): void {
         this._unsubscribe$.next();
         this._unsubscribe$.complete();
     }

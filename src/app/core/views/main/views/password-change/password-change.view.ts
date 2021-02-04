@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, FormsModule, ValidationErrors, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { Observable, Observer, Subject } from 'rxjs';
@@ -20,12 +20,12 @@ export class PasswordChangeViewComponent implements OnInit, OnDestroy {
     public loading = false;
 
     constructor(
-        private _router: Router, 
-        private _fb: FormBuilder, 
+        private _router: Router,
+        private _fb: FormBuilder,
         private _messagesuccessful: NzMessageService,
         private _passwordChangeService: PasswordChangeService) { }
 
-    ngOnInit() {
+    ngOnInit(): void {
         this._formBuilder();
     }
 
@@ -33,7 +33,6 @@ export class PasswordChangeViewComponent implements OnInit, OnDestroy {
        private _createMessage(type: string): void {
             this._messagesuccessful.create(type, `This is a message of ${type}`);
           }
-    
 
     private _formBuilder(): void {
         this.validateForm = this._fb.group({
@@ -50,7 +49,7 @@ export class PasswordChangeViewComponent implements OnInit, OnDestroy {
             return { confirm: true, error: true };
         }
         return {};
-    };
+    }
 
     private _userNameAsyncValidator = (control: FormControl) =>
         new Observable((observer: Observer<ValidationErrors | null>) => {
@@ -82,7 +81,7 @@ export class PasswordChangeViewComponent implements OnInit, OnDestroy {
             old_password: this.validateForm.value.old_password,
             new_password: this.validateForm.value.password,
             confirm_new_password: this.validateForm.value.confirm,
-        }
+        };
         this._passwordChangeService.changedPassword(changedPasswordDetails)
             .pipe(takeUntil(this._unsubscribe$),
                 finalize(() => {
@@ -95,11 +94,11 @@ export class PasswordChangeViewComponent implements OnInit, OnDestroy {
                 err => {
                     this.message = err.message;
                 }
-            )
+            );
 
     }
 
-    ngOnDestroy() {
+    ngOnDestroy(): void {
         this._unsubscribe$.next();
         this._unsubscribe$.complete();
     }

@@ -20,18 +20,17 @@ export class TopBarComponent implements OnInit, OnDestroy {
     private _isOpen = true;
     public isOpenResponseMenu = false;
 
-    constructor(public _menuService: MenuService, private _router: Router, private _cookieService: CookieService) {
+    constructor(private _menuService: MenuService, private _router: Router, private _cookieService: CookieService) {
         this._menuService.getPageTitle().subscribe((data) => {
             this.title = data;
             console.log(data);
-            
-                })
+                });
 
     }
 
-    ngOnInit() { }
+    ngOnInit(): void { }
 
-    ngOnDestroy() {
+    ngOnDestroy(): void {
         this._unsubscribe$.next();
         this._unsubscribe$.complete();
     }

@@ -13,9 +13,9 @@ export class HomeViewComponent implements OnInit, OnDestroy {
     private _unsubscribe$ = new Subject<void>();
     public date: Date = new Date();
 
-    constructor(private _NzModalService: NzModalService) { }
+    constructor(private _nzModalService: NzModalService) { }
 
-    ngOnInit() {
+    ngOnInit(): void {
     }
 
     public onValueChange(value: Date): void {
@@ -26,7 +26,7 @@ export class HomeViewComponent implements OnInit, OnDestroy {
     public onPanelChange(change: { date: Date; mode: string }): void {
     }
 
-    ngOnDestroy() {
+    ngOnDestroy(): void {
         this._unsubscribe$.next();
         this._unsubscribe$.complete();
     }

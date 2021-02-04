@@ -23,28 +23,26 @@ export class TimesheetViewComponent implements OnInit, OnDestroy {
     public loading = false;
     public timesheetDetails: ITimesheet[] = [];
   public date;
-  public owner:string;
-    
+  public owner: string;
+
     constructor(
         private _activatedRoute: ActivatedRoute,
         private _timesheetService: TimesheetService,
         private _modalSrvice: NzModalService,
         private _datePipe: DatePipe,
-        private _cookieService:CookieService
+        private _cookieService: CookieService,
     ) {
         const providerId = this._activatedRoute.snapshot.params?.providerId || null;
         const employId = this._activatedRoute.snapshot.params?.employId || null;
         this.providerId = providerId;
         this.employId = employId;
-        const owner =this._cookieService.get('ownerId');
-        if(owner){
-            this.owner=owner;
+        const owner = this._cookieService.get('ownerId');
+        if (owner){
+            this.owner = owner;
         }
-         
     }
 
-    ngOnInit() {
-        
+    ngOnInit(): void {
         if (this.providerId && this.employId) {
             const today = new Date();
             this._getTimesheet(today);
@@ -52,8 +50,8 @@ export class TimesheetViewComponent implements OnInit, OnDestroy {
     }
 
     private _getTimesheet(date): void {
-         date = this._datePipe.transform(date,'yyyy-MM-dd');
-         this.date=this._datePipe.transform(date,'MMMM d,y');
+         date = this._datePipe.transform(date, 'yyyy-MM-dd');
+         this.date = this._datePipe.transform(date, 'MMMM d,y');
         this.loading = true;
         this._timesheetService.getEmployeesBookings(date,this.providerId, this.employId)
             .pipe(takeUntil(this._unsubscribe$),
@@ -73,43 +71,41 @@ export class TimesheetViewComponent implements OnInit, OnDestroy {
 
 
 
-    public onClickOpenCreateBookingModal(bookingId:number): void {
+    public onClickOpenCreateBookingModal(bookingId: number): void {
         const today = new Date();
         const dialogRef = this._modalSrvice.create({
             nzTitle: 'Create Booking',
             nzContent: CreateTimesheetModalComponent,
-            nzComponentParams: { providerId: this.providerId, employId: this.employId,bookingId:bookingId }
+            nzComponentParams: { providerId: this.providerId, employId: this.employId, bookingId }
         });
-        dialogRef.afterClose.subscribe((data)=>{
-            if(data && data === 'createBooking' || data==='deleteBooking'){
+        dialogRef.afterClose.subscribe((data) => {
+            if (data && data === 'createBooking' || data === 'deleteBooking'){
                  this._getTimesheet(today);
             }
-        })
+        });
     }
 
-    public showModalAction(item:ITimesheet): boolean {
-        if(item.reserved===true){
+    public showModalAction(item: ITimesheet): boolean {
+        if (item.reserved === true){
             this._modalSrvice.create({
                 nzContent: ActionModal,
-                nzComponentParams:{item:item}
-            })
+                nzComponentParams: {item}
+            });
         }
         else{
             return false;
         }
-       
-        
     }
 
-    public onClickOpenCreateServiceModal():void{
-        const dialogRef=this._modalSrvice.create({
-            nzTitle:'Create Service',
-            nzContent:CreateServiceModalComponent,
+    public onClickOpenCreateServiceModal(): void{
+        const dialogRef = this._modalSrvice.create({
+            nzTitle: 'Create Service',
+            nzContent: CreateServiceModalComponent,
             nzComponentParams: { providerId: this.providerId, employId: this.employId }
-        })
+        });
     }
 
-    ngOnDestroy() {
+    ngOnDestroy(): void {
         this._unsubscribe$.next();
         this._unsubscribe$.complete();
     }

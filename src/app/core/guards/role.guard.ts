@@ -23,7 +23,7 @@ export class RoleGuard implements CanActivate {
         const isEnabledRole = enabledRoles.includes(userRole);
 
         if (!isEnabledRole) {
-            this._router.navigate(['/home']);
+            this._router.navigate(['/auth/login']);
         }
 
         return isEnabledRole;

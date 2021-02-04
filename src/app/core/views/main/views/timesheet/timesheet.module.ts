@@ -23,7 +23,7 @@ import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
         CreateServiceModalComponent],
     imports: [
         TimesheetRoutingModule,
-        SharedModule,CommonModule,
+        SharedModule, CommonModule,
         ReactiveFormsModule,
         FormsModule,
         NzCalendarModule,
@@ -33,7 +33,7 @@ import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
         NzSelectModule,
         NzAutocompleteModule
     ],
-    providers: [TimesheetService,DatePipe],
+    providers: [TimesheetService, DatePipe],
     entryComponents: [
         CreateTimesheetModalComponent,
         ActionModal,

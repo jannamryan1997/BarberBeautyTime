@@ -1,4 +1,4 @@
 export interface IBooking{
-    id:number;
-    services:{};
+    id: number;
+    services: {};
 }

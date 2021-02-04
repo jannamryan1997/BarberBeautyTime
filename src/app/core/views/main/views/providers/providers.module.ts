@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {ReactiveFormsModule,FormsModule} from '@angular/forms';
+import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
 
 import { SharedModule } from 'src/app/core/shared/shared.module';
@@ -15,12 +15,12 @@ import {DropdownModule} from 'primeng/dropdown';
 import { NzTableModule } from 'ng-zorro-antd/table';
 
 @NgModule({
-    declarations:[
+    declarations: [
         ProvidersViewComponent,
         CreateProviderModalComponent,
         CreateEmployemodalComponent,
         AddEmployeModalComponent],
-    imports:[
+    imports: [
         ProvidersRoutingModule,
         SharedModule,
         ReactiveFormsModule,
@@ -29,8 +29,8 @@ import { NzTableModule } from 'ng-zorro-antd/table';
         DropdownModule,
         NzTableModule
     ],
-    providers:[ProvidersService],
-    entryComponents:[
+    providers: [ProvidersService],
+    entryComponents: [
         CreateProviderModalComponent,
         CreateEmployemodalComponent,
         AddEmployeModalComponent]

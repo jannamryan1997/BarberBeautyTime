@@ -1,9 +1,9 @@
 export interface IForgotPassword{
-    email:string;
+    email: string;
 }
 
 export interface IResetPassword{
-    otp:string;
-    new_password:string;
-    confirm_new_password:string;
+    otp: string;
+    new_password: string;
+    confirm_new_password: string;
 }

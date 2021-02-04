@@ -18,32 +18,31 @@ declare const google;
 export class CreateProviderModalComponent implements OnInit, OnDestroy {
 
     private _unsubscribe$ = new Subject<void>();
-    private _latitude: string = "55.751244";
-    private _longitude: string = "37.618423";
+    private _latitude = '55.751244';
+    private _longitude = '37.618423';
     private _map;
     private _marker;
     public providerForm: FormGroup;
     public loading = false;
     public message: string;
-    public providerDetails:IProvider;
+    public providerDetails: IProvider;
     public type: IProvidersType[] = [
         { name: 'Barber shop', value: 'B' },
         { name: 'Beauty salon', value: 'S' },
         { name: 'Individual', value: 'I' },
 
     ];
-    public region:IRegion[]=[];
+    public region: IRegion[] = [];
     @Input() providerId?: number;
 
-    
 
     constructor(private _fb: FormBuilder, private _providersService: ProvidersService, private _dialogRef: NzModalRef) {}
 
-    ngOnInit() {
+    ngOnInit(): void {
         this._forBuilder();
         this._getRegion();
         this._initMap();
-        if(this.providerId){
+        if (this.providerId){
             this._getProviderById();
         }
     }
@@ -53,12 +52,12 @@ export class CreateProviderModalComponent implements OnInit, OnDestroy {
         this.providerForm = this._fb.group({
             name: ['', Validators.required],
             type: ['', Validators.required],
-            region: ['',Validators.required]
-        })
+            region: ['', Validators.required]
+        });
     }
 
 
-    private _initMap() {
+    private _initMap(): void {
         this._map = new google.maps.Map(document.getElementById('map'), {
             center: { lat: 55.751244, lng: 37.618423 },
             zoom: 6,
@@ -73,12 +72,12 @@ export class CreateProviderModalComponent implements OnInit, OnDestroy {
         });
     }
 
-    private _getRegion():void{
+    private _getRegion(): void{
         this._providersService.getRegion()
         .pipe(takeUntil(this._unsubscribe$))
-        .subscribe((data:IRegion[])=>{
-            this.region=data;   
-        })
+        .subscribe((data: IRegion[]) => {
+            this.region = data;
+        });
     }
 
     private _getProviderById(): void {
@@ -88,21 +87,21 @@ export class CreateProviderModalComponent implements OnInit, OnDestroy {
                 finalize(() => {
                     this.loading = false;
                 }))
-            .subscribe((data:IProvider) => {
-                this.providerDetails =data;
-                if( this.providerDetails){
+            .subscribe((data: IProvider) => {
+                this.providerDetails = data;
+                if (this.providerDetails){
                     this._setPatchValue();
                 }
             },
                 err => {
                     this.message = err.error;
                 }
-            )
+            );
     }
 
-    private _setPatchValue():void{
+    private _setPatchValue(): void{
     const type = this.type.find((e) => e.value === this.providerDetails.type);
-    const region:any=this.providerDetails.region;
+    const region: any = this.providerDetails.region;
     const regionValue = this.region.find((e) => e.name === region.name);
         this.providerForm.patchValue({
             name:  this.providerDetails.name,
@@ -130,7 +129,7 @@ export class CreateProviderModalComponent implements OnInit, OnDestroy {
             region: this.providerForm.value.region.id,
             latitude: this._latitude,
             longitude: this._longitude,
-        }
+        };
         this._providersService.createProvider(providerDetails)
             .pipe(takeUntil(this._unsubscribe$),
                 finalize(() => {
@@ -143,10 +142,10 @@ export class CreateProviderModalComponent implements OnInit, OnDestroy {
                 err => {
                     this.message = err.message;
                 }
-            )
+            );
     }
 
-    public onClickPutchProvider():void{
+    public onClickPutchProvider(): void{
         this.loading = true;
         const {
             name,
@@ -170,11 +169,11 @@ export class CreateProviderModalComponent implements OnInit, OnDestroy {
                 err => {
                     this.message = err.message;
                 }
-            )
+            );
     }
 
 
-    ngOnDestroy() {
+    ngOnDestroy(): void {
         this._unsubscribe$.next();
         this._unsubscribe$.complete();
     }

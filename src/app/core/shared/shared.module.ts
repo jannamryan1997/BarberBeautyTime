@@ -3,7 +3,7 @@ import { MenuService } from '../services/menu.service';
 
 import { ConfirmDeleteModal } from '../modals';
 
-//NG-ZORRO
+
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
@@ -17,8 +17,6 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
-import { UserService } from '../services/user.service';
-
 
 @NgModule({
     declarations: [ConfirmDeleteModal],
@@ -39,7 +37,7 @@ import { UserService } from '../services/user.service';
 
     ],
     entryComponents: [ConfirmDeleteModal],
-    providers: [MenuService,UserService],
+    providers: [MenuService],
     exports: [
         NzFormModule,
         NzButtonModule,

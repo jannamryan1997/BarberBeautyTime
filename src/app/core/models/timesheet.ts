@@ -23,7 +23,7 @@ export interface ITemDetails {
 }
 
 export interface IEmployeeService {
-    id: number,
+    id: number;
     name: string;
     price: string;
     duration_in_minutes: number;

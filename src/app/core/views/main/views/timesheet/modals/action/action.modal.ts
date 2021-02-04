@@ -12,19 +12,17 @@ import { ITimesheet } from 'src/app/core/models/timesheet';
 export class ActionModal implements OnInit, OnDestroy {
 
     private _unsubscribe$ = new Subject<void>();
-    @Input() item:ITimesheet;
-  
+    @Input() item: ITimesheet;
     constructor(private _modal: NzModalRef) {
-        
      }
 
-    ngOnInit() { }
+    ngOnInit(): void { }
 
-    public handleCancel():void{
+    public handleCancel(): void{
         this._modal.destroy();
     }
 
-    ngOnDestroy() {
+    ngOnDestroy(): void {
         this._unsubscribe$.next();
         this._unsubscribe$.complete();
     }

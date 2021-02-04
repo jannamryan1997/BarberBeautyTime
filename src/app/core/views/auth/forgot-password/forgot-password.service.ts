@@ -7,14 +7,14 @@ import { IForgotPassword, IResetPassword } from 'src/app/core/models/forgot-pass
 
 export class ForgotPasswordService{
 
-    constructor(private _httpClient:HttpClient){}
+    constructor(private _httpClient: HttpClient){}
 
-    public forgotPassword(body:IForgotPassword):Observable<IForgotPassword>{
-        return this._httpClient.post<IForgotPassword>('auth/password/forget/',body)
+    public forgotPassword(body: IForgotPassword): Observable<IForgotPassword>{
+        return this._httpClient.post<IForgotPassword>('auth/password/forget/', body);
     }
 
-    public resetPassword(body:IResetPassword):Observable<IResetPassword>{
-        return this._httpClient.post<IResetPassword>('auth/password/reset/',body);
+    public resetPassword(body: IResetPassword): Observable<IResetPassword>{
+        return this._httpClient.post<IResetPassword>('auth/password/reset/', body);
     }
 
 }

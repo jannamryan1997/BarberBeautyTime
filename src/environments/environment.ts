@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl:'http://192.168.1.107:8000/api/',
-  fileUrl:''
+  apiUrl: 'http://192.168.1.107:9000/api/',
+  fileUrl: ''
 };
 
 /*

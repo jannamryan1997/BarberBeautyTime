@@ -10,14 +10,14 @@ export interface IUserDetais {
     first_name: string;
     last_name: string;
     pk: number;
-    role:string;
+    role: string;
     username: string;
     additional_data: IAdditional;
 }
 
 export interface IAdditional{
-    owner?:IOwner;
-    employee?:IEmployee;
+    owner?: IOwner;
+    employee?: IEmployee;
 }
 export interface IOwner {
     approved: boolean;

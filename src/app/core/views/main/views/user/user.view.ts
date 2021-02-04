@@ -15,32 +15,29 @@ import { UserService } from 'src/app/core/services/user.service';
 export class UserViewComponent implements OnInit, OnDestroy {
 
     private _unsubscribe$ = new Subject<void>();
-    public user:IAuthUser;
-    public service_provider_id:string;
+    public user: IAuthUser;
+    public service_provider_id: string;
 
-    constructor(private _userService:UserService,private _router:Router,private _cookieService:CookieService) { 
-        let service_provider_id=this._cookieService.get('service_provider_id');
-        if(service_provider_id){
-            this.service_provider_id=service_provider_id;
+    constructor(private _userService: UserService, private _router: Router,private _cookieService: CookieService) {
+        let service_provider_id = this._cookieService.get('service_provider_id');
+        if (service_provider_id){
+            this.service_provider_id = service_provider_id;
         }
     }
 
-    ngOnInit() {
+    ngOnInit(): void {
         this._userService.fetchUser()
         .pipe(takeUntil(this._unsubscribe$))
-        .subscribe((data:IAuthUser) => {
-            this.user=data;
-            ;
-    
+        .subscribe((data: IAuthUser) => {
+            this.user = data;
       });
      }
 
-     public onClickBooking():void{
+     public onClickBooking(): void{
         this._router.navigate([`timesheet/${this.service_provider_id}/${this.user.additional_data.employee.id}`]);
             }
-        
 
-    ngOnDestroy() {
+    ngOnDestroy(): void {
         this._unsubscribe$.next();
         this._unsubscribe$.complete();
     }

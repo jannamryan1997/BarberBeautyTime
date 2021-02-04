@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { IAuthUser } from '../models/auth-user';
@@ -14,9 +13,7 @@ export class UserService {
 
     constructor(
         private _httpClient: HttpClient,
-        
-    ) 
-    {  }
+    ) { }
 
     public fetchUser(): Observable<IAuthUser> {
         return this._httpClient.get<IAuthUser>('auth/user');

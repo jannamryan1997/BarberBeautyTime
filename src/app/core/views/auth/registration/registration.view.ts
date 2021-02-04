@@ -27,7 +27,7 @@ export class RegistrationViewComponent implements OnInit, OnDestroy {
         private _cookieService: CookieService,
     ) { }
 
-    ngOnInit() {
+    ngOnInit(): void {
         this._formBuilder();
     }
 
@@ -36,7 +36,7 @@ export class RegistrationViewComponent implements OnInit, OnDestroy {
             username: ['', Validators.required],
             first_name: ['', Validators.required],
             last_name: ['', Validators.required],
-            email: ['', [Validators.email,Validators.required]],
+            email: ['', [Validators.email, Validators.required]],
             password: ['', Validators.required]
         });
     }
@@ -85,10 +85,10 @@ export class RegistrationViewComponent implements OnInit, OnDestroy {
                 err => {
                     this.message = err.message;
                 }
-            )
+            );
     }
 
-    ngOnDestroy() {
+    ngOnDestroy(): void {
         this._unsubscribe$.next();
         this._unsubscribe$.complete();
     }

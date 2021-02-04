@@ -6,7 +6,7 @@ import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
     declarations: [AuthViewComponent],
-    imports: [AuthRoutingModule,SharedModule],
+    imports: [AuthRoutingModule, SharedModule],
     providers: [],
     entryComponents: []
 })

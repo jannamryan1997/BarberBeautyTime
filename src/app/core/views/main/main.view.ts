@@ -16,12 +16,12 @@ export class MainViewComponent implements OnInit, OnDestroy {
         this._menuService.getIsOpen()
             .subscribe((data) => {
                 this.isOpen = data;
-            })
+            });
     }
 
-    ngOnInit() { }
+    ngOnInit(): void { }
 
-    ngOnDestroy() {
+    ngOnDestroy(): void {
         this._unsubscribe$.next();
         this._unsubscribe$.complete();
     }

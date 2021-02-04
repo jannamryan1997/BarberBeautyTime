@@ -25,9 +25,12 @@ export class CreateEmployemodalComponent implements OnInit, OnDestroy {
     @Input() providerId: number;
     @Input() employeId: number;
 
-    constructor(private _providersService: ProvidersService, private _fb: FormBuilder, private _modal: NzModalRef, private _nzModal: NzModalService) { }
+    constructor(
+        private _providersService: ProvidersService,
+        private _fb: FormBuilder, private _modal: NzModalRef,
+        private _nzModal: NzModalService) { }
 
-    ngOnInit() {
+    ngOnInit(): void {
         this._forBuilder();
         this._getEmployeById();
 
@@ -38,7 +41,7 @@ export class CreateEmployemodalComponent implements OnInit, OnDestroy {
             first_name: ['', Validators.required],
             last_name: ['', Validators.required],
             rating: ['']
-        })
+        });
     }
 
     private _setPatchValue(): void {
@@ -46,7 +49,7 @@ export class CreateEmployemodalComponent implements OnInit, OnDestroy {
             first_name: this.employeDetails.user.first_name,
             last_name: this.employeDetails.user.last_name,
             rating: this.employeDetails.rating,
-        })
+        });
     }
 
     private _getEmployeById(): void {
@@ -56,7 +59,7 @@ export class CreateEmployemodalComponent implements OnInit, OnDestroy {
                 this.employeDetails = data;
                 this._setPatchValue();
 
-            })
+            });
     }
 
     public submitForm(): void {
@@ -66,35 +69,35 @@ export class CreateEmployemodalComponent implements OnInit, OnDestroy {
         }
     }
 
-    public onChangeFile(event) {
-        if (event) {
-            let reader = new FileReader()
-            this.serivceImage = event;
+    // public onChangeFile(event) {
+    //     if (event) {
+    //         const reader = new FileReader();
+    //         this.serivceImage = event;
 
-            let self = this;
-            reader.onload = function (e: any) {
-                self.fallback = e.target.result;
-            };
-            reader.readAsDataURL(event.target.files[0]);
-        }
-    }
+    //         const self = this;
+    //         reader.onload = (e: any) {
+    //             self.fallback = e.target.result;
+    //         };
+    //         reader.readAsDataURL(event.target.files[0]);
+    //     }
+    // }
 
-    private _updateFile(event) {
-        if (event) {
-            let fileList: FileList = event.target.files;
-            if (fileList.length > 0) {
-                let file: File = fileList[0];
-                let formData: FormData = new FormData();
-                formData.append('image', file, file.name);
-                return this._providersService.uploadFile(formData)
+    // private _updateFile(event) {
+    //     if (event) {
+    //         const fileList: FileList = event.target.files;
+    //         if (fileList.length > 0) {
+    //             const file: File = fileList[0];
+    //             const formData: FormData = new FormData();
+    //             formData.append('image', file, file.name);
+    //             return this._providersService.uploadFile(formData)
 
-            }
-            else {
-                return of([]);
-            }
-        }
+    //         }
+    //         else {
+    //             return of([]);
+    //         }
+    //     }
 
-    }
+    // }
 
     ////forkJoin-ov updet client kenenq ham update user image hamel tvjalneri funkcian
 
@@ -112,12 +115,12 @@ export class CreateEmployemodalComponent implements OnInit, OnDestroy {
             service_provider: this.employeDetails.service_provider,
             rating,
             user: {
-                first_name: first_name,
+                first_name,
                 id: this.employeDetails.user.id,
-                last_name: last_name,
+                last_name,
                 avatar: this.fallback,
             }
-        }
+        };
         this._providersService.putchEmploye(this.providerId, this.employeId, employDetels)
             .pipe(takeUntil(this._unsubscribe$),
                 finalize(() => {
@@ -129,34 +132,33 @@ export class CreateEmployemodalComponent implements OnInit, OnDestroy {
                     this.message = err.message;
 
                 }
-            )
+            );
     }
 
-    private _deteEmploye():void{
+    private _deteEmploye(): void {
         this._providersService.deleteEmploye(this.providerId, this.employeId)
-        .pipe(takeUntil(this._unsubscribe$))
-        .subscribe((data) => {
-            this._modal.destroy('deletedEmploye');
-        })
+            .pipe(takeUntil(this._unsubscribe$))
+            .subscribe((data) => {
+                this._modal.destroy('deletedEmploye');
+            });
     }
 
     public onClickDeleteEmploye(): void {
 
         const dialogRef = this._nzModal.create({
             nzContent: ConfirmDeleteModal
-        })
+        });
         dialogRef.afterClose.subscribe((data) => {
-            if (data && data === 'delete') {;
+            if (data && data === 'delete') {
                 this._deteEmploye();
             }
             else {
                 this._modal.destroy();
             }
-        })
-
+        });
     }
 
-    ngOnDestroy() {
+    ngOnDestroy(): void {
         this._unsubscribe$.next();
         this._unsubscribe$.complete();
     }

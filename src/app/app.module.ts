@@ -41,7 +41,6 @@ registerLocaleData(en);
       useClass: ErrorHandlerInterceptor,
       multi: true
     },
-   
     { provide: NZ_I18N, useValue: en_US }
   ],
   bootstrap: [AppComponent]
