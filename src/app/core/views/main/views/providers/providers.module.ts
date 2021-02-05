@@ -8,7 +8,7 @@ import { ProvidersViewComponent } from './providers.view';
 import { ProvidersRoutingModule } from './providers-routing.module';
 import { ProvidersService } from './providers.service';
 
-import { AddEmployeModalComponent, CreateEmployemodalComponent, CreateProviderModalComponent } from './modals';
+import { CreateProviderModalComponent } from './modals';
 
 import {DropdownModule} from 'primeng/dropdown';
 
@@ -18,8 +18,7 @@ import { NzTableModule } from 'ng-zorro-antd/table';
     declarations: [
         ProvidersViewComponent,
         CreateProviderModalComponent,
-        CreateEmployemodalComponent,
-        AddEmployeModalComponent],
+],
     imports: [
         ProvidersRoutingModule,
         SharedModule,
@@ -32,8 +31,7 @@ import { NzTableModule } from 'ng-zorro-antd/table';
     providers: [ProvidersService],
     entryComponents: [
         CreateProviderModalComponent,
-        CreateEmployemodalComponent,
-        AddEmployeModalComponent]
+       ]
 })
 
 export class ProvidersModule{}

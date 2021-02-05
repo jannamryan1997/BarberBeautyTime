@@ -4,3 +4,7 @@
     font-size: 17px;
     color: #d357f8;
 }
+
+::ng-deep .ant-modal-footer {
+    display: none;
+}

@@ -3,8 +3,10 @@ import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie';
 import { Subject } from 'rxjs';
 import { MENU_ITEMS } from 'src/app/core/globals/menu-items';
+import { EUserRole } from 'src/app/core/models/auth-user';
 import { IMenu } from 'src/app/core/models/menu';
 import { MenuService } from 'src/app/core/services/menu.service';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
     selector: 'app-top-bar',
@@ -14,18 +16,22 @@ import { MenuService } from 'src/app/core/services/menu.service';
 
 export class TopBarComponent implements OnInit, OnDestroy {
     private _unsubscribe$: Subject<void> = new Subject<void>();
-    public menuItem: IMenu[] = MENU_ITEMS;
-
-    public title: string;
     private _isOpen = true;
+    public menuItem: IMenu[] = MENU_ITEMS;
+    public role: EUserRole;
+    public title: string;
     public isOpenResponseMenu = false;
 
-    constructor(private _menuService: MenuService, private _router: Router, private _cookieService: CookieService) {
+    constructor(
+        private _menuService: MenuService,
+        private _router: Router,
+        private _cookieService: CookieService,
+        private _userService: UserService) {
         this._menuService.getPageTitle().subscribe((data) => {
             this.title = data;
-            console.log(data);
-                });
-
+        });
+        this.role = this._userService.getUserSync().role;
+        this.menuItem = this.menuItem.filter((v) => v.roles.includes(this.role));
     }
 
     ngOnInit(): void { }
@@ -56,7 +62,7 @@ export class TopBarComponent implements OnInit, OnDestroy {
         this._cookieService.remove('role');
         this._cookieService.remove('refreshToken');
         this._cookieService.remove('accessToken');
-        this._router.navigate(['/auth'])
+        this._router.navigate(['/auth']);
     }
     public onClickRouter(item): void {
         this._router.navigate([item]);

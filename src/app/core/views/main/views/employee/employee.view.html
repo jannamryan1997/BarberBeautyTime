@@ -1,6 +1,6 @@
 <div class="employees">
     <header>
-        <button nz-button style="width: 200px">Create Employee</button>
+        <button nz-button style="width: 200px" (click)="onClickOpenAddEmployeModal()">Create Employee</button>
     </header>
     <main>
         <nz-divider nzOrientation="left" nzText="Employees"></nz-divider>
@@ -16,13 +16,13 @@
                     <img alt="example" src="/assets/images/hairdresser.jpeg" />
                 </ng-template>
                 <ng-template #actionSetting>
-                    <i nz-icon nzType="setting"></i>
+                    <i nz-icon nzType="field-time" (click)="onClickBooking(item?.id)"></i>
                 </ng-template>
                 <ng-template #actionEdit>
-                    <i nz-icon nzType="edit"></i>
+                    <i nz-icon nzType="edit" (click)="onClickOpenCreateEmployeModal(item?.id)"></i>
                 </ng-template>
                 <ng-template #actionEllipsis>
-                    <i nz-icon nzType="ellipsis"></i>
+                    <i nz-icon nzType="delete" (click)="onClickDeleteEmploye(item?.id)"></i>
                 </ng-template>
             </div>
         </div>

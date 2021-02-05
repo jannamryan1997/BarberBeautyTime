@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from '../../guards/auth.guards';
 import { RoleGuard } from '../../guards/role.guard';
 import { EUserRole } from '../../models/auth-user';
 
@@ -8,29 +7,13 @@ import { MainViewComponent } from './main.view';
 
 const mainRoutes: Routes = [{
     path: '', component: MainViewComponent, children: [
-        // { path: '', pathMatch: 'full', redirectTo: 'home' },
-        {
-            path: 'home',
-            loadChildren: () => import('./views/home/home.module').then(m => m.HomeModule),
-            canActivate: [RoleGuard],
-            data: {
-                enabledRoles: [EUserRole.Admin,
-                EUserRole.Employee, EUserRole.Client]
-            },
-        },
-        // {
-        //     path: 'account',
-        //     loadChildren: () => import('./views/account/account.module').then(m => m.AccountModule),
-        //     data: {
-        //         enabledRoles: [EUserRole.Admin, EUserRole.Owner, EUserRole.Employee, EUserRole.Client]
-        //     },
-        // },
         {
             path: 'providers',
             loadChildren: () => import('./views/providers/providers.module').then(m => m.ProvidersModule),
             data: {
                 enabledRoles: [EUserRole.Owner]
             },
+            canActivate: [RoleGuard]
         },
         {
             path: 'changed-password',
@@ -38,6 +21,7 @@ const mainRoutes: Routes = [{
             data: {
                 enabledRoles: [EUserRole.Owner, EUserRole.Employee]
             },
+            canActivate: [RoleGuard]
         },
         {
             path: 'timesheet/:providerId/:employId',
@@ -45,6 +29,7 @@ const mainRoutes: Routes = [{
             data: {
                 enabledRoles: [EUserRole.Owner, EUserRole.Employee]
             },
+            canActivate: [RoleGuard]
         },
         {
             path: 'user',
@@ -52,13 +37,15 @@ const mainRoutes: Routes = [{
             data: {
                 enabledRoles: [EUserRole.Employee]
             },
+            canActivate: [RoleGuard]
         },
         {
             path: 'employees/:id',
             loadChildren: () => import('./views/employee/employee.module').then(m => m.EmployeeModule),
             data: {
                 enabledRoles: [EUserRole.Owner]
-            }
+            },
+            canActivate: [RoleGuard]
         }
 
     ]

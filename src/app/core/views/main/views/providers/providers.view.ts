@@ -6,7 +6,7 @@ import { Subject } from 'rxjs';
 import { finalize, takeUntil } from 'rxjs/operators';
 import { ConfirmDeleteModal } from 'src/app/core/modals';
 import { IProvider, IProviderDetails } from 'src/app/core/models/provider';
-import { AddEmployeModalComponent, CreateEmployemodalComponent, CreateProviderModalComponent } from './modals';
+import {   CreateProviderModalComponent } from './modals';
 import { ProvidersService } from './providers.service';
 
 @Component({
@@ -29,8 +29,8 @@ export class ProvidersViewComponent implements OnInit, OnDestroy {
     constructor(
         private _modalService: NzModalService,
         private _providersService: ProvidersService,
-        private _viewContainerRef: ViewContainerRef,
         private _router: Router,
+        private _viewContainerRef: ViewContainerRef,
         ) {
         }
 
@@ -90,7 +90,7 @@ export class ProvidersViewComponent implements OnInit, OnDestroy {
         const dialogRef = this._modalService.create({
             nzTitle: 'Create Providers',
             nzContent: CreateProviderModalComponent,
-        })
+        });
         dialogRef.afterClose.subscribe((data) => {
             if (data === 'provider Create') {
                 this._getProviders();
@@ -105,7 +105,7 @@ export class ProvidersViewComponent implements OnInit, OnDestroy {
             nzViewContainerRef: this._viewContainerRef,
             nzComponentParams: { providerId}
 
-        })
+        });
         dialogRef.afterClose.subscribe((data) => {
             if (data === 'provider Changed') {
                 this._getProviders();
@@ -125,47 +125,6 @@ export class ProvidersViewComponent implements OnInit, OnDestroy {
 
         });
     }
-
-    public onClickOpenCreateEmployeModal(providerId: number, employeId: number): void {
-        const dialogRef = this._modalService.create({
-            nzTitle: 'Create Employe',
-            nzContent: CreateEmployemodalComponent,
-            nzFooter: 'false',
-            nzViewContainerRef: this._viewContainerRef,
-            nzComponentParams: {
-                providerId,
-                employeId
-            }
-        });
-        dialogRef.afterClose.subscribe((data) => {
-            if (data && data === 'deletedEmploye'){
-                // this._getEmployees(providerId);
-            }
-        });
-    }
-
-    public onClickOpenAddEmployeModal(providerId: number): void {
-        const dialogRef = this._modalService.create({
-            nzTitle: 'Add an Employe',
-            nzContent: AddEmployeModalComponent,
-            nzFooter: 'false',
-            nzViewContainerRef: this._viewContainerRef,
-            nzComponentParams: {
-                providerId,
-            }
-        });
-        dialogRef.afterClose.subscribe((data) => {
-            if (data && data === 'AddEmploye') {
-                // this._getEmployees(providerId);
-            }
-        });
-    }
-
-    public onClickBooking(providerId: number, employId: number): void{
-this._router.navigate([`timesheet/${providerId}/${employId}`]);
-    }
-
-
 
     public onClickRouterEmployee(providerId: number): void{
         this._router.navigate([`employees/${providerId}`]);
