@@ -18,10 +18,12 @@ export class UserViewComponent implements OnInit, OnDestroy {
     public user: IAuthUser;
     public service_provider_id: string;
 
-    constructor(private _userService: UserService, private _router: Router,private _cookieService: CookieService) {
+    constructor(private _userService: UserService, private _router: Router, private _cookieService: CookieService) {
         let service_provider_id = this._cookieService.get('service_provider_id');
         if (service_provider_id){
             this.service_provider_id = service_provider_id;
+            console.log(    this.service_provider_id);
+            
         }
     }
 

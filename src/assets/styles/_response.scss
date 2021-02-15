@@ -6,36 +6,40 @@
         .auth-main {
             width: 80% !important;
         }
-    }
-    
-    @media only screen and (max-width:600px) {
-        .auth-main-content {
-            width: 80% !important;
+        .main {
+            .ant-row {
+                flex-direction: column !important;
+            }
         }
-        .nz-col-item {
-            flex: 0 0 100% !important;
-            max-width: 100% !important;
-        }
-        .nz-calendar {
-            width: 100% !important;
-        }
-        nz-sider {
-            display: none !important;
-        }
-        .main-layout {
-            width: 100% !important;
-            margin-left: 0 !important;
-        }
-        .menu-icon {
-            display: none !important;
-        }
-        .response-icon {
-            display: block !important;
-        }
-        .side-bar-response {
-            display: block !important;
-        }
-        .header-title {
-            font-size: 17px !important;
+        @media only screen and (max-width:600px) {
+            .auth-main-content {
+                width: 80% !important;
+            }
+            .nz-col-item {
+                flex: 0 0 100% !important;
+                max-width: 100% !important;
+            }
+            .nz-calendar {
+                width: 100% !important;
+            }
+            nz-sider {
+                display: none !important;
+            }
+            .main-layout {
+                width: 100% !important;
+                margin-left: 0 !important;
+            }
+            .menu-icon {
+                display: none !important;
+            }
+            .response-icon {
+                display: block !important;
+            }
+            .side-bar-response {
+                display: block !important;
+            }
+            .header-title {
+                font-size: 17px !important;
+            }
         }
     }

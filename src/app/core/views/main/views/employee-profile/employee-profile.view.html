@@ -1,0 +1,46 @@
+<div class="main">
+    <h1 class="main-title">PERSONAL INFROMATION</h1>
+    <div nz-row>
+        <div nz-col nzFlex="2" style="text-align: center;">
+            <img nz-image width="200px" class="nz-image" height="200px" nzSrc="error" [src]="localImage" alt="" />
+            <div class="add-image d-flex">
+                <input class="" type="file" id="file" name="avatar" accept=".png, .jpg, .jpeg, .pdf">
+                <label class="d-flex m-auto" for="file"><span class="material-icons add-icon  m-auto">
+                      add
+                  </span></label>
+            </div>
+            <p class="title">{{user?.username}}</p>
+        </div>
+        <div nz-col nzFlex="3">
+            <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+                <nz-form-item>
+                    <nz-form-label [nzSpan]="4" nzRequired nzFor="name">User Name</nz-form-label>
+                    <nz-form-control [nzSpan]="18" nzErrorTip="Please input your name">
+                        <input type="text" nz-input formControlName="name" placeholder="Please input your name" />
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label [nzSpan]="4" nzRequired nzFor="name">Email</nz-form-label>
+                    <nz-form-control [nzSpan]="18" nzErrorTip="Please input your email">
+                        <input type="text" nz-input formControlName="email" placeholder="Please input your email" />
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label [nzSpan]="4" nzRequired nzFor="name">First Name</nz-form-label>
+                    <nz-form-control [nzSpan]="18" nzErrorTip="Please input your First Name">
+                        <input type="text" nz-input formControlName="first_name" placeholder="Please input your First Name" />
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label [nzSpan]="4" nzRequired nzFor="name">Last Name</nz-form-label>
+                    <nz-form-control [nzSpan]="18" nzErrorTip="Please input your Last Name">
+                        <input type="text" nz-input formControlName="last_name" placeholder="Please input your Last Name" />
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-control [nzSpan]="8" [nzOffset]="4">
+                    <button nz-button>Change</button>
+                </nz-form-control>
+            </form>
+        </div>
+    </div>
+</div>

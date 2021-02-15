@@ -46,6 +46,14 @@ const mainRoutes: Routes = [{
                 enabledRoles: [EUserRole.Owner]
             },
             canActivate: [RoleGuard]
+        },
+        {
+            path: 'profile',
+            loadChildren: () => import('./views/employee-profile/employee-profile.module').then(m => m.EmployeeProfileModule),
+            data: {
+                enabledRoles: [EUserRole.Employee]
+            },
+            canActivate: [RoleGuard]
         }
 
     ]
