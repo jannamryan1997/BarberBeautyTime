@@ -78,9 +78,8 @@ export class LoginViewComponent implements OnInit, OnDestroy {
                 }
                 else if (data.user.role === EUserRole.Employee) {
                     const service_provider_id = data.user.additional_data.employee.service_provider;
-                    console.log(data,"----------");
                     this._cookieService.put('service_provider_id', service_provider_id);
-                    url = '/user';
+                    url = '/profile';
                 }
 
                 this._cookieService.put('accessToken', data.access_token);

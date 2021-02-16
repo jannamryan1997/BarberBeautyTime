@@ -18,6 +18,16 @@
             margin-bottom: 10px;
         }
     }
+    .add-icon {
+        position: absolute;
+        z-index: 1;
+        top: -11px;
+        cursor: pointer;
+        color: #d357f8;
+    }
+    .nz-image {
+        position: relative;
+    }
     .title {
         font-size: 20px;
         font-weight: bold;

@@ -2,13 +2,14 @@
     <h1 class="main-title">PERSONAL INFROMATION</h1>
     <div nz-row>
         <div nz-col nzFlex="2" style="text-align: center;">
-            <img nz-image width="200px" class="nz-image" height="200px" nzSrc="error" [src]="localImage" alt="" />
             <div class="add-image d-flex">
-                <input class="" type="file" id="file" name="avatar" accept=".png, .jpg, .jpeg, .pdf">
+                <input class="" type="file" id="file" name="avatar" accept=".png, .jpg, .jpeg, .pdf" (change)="handleFileSelect($event)">
                 <label class="d-flex m-auto" for="file"><span class="material-icons add-icon  m-auto">
-                      add
+                    cached
                   </span></label>
             </div>
+            <img nz-image width="200px" class="nz-image" height="200px" nzSrc="error" [src]="localImage" alt="" />
+
             <p class="title">{{user?.username}}</p>
         </div>
         <div nz-col nzFlex="3">
@@ -37,10 +38,12 @@
                         <input type="text" nz-input formControlName="last_name" placeholder="Please input your Last Name" />
                     </nz-form-control>
                 </nz-form-item>
-                <nz-form-control [nzSpan]="8" [nzOffset]="4">
-                    <button nz-button>Change</button>
-                </nz-form-control>
             </form>
         </div>
     </div>
+    <div style="display: flex; justify-content: space-between;margin: 20px auto; width: 50%;">
+        <button nz-button style="width: 200px;">Change</button>
+        <button nz-button style="width: 200px; margin-left: 20px;" (click)="onClickBooking()">Booking</button>
+    </div>
+
 </div>

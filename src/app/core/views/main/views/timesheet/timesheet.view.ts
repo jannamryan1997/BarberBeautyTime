@@ -64,7 +64,7 @@ export class TimesheetViewComponent implements OnInit, OnDestroy {
 
     }
     public onValueChange(value): void {
-        this.date=this._datePipe.transform(value,'MMMM d,y');
+        this.date = this._datePipe.transform(value,'MMMM d,y');
         this._getTimesheet(value);
 
     }

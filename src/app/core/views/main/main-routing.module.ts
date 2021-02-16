@@ -32,14 +32,6 @@ const mainRoutes: Routes = [{
             canActivate: [RoleGuard]
         },
         {
-            path: 'user',
-            loadChildren: () => import('./views/user/user.module').then(m => m.UserModule),
-            data: {
-                enabledRoles: [EUserRole.Employee]
-            },
-            canActivate: [RoleGuard]
-        },
-        {
             path: 'employees/:id',
             loadChildren: () => import('./views/employee/employee.module').then(m => m.EmployeeModule),
             data: {

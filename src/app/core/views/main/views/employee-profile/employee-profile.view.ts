@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmployeeProfileService } from './employee-profile.service';
 import { IAuthUser } from 'src/app/core/models/auth-user';
 import { finalize, takeUntil } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie';
 
 @Component({
     selector: 'app-employee-profile',
@@ -16,12 +18,22 @@ export class EmployeeProfileViewComponent implements OnInit, OnDestroy {
     private _unsubscribe$ = new Subject<void>();
     public validateForm: FormGroup;
     public user: IAuthUser;
-    public localImage = 'assets/images/hairdresser.jpg';
+    public localImage: any = 'assets/images/hairdresser.jpg';
     public loading = false;
     public message: string;
-    base64textString = [];
+    public service_provider_id: string;
 
-    constructor(private _fb: FormBuilder, private _employeeProfileService: EmployeeProfileService) { }
+    constructor(
+        private _fb: FormBuilder,
+        private _employeeProfileService: EmployeeProfileService,
+        private _router: Router,
+        private _cookieService: CookieService,
+    ) {
+        let service_provider_id = this._cookieService.get('service_provider_id');
+        if (service_provider_id) {
+            this.service_provider_id = service_provider_id;
+        }
+    }
 
     ngOnInit(): void {
         this._initForm();
@@ -74,6 +86,23 @@ export class EmployeeProfileViewComponent implements OnInit, OnDestroy {
             this.validateForm.controls[i].markAsDirty();
             this.validateForm.controls[i].updateValueAndValidity();
         }
+    }
+
+    public handleFileSelect(evt): void {
+        const files = evt.target.files;
+        const file = files[0];
+        if (files && file) {
+            const reader = new FileReader();
+            reader.onload = () => {
+                const base64str = reader.result;
+                this.localImage = base64str;
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+
+    public onClickBooking(): void {
+        this._router.navigate([`timesheet/${this.service_provider_id}/${this.user.additional_data.employee.id}`]);
     }
 
     ngOnDestroy(): void {

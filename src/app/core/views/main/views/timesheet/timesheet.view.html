@@ -1,5 +1,4 @@
 <div class="timesheet">
-
     <header class="d-flex" *ngIf="!owner">
         <button nz-button style="width: 200px" (click)="onClickOpenCreateServiceModal()">Create Service</button>
     </header>
@@ -8,7 +7,6 @@
     </div>
     <main>
         <p class="date-title">{{date}}</p>
-
         <div class="nz-row">
             <div nz-row [nzGutter]="6">
                 <div nz-col [nzSpan]="3" class="nz-col-item" *ngFor="let item of timesheetDetails">
