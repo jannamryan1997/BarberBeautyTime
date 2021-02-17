@@ -1,0 +1,22 @@
+.paginator {
+    margin: 20px 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    max-width: 100%;
+    flex-wrap: wrap;
+    .page_numbers {
+        font-weight: bold;
+    }
+    .page {
+        margin: 0 10px;
+        cursor: pointer;
+        user-select: none;
+    }
+    i {
+        user-select: none;
+    }
+    .active_page {
+        color: #d357f8;
+    }
+}

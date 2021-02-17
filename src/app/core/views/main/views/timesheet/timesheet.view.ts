@@ -5,7 +5,7 @@ import { finalize, takeUntil } from 'rxjs/operators';
 import { ITimesheet } from 'src/app/core/models/timesheet';
 import { TimesheetService } from './timesheet.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
-import { ActionModal, CreateServiceModalComponent, CreateTimesheetModalComponent } from './modals';
+import { ActionModal, CreateTimesheetModalComponent } from './modals';
 import { DatePipe } from '@angular/common';
 import { CookieService } from 'ngx-cookie';
 
@@ -95,14 +95,6 @@ export class TimesheetViewComponent implements OnInit, OnDestroy {
         else{
             return false;
         }
-    }
-
-    public onClickOpenCreateServiceModal(): void{
-        const dialogRef = this._modalSrvice.create({
-            nzTitle: 'Create Service',
-            nzContent: CreateServiceModalComponent,
-            nzComponentParams: { providerId: this.providerId, employId: this.employId }
-        });
     }
 
     ngOnDestroy(): void {

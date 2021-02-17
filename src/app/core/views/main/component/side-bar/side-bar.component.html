@@ -3,9 +3,17 @@
         <img class="logo" src="assets/icons/logo.PNG">
     </header>
     <ul nz-menu nzMode="inline" nzTheme="dark">
-        <li *ngFor="let item of menuItem" [routerLink]="item.path" (click)="getBehiviorSubject(item?.label)" nz-menu-item nz-tooltip nzTooltipPlacement="right" routerLinkActive="activeRouter">
+        <li *ngFor="let item of menuItem" [routerLink]="item.path" nz-menu-item nz-tooltip nzTooltipPlacement="right" routerLinkActive="activeRouter">
             <i nz-icon nzType="user"></i>
             <span>{{item?.label}}</span>
+        </li>
+    </ul>
+    <ul nz-menu nzMode="inline">
+        <li nz-submenu nzTitle="Setting" nzIcon="setting">
+            <ul>
+                <li nz-menu-item routerLink="changed-password" routerLinkActive="activeRouter">Change Password</li>
+                <li nz-menu-item>Languages</li>
+            </ul>
         </li>
     </ul>
 </div>

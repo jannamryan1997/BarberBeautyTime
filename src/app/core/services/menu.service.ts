@@ -20,7 +20,6 @@ export class MenuService {
 
     public setIsOpen(isOpen: boolean): void{
         this._isOpenEvent$.next(isOpen);
-        console.log(isOpen);
     }
 
     public getIsOpen(): Observable<boolean>{

@@ -48,7 +48,6 @@ export class EmployeeViewComponent implements OnInit, OnDestroy {
             )
             .subscribe((data: IEmployees[]) => {
                 this.employeesDetails = data;
-                console.log(this.employeesDetails);
             },
                 err => {
                     this.message = err.error.message;

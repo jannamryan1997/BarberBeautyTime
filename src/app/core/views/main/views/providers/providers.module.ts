@@ -13,11 +13,13 @@ import { CreateProviderModalComponent } from './modals';
 import {DropdownModule} from 'primeng/dropdown';
 
 import { NzTableModule } from 'ng-zorro-antd/table';
+import { PaginatorComponent } from 'src/app/core/components/paginator';
 
 @NgModule({
     declarations: [
         ProvidersViewComponent,
         CreateProviderModalComponent,
+        PaginatorComponent
 ],
     imports: [
         ProvidersRoutingModule,

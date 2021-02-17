@@ -15,7 +15,7 @@ export interface IUserDetais {
     additional_data: IAdditional;
 }
 
-export interface IAdditional{
+export interface IAdditional {
     owner?: IOwner;
     employee?: IEmployee;
 }
@@ -27,5 +27,7 @@ export interface IOwner {
 export interface IEmployee {
     id: number;
     service_provider: string;
+    rating?: number;
+    user?: number;
 }
 

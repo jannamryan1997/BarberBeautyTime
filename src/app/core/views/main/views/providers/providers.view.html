@@ -34,6 +34,8 @@
                 </tr>
             </ng-container>
         </tbody>
+
     </nz-table>
-    <nz-pagination [nzPageIndex]="1" [nzTotal]="50"></nz-pagination>
+    <app-paginator [count]="count" [pageLength]="pageLength" (paginate)="paginate($event)"></app-paginator>
+
 </div>

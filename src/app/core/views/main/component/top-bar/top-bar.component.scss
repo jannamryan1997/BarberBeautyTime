@@ -34,3 +34,9 @@
         height: unset !important;
         transition: all .5s ease-out !important;
     }
+    
+     ::ng-deep {
+        .ant-menu {
+            border: none !important;
+        }
+    }

@@ -46,6 +46,14 @@ const mainRoutes: Routes = [{
                 enabledRoles: [EUserRole.Employee]
             },
             canActivate: [RoleGuard]
+        },
+        {
+            path: 'services',
+            loadChildren: () => import('./views/services/services.module').then(m => m.ServicesModule),
+            data: {
+                enabledRoles: [EUserRole.Employee]
+            },
+            canActivate: [RoleGuard]
         }
 
     ]

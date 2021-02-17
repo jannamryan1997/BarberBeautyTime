@@ -1,0 +1,7 @@
+<div class="paginator" display-flex align-items-center *ngIf="pages.length>0">
+    <i class="material-icons" cursor-pointer (click)="onClickPervious()">keyboard_arrow_left</i>
+    <div class="page_numbers">
+        <span *ngFor="let page of pages;let ind=index;" class="page" (click)="onClickPageNumber(ind)" font-family-Open-Sans [ngClass]="{'active_page':currentPage==ind+1}">{{page}}</span>
+    </div>
+    <i class="material-icons" cursor-pointer (click)="onClickNext()">keyboard_arrow_right</i>
+</div>

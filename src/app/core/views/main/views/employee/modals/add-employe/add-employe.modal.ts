@@ -54,7 +54,6 @@ export class AddEmployeModalComponent implements OnInit, OnDestroy {
             .pipe(takeUntil(this._unsubscribe$))
             .subscribe((data: IEmployees) => {
                 this.employeDetails = data;
-                console.log( this.employeDetails);
                 this._setPatchValue();
 
             });

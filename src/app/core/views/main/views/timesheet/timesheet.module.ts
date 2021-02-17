@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from 'src/app/core/shared/shared.module';
-import { ActionModal, CreateServiceModalComponent, CreateTimesheetModalComponent } from './modals';
+import { ActionModal,  CreateTimesheetModalComponent } from './modals';
 import { TimesheetRoutingModule } from './timesheet-routing.module';
 import { TimesheetService } from './timesheet.service';
 import { TimesheetViewComponent } from './timesheet.view';
@@ -20,10 +20,11 @@ import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
         TimesheetViewComponent,
         CreateTimesheetModalComponent,
         ActionModal,
-        CreateServiceModalComponent],
+      ],
     imports: [
         TimesheetRoutingModule,
-        SharedModule, CommonModule,
+        SharedModule,
+        CommonModule,
         ReactiveFormsModule,
         FormsModule,
         NzCalendarModule,
@@ -37,7 +38,7 @@ import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
     entryComponents: [
         CreateTimesheetModalComponent,
         ActionModal,
-        CreateServiceModalComponent],
+     ],
 })
 
 export class TimesheetModule { }

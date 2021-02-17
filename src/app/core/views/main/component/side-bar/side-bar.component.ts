@@ -23,15 +23,9 @@ export class SideBarComponent implements OnInit, OnDestroy {
         this.menuItem = this.menuItem.filter((v) => v.roles.includes(this.role));
     }
 
-    ngOnInit(): void {
-    }
+    ngOnInit(): void {}
 
-
-
-    public getBehiviorSubject(value): void {
-        this._menuService.setPageTitle(value);
-    }
-
+ 
     ngOnDestroy(): void {
         this._unsubscribe$.next();
         this._unsubscribe$.complete();

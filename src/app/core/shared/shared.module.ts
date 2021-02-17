@@ -3,6 +3,7 @@ import { MenuService } from '../services/menu.service';
 
 import { ConfirmDeleteModal } from '../modals';
 
+// import { PaginatorComponent } from '../components/paginator';
 
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzButtonModule } from 'ng-zorro-antd/button';
@@ -52,7 +53,7 @@ import { NzPaginationModule } from 'ng-zorro-antd/pagination';
         NzMessageModule,
         NzDropDownModule,
         NzPaginationModule,
-        ConfirmDeleteModal
+        ConfirmDeleteModal,
     ]
 })
 

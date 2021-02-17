@@ -25,6 +25,8 @@ export class ProvidersViewComponent implements OnInit, OnDestroy {
     public typeValue: string;
     public ownerId: string;
     public service_provider_id: string;
+    public pageLength = 1;
+    public count: number;
 
     constructor(
         private _modalService: NzModalService,
@@ -35,7 +37,7 @@ export class ProvidersViewComponent implements OnInit, OnDestroy {
         }
 
     ngOnInit(): void {
-        this._getProviders();
+        this._getProviders(1, this.pageLength);
         this._searchCtrlValueChanges();
     }
 
@@ -45,21 +47,22 @@ export class ProvidersViewComponent implements OnInit, OnDestroy {
         this.searchCtrl.valueChanges.pipe(takeUntil(this._unsubscribe$))
             .subscribe((data) => {
                 if (data.length > 3) {
-                    this._getProviders();
+                    this._getProviders(1, this.pageLength);
                 }
-                this._getProviders();
+                this._getProviders(1, this.pageLength);
             });
     }
-    private _getProviders(): void {
+    private _getProviders(page, count): void {
         this.loading = true;
         const search: string = this.searchCtrl.value;
-        this._providersService.getProviders(search)
+        this._providersService.getProviders(page, count, search)
             .pipe(takeUntil(this._unsubscribe$),
                 finalize(() => {
                     this.loading = false;
                 })
             )
             .subscribe((data: IProviderDetails) => {
+                this.count = data.count;
                 this.providersData = data.results;
             },
                 err => {
@@ -76,7 +79,7 @@ export class ProvidersViewComponent implements OnInit, OnDestroy {
                     this.loading = false;
                 }))
             .subscribe((data) => {
-                this._getProviders();
+                this._getProviders(1, this.pageLength);
 
             },
                 err => {
@@ -93,7 +96,7 @@ export class ProvidersViewComponent implements OnInit, OnDestroy {
         });
         dialogRef.afterClose.subscribe((data) => {
             if (data === 'provider Create') {
-                this._getProviders();
+                this._getProviders(1, this.pageLength);
             }
         });
     }
@@ -108,7 +111,7 @@ export class ProvidersViewComponent implements OnInit, OnDestroy {
         });
         dialogRef.afterClose.subscribe((data) => {
             if (data === 'provider Changed') {
-                this._getProviders();
+                this._getProviders(1, this.pageLength);
             }
         });
     }
@@ -128,6 +131,10 @@ export class ProvidersViewComponent implements OnInit, OnDestroy {
 
     public onClickRouterEmployee(providerId: number): void{
         this._router.navigate([`employees/${providerId}`]);
+    }
+
+   public paginate($event): void {
+        this._getProviders($event.pageNumber, this.pageLength);
     }
 
     ngOnDestroy(): void {

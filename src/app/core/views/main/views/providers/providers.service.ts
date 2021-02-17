@@ -19,13 +19,13 @@ export class ProvidersService {
         return this._httpClient.get<IRegion[]>('regions/');
     }
 
-    public getProviders(search: string): Observable<IProviderDetails> {
+    public getProviders( page: number, size: number, search: string): Observable<IProviderDetails> {
         const ownerId = this._cookieService.get('ownerId');
         let params = new HttpParams();
         if (search) {
             params = params.append('search', search);
         }
-            return this._httpClient.get<IProviderDetails>(`service-providers/?owner=${ownerId}`, { params });
+            return this._httpClient.get<IProviderDetails>(`service-providers/?owner=${ownerId}` + "&page=" + page + "&size=" + size, { params });
     }
     public createProvider(body: IProvider): Observable<IProvider> {
         return this._httpClient.post<IProvider>('service-providers/', body);

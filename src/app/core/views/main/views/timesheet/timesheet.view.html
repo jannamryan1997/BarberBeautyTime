@@ -1,7 +1,7 @@
 <div class="timesheet">
-    <header class="d-flex" *ngIf="!owner">
+    <!-- <header class="d-flex" *ngIf="!owner">
         <button nz-button style="width: 200px" (click)="onClickOpenCreateServiceModal()">Create Service</button>
-    </header>
+    </header> -->
     <div [ngStyle]="{ width: '300px', borderRadius: '4px' }" class="nz-calendar">
         <nz-calendar [nzFullscreen]="false" (nzSelectChange)="onValueChange($event)"></nz-calendar>
     </div>

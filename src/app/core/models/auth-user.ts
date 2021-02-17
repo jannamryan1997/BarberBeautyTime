@@ -1,4 +1,4 @@
-import { IAdditional } from './user';
+import { IAdditional, IEmployee } from './user';
 
 export interface IAuthUser {
     pk: number;

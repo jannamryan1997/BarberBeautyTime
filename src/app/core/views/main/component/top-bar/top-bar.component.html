@@ -13,5 +13,13 @@
                 <span>{{item?.label}}</span>
             </li>
         </ul>
+        <ul nz-menu nzMode="inline">
+            <li nz-submenu nzTitle="Setting" nzIcon="setting">
+                <ul>
+                    <li nz-menu-item routerLink="changed-password" routerLinkActive="activeRouter">Change Password</li>
+                    <li nz-menu-item>Languages</li>
+                </ul>
+            </li>
+        </ul>
     </div>
 </nav>

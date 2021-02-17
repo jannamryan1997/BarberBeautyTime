@@ -71,7 +71,6 @@ export class EmployeeProfileViewComponent implements OnInit, OnDestroy {
                 if (this.user.avatar) {
                     this.localImage = this.user.avatar;
                 }
-                console.log(data);
                 this._setPatchValue();
 
             },

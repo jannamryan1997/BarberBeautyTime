@@ -24,5 +24,6 @@
     </nz-form-item>
 
 
-    <button nz-button (click)="onCreateService()">Create Service</button>
+    <button nz-button (click)="onCreateService()" *ngIf="!serviceId" [disabled]="serviceForm.invalid">Create Service</button>
+    <button nz-button (click)="onClickEditService()" *ngIf="serviceId" [disabled]="serviceForm.invalid">Edit Service</button>
 </form>
