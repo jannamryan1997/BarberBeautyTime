@@ -1,5 +1,6 @@
 <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
     <p>{{message}}</p>
+    <img [src]="loaclImage" class="employe-img">
     <nz-form-item *ngIf="!employeId">
         <nz-form-label [nzSpan]="7" nzRequired>User Name</nz-form-label>
         <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl">
@@ -45,7 +46,7 @@
         </nz-form-control>
     </nz-form-item>
 
-    <nz-form-item>
+    <nz-form-item *ngIf="!employeId">
         <nz-form-label [nzSpan]="7" nzRequired>Email</nz-form-label>
         <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="emailErrorTpl">
             <input nz-input formControlName="email" placeholder="" />
@@ -64,7 +65,7 @@
     <nz-form-item *ngIf="!employeId">
         <nz-form-label [nzSpan]="7" nzRequired>Password</nz-form-label>
         <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="passErrorTpl">
-            <input nz-input formControlName="password" placeholder="" />
+            <input nz-input formControlName="password" placeholder="" type="password" />
             <ng-template #passErrorTpl let-control>
                 <ng-container *ngIf="control.hasError('required')">
                     Please input your Password!
@@ -76,5 +77,5 @@
         </nz-form-control>
     </nz-form-item>
     <button nz-button style="width:200px;margin: auto;" [disabled]="!validateForm.valid" (click)="addEmploye()" *ngIf="!employeId">Add Employe</button>
-    <button nz-button style="width:200px;margin: auto;" (click)="patchEmployee()" *ngIf="employeId">Create Employe</button>
+    <!-- <button nz-button style="width:200px;margin: auto;" (click)="patchEmployee()" *ngIf="employeId">Create Employe</button> -->
 </form>

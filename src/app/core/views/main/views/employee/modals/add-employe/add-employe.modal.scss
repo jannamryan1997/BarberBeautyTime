@@ -1,3 +1,12 @@
+.employe-img {
+    height: 200px;
+    width: 200px;
+    margin: 10px auto;
+    display: flex;
+    border-radius: 50%;
+    border: 1px dashed #d357f8;
+}
+
 ::ng-deep {
     .ant-modal-footer {
         display: none;

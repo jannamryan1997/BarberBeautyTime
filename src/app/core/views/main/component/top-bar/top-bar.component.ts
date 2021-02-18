@@ -27,9 +27,9 @@ export class TopBarComponent implements OnInit, OnDestroy {
         private _router: Router,
         private _cookieService: CookieService,
         private _userService: UserService) {
-        // this._menuService.getPageTitle().subscribe((data) => {
-        //     this.title = data;
-        // });
+        this._menuService.getPageTitle().subscribe((data) => {
+            this.title = data;
+        });
         this.role = this._userService.getUserSync().role;
         this.menuItem = this.menuItem.filter((v) => v.roles.includes(this.role));
     }
@@ -44,10 +44,6 @@ export class TopBarComponent implements OnInit, OnDestroy {
     public onClickIsOpen(): void {
         this._isOpen = !this._isOpen;
         this._menuService.setIsOpen(this._isOpen);
-    }
-    public getBehiviorSubject(value): void {
-        this._menuService.setPageTitle(value);
-        this.isOpenResponseMenu = false;
     }
 
     public onClickOpenResponseMenu(): void {

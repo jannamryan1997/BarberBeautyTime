@@ -13,6 +13,8 @@ export interface IProvider {
     region: number | Region;
     owner?: IOwner;
     rating?: number;
+    open_time: string;
+    close_time: string;
 }
 
 export class IProviderDetails {

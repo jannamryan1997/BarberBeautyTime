@@ -1,3 +1,4 @@
+
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NzModalRef } from 'ng-zorro-antd/modal';
@@ -7,6 +8,7 @@ import { IProvider, IProvidersType } from 'src/app/core/models/provider';
 import { IRegion } from 'src/app/core/models/region';
 import { mapStyle } from 'src/assets/styles/_map_style';
 import { ProvidersService } from '../../providers.service';
+import { DatePipe } from '@angular/common';
 
 declare const google;
 @Component({
@@ -26,6 +28,7 @@ export class CreateProviderModalComponent implements OnInit, OnDestroy {
     public loading = false;
     public message: string;
     public providerDetails: IProvider;
+    private _datePipe: DatePipe;
     public type: IProvidersType[] = [
         { name: 'Barber shop', value: 'B' },
         { name: 'Beauty salon', value: 'S' },
@@ -35,14 +38,13 @@ export class CreateProviderModalComponent implements OnInit, OnDestroy {
     public region: IRegion[] = [];
     @Input() providerId?: number;
 
-
-    constructor(private _fb: FormBuilder, private _providersService: ProvidersService, private _dialogRef: NzModalRef) {}
+    constructor(private _fb: FormBuilder, private _providersService: ProvidersService, private _dialogRef: NzModalRef) { }
 
     ngOnInit(): void {
         this._forBuilder();
         this._getRegion();
         this._initMap();
-        if (this.providerId){
+        if (this.providerId) {
             this._getProviderById();
         }
     }
@@ -52,7 +54,9 @@ export class CreateProviderModalComponent implements OnInit, OnDestroy {
         this.providerForm = this._fb.group({
             name: ['', Validators.required],
             type: ['', Validators.required],
-            region: ['', Validators.required]
+            region: ['', Validators.required],
+            open_time: [new Date(), Validators.required],
+            close_time: [new Date(), Validators.required]
         });
     }
 
@@ -72,12 +76,12 @@ export class CreateProviderModalComponent implements OnInit, OnDestroy {
         });
     }
 
-    private _getRegion(): void{
+    private _getRegion(): void {
         this._providersService.getRegion()
-        .pipe(takeUntil(this._unsubscribe$))
-        .subscribe((data: IRegion[]) => {
-            this.region = data;
-        });
+            .pipe(takeUntil(this._unsubscribe$))
+            .subscribe((data: IRegion[]) => {
+                this.region = data;
+            });
     }
 
     private _getProviderById(): void {
@@ -89,7 +93,7 @@ export class CreateProviderModalComponent implements OnInit, OnDestroy {
                 }))
             .subscribe((data: IProvider) => {
                 this.providerDetails = data;
-                if (this.providerDetails){
+                if (this.providerDetails) {
                     this._setPatchValue();
                 }
             },
@@ -99,16 +103,17 @@ export class CreateProviderModalComponent implements OnInit, OnDestroy {
             );
     }
 
-    private _setPatchValue(): void{
-    const type = this.type.find((e) => e.value === this.providerDetails.type);
-    const region: any = this.providerDetails.region;
-    const regionValue = this.region.find((e) => e.name === region.name);
+    private _setPatchValue(): void {
+        const type = this.type.find((e) => e.value === this.providerDetails.type);
+        const region: any = this.providerDetails.region;
+        const regionValue = this.region.find((e) => e.name === region.name);
         this.providerForm.patchValue({
-            name:  this.providerDetails.name,
-            type:type || null,
-            region:regionValue || null,
-        
-        })
+            name: this.providerDetails.name,
+            // open_time:  this.providerDetails.open_time,
+            // close_time: this.providerDetails.close_time,
+            type: type || null,
+            region: regionValue || null,
+        });
     }
 
     public submitForm(): void {
@@ -129,6 +134,8 @@ export class CreateProviderModalComponent implements OnInit, OnDestroy {
             region: this.providerForm.value.region.id,
             latitude: this._latitude,
             longitude: this._longitude,
+            open_time: this.providerForm.value.open_time,
+            close_time: this.providerForm.value.close_time,
         };
         this._providersService.createProvider(providerDetails)
             .pipe(takeUntil(this._unsubscribe$),
@@ -145,7 +152,7 @@ export class CreateProviderModalComponent implements OnInit, OnDestroy {
             );
     }
 
-    public onClickPutchProvider(): void{
+    public onClickPutchProvider(): void {
         this.loading = true;
         const {
             name,
@@ -156,8 +163,10 @@ export class CreateProviderModalComponent implements OnInit, OnDestroy {
             region: this.providerForm.value.region.id,
             latitude: this._latitude,
             longitude: this._longitude,
-        }
-        this._providersService.putchProviderById(this.providerId,providerDetails)
+            open_time: this.providerForm.value.open_time,
+            close_time: this.providerForm.value.close_time,
+        };
+        this._providersService.putchProviderById(this.providerId, providerDetails)
             .pipe(takeUntil(this._unsubscribe$),
                 finalize(() => {
                     this.loading = false;

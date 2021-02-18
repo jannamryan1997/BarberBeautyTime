@@ -1,0 +1,18 @@
+<nz-card style="width:100%" [nzCover]="coverTemplate" [nzActions]="[actionSetting, actionEdit, actionEllipsis]">
+    <nz-card-meta nzTitle="{{employeItem?.user?.first_name}}" nzDescription="{{employeItem?.user?.last_name}}" [nzAvatar]="avatarTemplate"></nz-card-meta>
+</nz-card>
+<ng-template #avatarTemplate>
+    <!-- <nz-avatar nzSrc="/src/assets/images/hairdresser.jpeg"></nz-avatar> -->
+</ng-template>
+<ng-template #coverTemplate>
+    <img alt="example" [src]="localImage" style="height: 180px;" />
+</ng-template>
+<ng-template #actionSetting>
+    <i nz-icon nzType="field-time" (click)="onClickBooking()"></i>
+</ng-template>
+<ng-template #actionEdit>
+    <i nz-icon nzType="edit" (click)="onClickOpenCreateEmployeModal()"></i>
+</ng-template>
+<ng-template #actionEllipsis>
+    <i nz-icon nzType="delete" (click)="onClickDeleteEmploye()"></i>
+</ng-template>

@@ -8,6 +8,7 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 import { ActionModal, CreateTimesheetModalComponent } from './modals';
 import { DatePipe } from '@angular/common';
 import { CookieService } from 'ngx-cookie';
+import { MenuService } from 'src/app/core/services/menu.service';
 
 @Component({
     selector: 'app-timesheet',
@@ -31,6 +32,7 @@ export class TimesheetViewComponent implements OnInit, OnDestroy {
         private _modalSrvice: NzModalService,
         private _datePipe: DatePipe,
         private _cookieService: CookieService,
+        private _menuService: MenuService,
     ) {
         const providerId = this._activatedRoute.snapshot.params?.providerId || null;
         const employId = this._activatedRoute.snapshot.params?.employId || null;
@@ -40,6 +42,7 @@ export class TimesheetViewComponent implements OnInit, OnDestroy {
         if (owner){
             this.owner = owner;
         }
+        this._menuService.setPageTitle('Booking');
     }
 
     ngOnInit(): void {

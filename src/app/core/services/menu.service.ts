@@ -18,11 +18,11 @@ export class MenuService {
         return this._titleEvent$.asObservable();
     }
 
-    public setIsOpen(isOpen: boolean): void{
+    public setIsOpen(isOpen: boolean): void {
         this._isOpenEvent$.next(isOpen);
     }
 
-    public getIsOpen(): Observable<boolean>{
+    public getIsOpen(): Observable<boolean> {
         return this._isOpenEvent$.asObservable();
     }
 }

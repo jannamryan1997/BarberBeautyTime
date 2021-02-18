@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 import { finalize, takeUntil } from 'rxjs/operators';
 import { ConfirmDeleteModal } from 'src/app/core/modals';
 import { IService } from 'src/app/core/models/service';
+import { MenuService } from 'src/app/core/services/menu.service';
 import { UserService } from 'src/app/core/services/user.service';
 import { CreateServiceModalComponent } from './modals';
 import { ServicesService } from './services.service';
@@ -22,9 +23,15 @@ export class ServicesViewComponent implements OnInit, OnDestroy {
     public message: string;
     public servicesDetails: IService[] = [];
 
-    constructor(private _servicesService: ServicesService, private _userService: UserService, private _modalSrvice: NzModalService) {
+    constructor(
+        private _servicesService: ServicesService,
+        private _userService: UserService,
+        private _modalSrvice: NzModalService,
+        private _menuService: MenuService,
+        ) {
         this.employee_pk = this._userService.getUserSync().additional_data?.employee?.id;
         this.service_provider_pk = this._userService.getUserSync().additional_data?.employee?.service_provider;
+        this._menuService.setPageTitle('Services');
     }
 
     ngOnInit(): void {

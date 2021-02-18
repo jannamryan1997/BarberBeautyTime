@@ -13,10 +13,11 @@ import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 
 import { AddEmployeModalComponent } from './modals';
+import { EmployeeItemComponent } from './components';
 
 
 @NgModule({
-    declarations: [EmployeeViewComponent, AddEmployeModalComponent],
+    declarations: [EmployeeViewComponent, AddEmployeModalComponent, EmployeeItemComponent],
     imports: [
         EmployeeRoutingModule,
         SharedModule,

@@ -14,10 +14,11 @@
         </div>
         <div nz-col nzFlex="3">
             <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+                <p class="message">{{message}}</p>
                 <nz-form-item>
                     <nz-form-label [nzSpan]="4" nzRequired nzFor="name">User Name</nz-form-label>
-                    <nz-form-control [nzSpan]="18" nzErrorTip="Please input your name">
-                        <input type="text" nz-input formControlName="name" placeholder="Please input your name" />
+                    <nz-form-control [nzSpan]="18" nzErrorTip="Please input your User Name">
+                        <input type="text" nz-input formControlName="username" placeholder="Please input your User Name" />
                     </nz-form-control>
                 </nz-form-item>
                 <nz-form-item>
@@ -42,7 +43,7 @@
         </div>
     </div>
     <div style="display: flex; justify-content: space-between;margin: 20px auto; width: 50%;">
-        <button nz-button style="width: 200px;">Change</button>
+        <button nz-button style="width: 200px;" (click)="onClickChangeEmployeeProfileData()" [disabled]="validateForm.invalid">Change Profile</button>
         <button nz-button style="width: 200px; margin-left: 20px;" (click)="onClickBooking()">Booking</button>
     </div>
 

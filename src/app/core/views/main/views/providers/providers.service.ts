@@ -25,7 +25,7 @@ export class ProvidersService {
         if (search) {
             params = params.append('search', search);
         }
-            return this._httpClient.get<IProviderDetails>(`service-providers/?owner=${ownerId}` + "&page=" + page + "&size=" + size, { params });
+    return this._httpClient.get<IProviderDetails>(`service-providers/?owner=${ownerId}` + "&page=" + page + "&size=" + size, { params });
     }
     public createProvider(body: IProvider): Observable<IProvider> {
         return this._httpClient.post<IProvider>('service-providers/', body);

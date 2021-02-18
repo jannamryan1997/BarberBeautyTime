@@ -28,3 +28,13 @@
     height: 200px;
     margin: 20px 0;
 }
+
+::ng-deep {
+    .ant-picker-dropdown {
+        width: 200px !important;
+    }
+}
+
+nz-time-picker {
+    width: 100%;
+}

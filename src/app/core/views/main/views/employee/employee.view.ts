@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import {  NzModalService } from 'ng-zorro-antd/modal';
+import { NzModalService } from 'ng-zorro-antd/modal';
 import { Subject } from 'rxjs';
 import { finalize, takeUntil } from 'rxjs/operators';
-import { ConfirmDeleteModal } from 'src/app/core/modals';
 import { IEmployees } from 'src/app/core/models/employees';
+import { MenuService } from 'src/app/core/services/menu.service';
 import { EmployeeService } from './employee.service';
 import { AddEmployeModalComponent } from './modals';
 
@@ -17,23 +17,25 @@ import { AddEmployeModalComponent } from './modals';
 export class EmployeeViewComponent implements OnInit, OnDestroy {
 
     private _unsubscribe$ = new Subject<void>();
+    public providerId: number;
     public loading = false;
     public employeesDetails: IEmployees[] = [];
     public message: string;
-    private _providerId: number;
+    public localImage = '/assets/images/hairdresser.jpeg';
 
     constructor(
         private _employeeService: EmployeeService,
         private _activatedRoute: ActivatedRoute,
         private _viewContainerRef: ViewContainerRef,
         private _modalService: NzModalService,
-        private _router: Router,
+        private _menuService: MenuService,
     ) {
         const providerId = this._activatedRoute.snapshot.params?.id || null;
         if (providerId) {
-            this._providerId = providerId;
+            this.providerId = providerId;
             this._getEmployees(providerId);
         }
+        this._menuService.setPageTitle('Employees');
     }
 
     ngOnInit(): void { }
@@ -57,26 +59,6 @@ export class EmployeeViewComponent implements OnInit, OnDestroy {
     }
 
 
-    private _deteEmploye(employeId: number): void {
-        this._employeeService.deleteEmploye(this._providerId, employeId)
-            .pipe(takeUntil(this._unsubscribe$))
-            .subscribe((data) => {
-                this._getEmployees(this._providerId);
-            });
-    }
-
-    public onClickDeleteEmploye(employeId: number): void {
-
-        const dialogRef = this._modalService.create({
-            nzContent: ConfirmDeleteModal
-        });
-        dialogRef.afterClose.subscribe((data) => {
-            if (data && data === 'delete') {
-                this._deteEmploye(employeId);
-            }
-        });
-    }
-
     public onClickOpenAddEmployeModal(): void {
         const dialogRef = this._modalService.create({
             nzTitle: 'Add an Employe',
@@ -84,38 +66,21 @@ export class EmployeeViewComponent implements OnInit, OnDestroy {
             nzFooter: 'false',
             nzViewContainerRef: this._viewContainerRef,
             nzComponentParams: {
-                providerId: this._providerId,
+                providerId: this.providerId,
             }
         });
         dialogRef.afterClose.subscribe((data) => {
             if (data && data === 'AddEmploye') {
-                this._getEmployees(this._providerId);
+                this._getEmployees(this.providerId);
             }
         });
     }
 
-    public onClickOpenCreateEmployeModal(employeId: number): void {
-        const dialogRef = this._modalService.create({
-            nzTitle: 'Create Employe',
-            nzContent: AddEmployeModalComponent,
-            nzFooter: 'false',
-            nzViewContainerRef: this._viewContainerRef,
-            nzComponentParams: {
-                providerId: this._providerId,
-                employeId
-            }
-        });
-        dialogRef.afterClose.subscribe((data) => {
-            if (data && data === 'deletedEmploye'){
-                 this._getEmployees(this._providerId);
-            }
-        });
+    public onClickDeleteEmployee(event): void {
+        if (event) {
+            this._getEmployees(this.providerId);
+        }
     }
-
-    public onClickBooking(employId: number): void {
-        this._router.navigate([`timesheet/${this._providerId}/${employId}`]);
-    }
-
 
     ngOnDestroy(): void {
         this._unsubscribe$.next();

@@ -13,7 +13,11 @@ import { CreateProviderModalComponent } from './modals';
 import {DropdownModule} from 'primeng/dropdown';
 
 import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzTimePickerModule } from 'ng-zorro-antd/time-picker';
+import { NzStatisticModule } from 'ng-zorro-antd/statistic';
+
 import { PaginatorComponent } from 'src/app/core/components/paginator';
+
 
 @NgModule({
     declarations: [
@@ -28,7 +32,9 @@ import { PaginatorComponent } from 'src/app/core/components/paginator';
         FormsModule,
         CommonModule,
         DropdownModule,
-        NzTableModule
+        NzTableModule,
+        NzTimePickerModule,
+        NzStatisticModule
     ],
     providers: [ProvidersService],
     entryComponents: [

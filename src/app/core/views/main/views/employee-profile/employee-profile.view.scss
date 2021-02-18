@@ -37,6 +37,11 @@
         border: 1px dashed #d357f8;
         margin-bottom: 15px;
     }
+    .message {
+        align-items: center;
+        text-align: center;
+        margin: 10px;
+    }
 }
 
 input[type="file"] {

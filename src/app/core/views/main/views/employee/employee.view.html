@@ -6,24 +6,7 @@
         <nz-divider nzOrientation="left" nzText="Employees"></nz-divider>
         <div nz-row [nzGutter]="16">
             <div nz-col class="gutter-row" [nzLg]="6" [nzSpan]="10" [nzMd]="6" *ngFor="let item of employeesDetails">
-                <nz-card style="width:100%" [nzCover]="coverTemplate" [nzActions]="[actionSetting, actionEdit, actionEllipsis]">
-                    <nz-card-meta nzTitle="{{item?.user?.first_name}}" nzDescription="{{item?.user?.last_name}}" [nzAvatar]="avatarTemplate"></nz-card-meta>
-                </nz-card>
-                <ng-template #avatarTemplate>
-                    <nz-avatar nzSrc="/src/assets/images/hairdresser.jpeg"></nz-avatar>
-                </ng-template>
-                <ng-template #coverTemplate>
-                    <img alt="example" src="/assets/images/hairdresser.jpeg" />
-                </ng-template>
-                <ng-template #actionSetting>
-                    <i nz-icon nzType="field-time" (click)="onClickBooking(item?.id)"></i>
-                </ng-template>
-                <ng-template #actionEdit>
-                    <i nz-icon nzType="edit" (click)="onClickOpenCreateEmployeModal(item?.id)"></i>
-                </ng-template>
-                <ng-template #actionEllipsis>
-                    <i nz-icon nzType="delete" (click)="onClickDeleteEmploye(item?.id)"></i>
-                </ng-template>
+                <employee-item-app [employeItem]="item" [providerId]="providerId" (deleteEmployee)="onClickDeleteEmployee($event)"></employee-item-app>
             </div>
         </div>
     </main>

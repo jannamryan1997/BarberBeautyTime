@@ -19,6 +19,7 @@ export class AddEmployeModalComponent implements OnInit, OnDestroy {
     public loading = false;
     public message: string;
     public employeDetails: IEmployees;
+    public loaclImage = '/assets/images/hairdress.jpg';
     @Input() providerId: number;
     @Input() employeId: number;
     constructor(private _fb: FormBuilder, private _employeeService: EmployeeService, private _modal: NzModalRef) { }
@@ -26,7 +27,7 @@ export class AddEmployeModalComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this._initForm();
-        if (this.employeId){
+        if (this.employeId) {
             this._getEmployeById();
         }
     }
@@ -54,6 +55,9 @@ export class AddEmployeModalComponent implements OnInit, OnDestroy {
             .pipe(takeUntil(this._unsubscribe$))
             .subscribe((data: IEmployees) => {
                 this.employeDetails = data;
+                if (this.employeDetails.user.avatar) {
+                    this.loaclImage = this.employeDetails.user.avatar;
+                }
                 this._setPatchValue();
 
             });
@@ -93,9 +97,9 @@ export class AddEmployeModalComponent implements OnInit, OnDestroy {
             .subscribe((data) => {
                 this._modal.destroy('AddEmploye');
             },
-            err => {
-                this.message = err.message;
-            }
+                err => {
+                    this.message = err.message;
+                }
             );
     }
 

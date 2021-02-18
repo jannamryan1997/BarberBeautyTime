@@ -5,6 +5,7 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 import { Observable, Observer, Subject } from 'rxjs';
 import { finalize, takeUntil } from 'rxjs/operators';
 import { IChangedPassword } from 'src/app/core/models/changed-password';
+import { MenuService } from 'src/app/core/services/menu.service';
 import { PasswordChangeService } from './password-change.service';
 
 @Component({
@@ -23,16 +24,19 @@ export class PasswordChangeViewComponent implements OnInit, OnDestroy {
         private _router: Router,
         private _fb: FormBuilder,
         private _messagesuccessful: NzMessageService,
-        private _passwordChangeService: PasswordChangeService) { }
+        private _menuService: MenuService,
+        private _passwordChangeService: PasswordChangeService) {
+        this._menuService.setPageTitle('Change Password');
+    }
 
     ngOnInit(): void {
         this._formBuilder();
     }
 
 
-       private _createMessage(type: string): void {
-            this._messagesuccessful.create(type, `This is a message of ${type}`);
-          }
+    private _createMessage(type: string): void {
+        this._messagesuccessful.create(type, `This is a message of ${type}`);
+    }
 
     private _formBuilder(): void {
         this.validateForm = this._fb.group({

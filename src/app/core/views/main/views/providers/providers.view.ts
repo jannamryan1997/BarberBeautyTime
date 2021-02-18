@@ -6,6 +6,7 @@ import { Subject } from 'rxjs';
 import { finalize, takeUntil } from 'rxjs/operators';
 import { ConfirmDeleteModal } from 'src/app/core/modals';
 import { IProvider, IProviderDetails } from 'src/app/core/models/provider';
+import { MenuService } from 'src/app/core/services/menu.service';
 import {   CreateProviderModalComponent } from './modals';
 import { ProvidersService } from './providers.service';
 
@@ -29,11 +30,13 @@ export class ProvidersViewComponent implements OnInit, OnDestroy {
     public count: number;
 
     constructor(
+        private _menuService: MenuService,
         private _modalService: NzModalService,
         private _providersService: ProvidersService,
         private _router: Router,
         private _viewContainerRef: ViewContainerRef,
         ) {
+this._menuService.setPageTitle('Providers');
         }
 
     ngOnInit(): void {

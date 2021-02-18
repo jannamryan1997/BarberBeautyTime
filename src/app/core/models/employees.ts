@@ -17,6 +17,7 @@ export interface EmployeData {
     first_name: string;
     last_name: string;
     email: string;
-    password: string;
-    service_provider: number;
+    password?: string;
+    service_provider?: number;
+    role?: [];
 }

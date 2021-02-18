@@ -1,6 +1,36 @@
 <form nz-form [formGroup]="providerForm" (ngSubmit)="submitForm()">
     <p>{{message}}</p>
     <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>Open Time</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl">
+            <nz-time-picker nz-input formControlName="open_time" nzFormat="HH:mm"></nz-time-picker>
+            <ng-template #userErrorTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                    Please input Open Time!
+                </ng-container>
+                <ng-container *ngIf="control.hasError('duplicated')">
+                    The name is redundant!
+                </ng-container>
+            </ng-template>
+        </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>Close Time</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl">
+            <nz-time-picker nz-input formControlName="close_time" nzFormat="HH:mm"></nz-time-picker>
+            <ng-template #userErrorTpl let-control>
+                <ng-container *ngIf="control.hasError('required')">
+                    Please input Close Time!
+                </ng-container>
+                <ng-container *ngIf="control.hasError('duplicated')">
+                    The name is redundant!
+                </ng-container>
+            </ng-template>
+        </nz-form-control>
+    </nz-form-item>
+
+
+    <nz-form-item>
         <nz-form-label [nzSpan]="7" nzRequired>Name</nz-form-label>
         <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl">
             <input nz-input formControlName="name" placeholder="" />

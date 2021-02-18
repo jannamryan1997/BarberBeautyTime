@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { MenuService } from '../services/menu.service';
 
 import { ConfirmDeleteModal } from '../modals';
 
@@ -38,7 +37,7 @@ import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 
     ],
     entryComponents: [ConfirmDeleteModal],
-    providers: [MenuService],
+    providers: [],
     exports: [
         NzFormModule,
         NzButtonModule,
