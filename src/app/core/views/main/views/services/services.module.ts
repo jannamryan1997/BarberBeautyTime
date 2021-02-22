@@ -6,14 +6,14 @@ import { ServicesRoutingModule } from './services-routing.module';
 import { ServicesService } from './services.service';
 import { ServicesViewComponent } from './services.view';
 
-import { CreateServiceModalComponent } from './modals';
+import { CreateServiceModalComponent, ServiceActionModal } from './modals';
 
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 
 
 @NgModule({
-    declarations: [ServicesViewComponent, CreateServiceModalComponent],
+    declarations: [ServicesViewComponent, CreateServiceModalComponent,ServiceActionModal],
     imports: [
         ServicesRoutingModule,
         SharedModule,
@@ -23,7 +23,7 @@ import { NzDividerModule } from 'ng-zorro-antd/divider';
         NzCardModule,
         NzDividerModule],
     providers: [ServicesService],
-    entryComponents: [CreateServiceModalComponent]
+    entryComponents: [CreateServiceModalComponent,ServiceActionModal]
 })
 
 export class ServicesModule { }

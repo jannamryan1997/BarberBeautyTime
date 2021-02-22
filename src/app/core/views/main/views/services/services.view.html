@@ -16,7 +16,7 @@
                     <img alt="example" src="/assets/images/services.jpg" />
                 </ng-template>
                 <ng-template #actionSetting>
-                    <i nz-icon nzType="field-time"></i>
+                    <i nz-icon nzType="field-time" (click)="onClickOpenServiceActionModal(item)"></i>
                 </ng-template>
                 <ng-template #actionEdit>
                     <i nz-icon nzType="edit" (click)="onClickOpenCreateServiceModal(item?.id)"></i>

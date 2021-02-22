@@ -18,7 +18,7 @@ import { NzStatisticModule } from 'ng-zorro-antd/statistic';
 
 import { PaginatorComponent } from 'src/app/core/components/paginator';
 
-
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 @NgModule({
     declarations: [
         ProvidersViewComponent,
@@ -34,7 +34,8 @@ import { PaginatorComponent } from 'src/app/core/components/paginator';
         DropdownModule,
         NzTableModule,
         NzTimePickerModule,
-        NzStatisticModule
+        NzStatisticModule,
+        NgxMaterialTimepickerModule
     ],
     providers: [ProvidersService],
     entryComponents: [

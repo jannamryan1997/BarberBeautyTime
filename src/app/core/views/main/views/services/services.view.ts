@@ -6,7 +6,7 @@ import { ConfirmDeleteModal } from 'src/app/core/modals';
 import { IService } from 'src/app/core/models/service';
 import { MenuService } from 'src/app/core/services/menu.service';
 import { UserService } from 'src/app/core/services/user.service';
-import { CreateServiceModalComponent } from './modals';
+import { CreateServiceModalComponent, ServiceActionModal } from './modals';
 import { ServicesService } from './services.service';
 
 @Component({
@@ -97,6 +97,14 @@ export class ServicesViewComponent implements OnInit, OnDestroy {
                 this._deletedService(servicesId);
             }
         });
+    }
+    public onClickOpenServiceActionModal(item:IService):void{
+        const dialogRef=this._modalSrvice.create({
+            nzContent:ServiceActionModal,
+            nzFooter:'false',
+            nzComponentParams:{item}
+        })
+        
     }
 
     ngOnDestroy(): void {

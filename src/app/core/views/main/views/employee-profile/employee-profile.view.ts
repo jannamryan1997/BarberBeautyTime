@@ -105,7 +105,6 @@ export class EmployeeProfileViewComponent implements OnInit, OnDestroy {
     }
 
     public handleFileSelect(evt): void {
-        console.log(evt);
         const files = evt.target.files;
         const file = files[0];
         if (files && file) {

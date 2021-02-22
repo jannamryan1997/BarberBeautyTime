@@ -26,7 +26,7 @@ export class ProvidersViewComponent implements OnInit, OnDestroy {
     public typeValue: string;
     public ownerId: string;
     public service_provider_id: string;
-    public pageLength = 1;
+    public pageLength = 10;
     public count: number;
 
     constructor(
