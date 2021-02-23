@@ -1,6 +1,6 @@
-<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()" *ngIf="!employeId">
     <p>{{message}}</p>
-    <img [src]="loaclImage" class="employe-img">
+    <img [src]="loacalImage" class="employe-img">
     <nz-form-item *ngIf="!employeId">
         <nz-form-label [nzSpan]="7" nzRequired>User Name</nz-form-label>
         <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl">
@@ -46,7 +46,7 @@
         </nz-form-control>
     </nz-form-item>
 
-    <nz-form-item *ngIf="!employeId">
+    <nz-form-item>
         <nz-form-label [nzSpan]="7" nzRequired>Email</nz-form-label>
         <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="emailErrorTpl">
             <input nz-input formControlName="email" placeholder="" />
@@ -62,7 +62,7 @@
     </nz-form-item>
 
 
-    <nz-form-item *ngIf="!employeId">
+    <nz-form-item>
         <nz-form-label [nzSpan]="7" nzRequired>Password</nz-form-label>
         <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="passErrorTpl">
             <input nz-input formControlName="password" placeholder="" type="password" />
@@ -76,6 +76,17 @@
             </ng-template>
         </nz-form-control>
     </nz-form-item>
-    <button nz-button style="width:200px;margin: auto;" [disabled]="!validateForm.valid" (click)="addEmploye()" *ngIf="!employeId">Add Employe</button>
+    <button nz-button style="width:200px;margin: auto;" [disabled]="!validateForm.valid" (click)="addEmploye()">Add Employe</button>
     <!-- <button nz-button style="width:200px;margin: auto;" (click)="patchEmployee()" *ngIf="employeId">Create Employe</button> -->
 </form>
+
+
+<div *ngIf="employeId">
+    <ng-container>
+        <main>
+            <img alt="example" [src]="loacalImage" style="height: 200px;width: 200px; display: flex;margin: auto;" />
+            <p><b>First Name:</b>{{employeDetails?.user?.first_name}}</p>
+            <p><b>Last Name:</b>employeDetails?.user.last_name</p>
+        </main>
+    </ng-container>
+</div>

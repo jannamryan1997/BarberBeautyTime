@@ -10,7 +10,6 @@ import { mapStyle } from 'src/assets/styles/_map_style';
 import { ProvidersService } from '../../providers.service';
 import { DatePipe } from '@angular/common';
 
-import * as moment from 'moment';
 declare const google;
 
 @Component({
@@ -57,8 +56,8 @@ export class CreateProviderModalComponent implements OnInit, OnDestroy {
             name: ['', Validators.required],
             type: ['', Validators.required],
             region: ['', Validators.required],
-            open_time: ['',Validators.required],
-            close_time: ['',Validators.required]
+            open_time: ['', Validators.required],
+            close_time: ['', Validators.required]
         });
     }
 
@@ -127,7 +126,6 @@ export class CreateProviderModalComponent implements OnInit, OnDestroy {
 
     public onClickCreateProvider(): void {
         this.loading = true;
-        
         const {
             name,
         } = this.providerForm.value;
@@ -137,7 +135,7 @@ export class CreateProviderModalComponent implements OnInit, OnDestroy {
             region: this.providerForm.value.region.id,
             latitude: this._latitude,
             longitude: this._longitude,
-            open_time:this.providerForm.value.open_time,
+            open_time: this.providerForm.value.open_time,
             close_time: this.providerForm.value.close_time,
         };
         this._providersService.createProvider(providerDetails)
@@ -167,7 +165,7 @@ export class CreateProviderModalComponent implements OnInit, OnDestroy {
             latitude: this._latitude,
             longitude: this._longitude,
             open_time: this.providerForm.value.open_time,
-            close_time:this.providerForm.value.close_time,
+            close_time: this.providerForm.value.close_time,
         };
         this._providersService.putchProviderById(this.providerId, providerDetails)
             .pipe(takeUntil(this._unsubscribe$),
