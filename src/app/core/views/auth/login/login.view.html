@@ -15,12 +15,6 @@
             </nz-input-group>
         </nz-form-control>
     </nz-form-item>
-    <div nz-row class="login-form-margin">
-        <div nz-col [nzSpan]="12">
-            <label nz-checkbox formControlName="remember">
-          <span>Remember me</span>
-        </label>
-        </div>
-    </div>
+    <p class="title" routerLink="/auth/forgot-password">Lost password?</p><br/>
     <button nz-button (click)="onClickLogin()">Log in</button>
 </form>

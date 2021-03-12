@@ -2,7 +2,7 @@
     <button nz-button style="width: 200px" (click)="onClickOpenCreateProviderModal()">Create Providers</button>
     <header>
         <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
-            <input type="text" nz-input placeholder="input search text" [formControl]="searchCtrl" />
+            <input type="text" nz-input placeholder="search" [formControl]="searchCtrl" />
         </nz-input-group>
         <ng-template #suffixIconButton>
             <button nz-button nzSearch style="margin: 0;padding: 0; width: 40px;"><i nz-icon nzType="search"></i></button>

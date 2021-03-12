@@ -149,6 +149,7 @@ export class CreateProviderModalComponent implements OnInit, OnDestroy {
             },
                 err => {
                     this.message = err.message;
+                    console.log(err);
                 }
             );
     }
@@ -178,6 +179,8 @@ export class CreateProviderModalComponent implements OnInit, OnDestroy {
             },
                 err => {
                     this.message = err.message;
+                    console.log(err);
+
                 }
             );
     }

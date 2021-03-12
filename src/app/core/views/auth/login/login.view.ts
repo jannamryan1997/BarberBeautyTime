@@ -55,7 +55,7 @@ export class LoginViewComponent implements OnInit, OnDestroy {
         const loginDetails: ILogin = {
             username,
             password
-        }
+        };
 
         if (this.loginForm.invalid) {
             this.loginForm.markAllAsTouched();

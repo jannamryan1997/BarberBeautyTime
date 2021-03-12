@@ -1,7 +1,4 @@
 <div class="timesheet">
-    <!-- <header class="d-flex" *ngIf="!owner">
-        <button nz-button style="width: 200px" (click)="onClickOpenCreateServiceModal()">Create Service</button>
-    </header> -->
     <div [ngStyle]="{ width: '300px', borderRadius: '4px' }" class="nz-calendar">
         <nz-calendar [nzFullscreen]="false" (nzSelectChange)="onValueChange($event)"></nz-calendar>
     </div>
@@ -17,7 +14,6 @@
                         <div style="display: flex;justify-content: space-between;align-items: center;margin: 5px 0;">
                             <img src="assets/icons/checked.png" class="icon-img" *ngIf="item?.reserved===true">
                             <i nz-icon nzType="edit" *ngIf="!owner" (click)="onClickOpenCreateBookingModal(item?.id)"></i>
-                            <label *ngIf="item?.reserved===false ">reseved</label>
                         </div>
                     </nz-card>
                 </div>
