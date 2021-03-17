@@ -52,7 +52,7 @@ export class EmployeeViewComponent implements OnInit, OnDestroy {
                 this.employeesDetails = data;
             },
                 err => {
-                    this.message = err.error.message;
+                    this.message = err.message;
 
                 }
             );
@@ -61,7 +61,7 @@ export class EmployeeViewComponent implements OnInit, OnDestroy {
 
     public onClickOpenAddEmployeModal(): void {
         const dialogRef = this._modalService.create({
-            nzTitle: 'Add an Employe',
+            nzTitle: '     ',
             nzContent: AddEmployeModalComponent,
             nzFooter: 'false',
             nzViewContainerRef: this._viewContainerRef,

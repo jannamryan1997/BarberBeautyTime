@@ -6,3 +6,7 @@ img {
     background: #58b6f444 !important;
     color: #ffffff !important;
 }
+
+::ng-deep .ant-menu-submenu-arrow {
+    display: none !important;
+}

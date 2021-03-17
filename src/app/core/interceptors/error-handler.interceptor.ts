@@ -17,7 +17,8 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
                     for (const key in error) {
                         if (key && error[key]) {
                             for (const msg of error[key]) {
-                                message += `${key} - ${msg} \n`;
+                                // message += `${key} - ${msg} \n`;
+                                message += `${msg} \n`;
                             }
                         }
                     }

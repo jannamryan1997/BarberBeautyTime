@@ -1,29 +1,29 @@
 <form nz-form [formGroup]="providerForm" (ngSubmit)="submitForm()">
     <p>{{message}}</p>
     <nz-form-item>
-        <nz-form-label [nzSpan]="7" nzRequired>Open Time</nz-form-label>
+        <nz-form-label [nzSpan]="7" nzRequired>{{'Open Time' | translate}}</nz-form-label>
         <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="openErrorTpl">
             <ngx-timepicker-field [format]="24" formControlName="open_time"></ngx-timepicker-field>
             <ng-template #openErrorTpl let-control>
                 <ng-container *ngIf="control.hasError('required')">
-                    Please input Open Time!
+                    {{'Please input Open Time!' | translate}}
                 </ng-container>
                 <ng-container *ngIf="control.hasError('duplicated')">
-                    The name is redundant!
+                    {{'The name is redundant!' | translate}}
                 </ng-container>
             </ng-template>
         </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-        <nz-form-label [nzSpan]="7" nzRequired>Close Time</nz-form-label>
+        <nz-form-label [nzSpan]="7" nzRequired>{{'Close Time' | translate}}</nz-form-label>
         <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="closeErrorTpl">
             <ngx-timepicker-field [format]="24" formControlName="close_time"></ngx-timepicker-field>
             <ng-template #closeErrorTpl let-control>
                 <ng-container *ngIf="control.hasError('required')">
-                    Please input Close Time!
+                    {{'Please input Close Time!' | translate}}
                 </ng-container>
                 <ng-container *ngIf="control.hasError('duplicated')">
-                    The name is redundant!
+                    {{'The name is redundant!' | translate}}
                 </ng-container>
             </ng-template>
         </nz-form-control>
@@ -31,49 +31,48 @@
 
 
     <nz-form-item>
-        <nz-form-label [nzSpan]="7" nzRequired>Name</nz-form-label>
+        <nz-form-label [nzSpan]="7" nzRequired>{{'Name' | translate}}</nz-form-label>
         <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl">
-            <input nz-input formControlName="name" placeholder="" />
+            <input nz-input formControlName="name" placeholder="{{'Name' | translate}}" />
             <ng-template #userErrorTpl let-control>
                 <ng-container *ngIf="control.hasError('required')">
-                    Please input your name!
+                    {{'Please input your name!' | translate}}
                 </ng-container>
                 <ng-container *ngIf="control.hasError('duplicated')">
-                    The name is redundant!
+                    {{'The name is redundant!' | translate}}
                 </ng-container>
             </ng-template>
         </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-        <nz-form-label [nzSpan]="7" nzRequired>Type</nz-form-label>
+        <nz-form-label [nzSpan]="7" nzRequired>{{'Type' | translate}}</nz-form-label>
         <nz-form-control [nzSpan]="12" nzValidatingTip="Validating..." [nzErrorTip]="typeErrorTpl">
-            <p-dropdown [options]="type" optionLabel="name" nz-input formControlName="type" placeholder="Type"></p-dropdown>
+            <p-dropdown [options]="type" optionLabel="name" nz-input formControlName="type" placeholder="{{'Type' | translate}}"></p-dropdown>
             <ng-template #typeErrorTpl let-control>
                 <ng-container *ngIf="control.hasError('required')">
-                    Please input your type!
+                    {{'Please input your type!' |translate}}
                 </ng-container>
                 <ng-container *ngIf="control.hasError('duplicated')">
-                    The type is redundant!
+                    {{'The name is redundant!' | translate}}
                 </ng-container>
             </ng-template>
         </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-        <nz-form-label [nzSpan]="7" nzRequired>Region</nz-form-label>
+        <nz-form-label [nzSpan]="7" nzRequired>{{'Region' | translate}}</nz-form-label>
         <nz-form-control [nzSpan]="12" nzValidatingTip="Validating..." [nzErrorTip]="regionErrorTpl">
-            <!-- <input nz-input formControlName="region" placeholder="" /> -->
-            <p-dropdown [options]="region" optionLabel="name" nz-input formControlName="region" placeholder="Region"></p-dropdown>
+            <p-dropdown [options]="region" optionLabel="name" nz-input formControlName="region" placeholder="{{'Region' | translate}}"></p-dropdown>
             <ng-template #regionErrorTpl let-control>
                 <ng-container *ngIf="control.hasError('required')">
-                    Please input your region!
+                    {{'Please input your region!' | translate}}
                 </ng-container>
                 <ng-container *ngIf="control.hasError('duplicated')">
-                    The region is redundant!
+                    {{'The name is redundant!' | translate}}
                 </ng-container>
             </ng-template>
         </nz-form-control>
     </nz-form-item>
     <div id="map"></div>
-    <button *ngIf="!providerId" nz-button style="width: 200px;margin: auto;" (click)="onClickCreateProvider()">Create</button>
-    <button *ngIf="providerId" nz-button style="width: 200px;margin: auto;" [disabled]="!providerForm.valid" (click)="onClickPutchProvider()">Edit</button>
+    <button *ngIf="!providerId" nz-button style="width: 200px;margin: auto;" (click)="onClickCreateProvider()">{{'Create'| translate}}</button>
+    <button *ngIf="providerId" nz-button style="width: 200px;margin: auto;" [disabled]="!providerForm.valid" (click)="onClickPutchProvider()">{{'Edit' | translate}}</button>
 </form>

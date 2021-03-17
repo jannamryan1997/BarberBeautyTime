@@ -1,14 +1,18 @@
+
 import { EUserRole } from '../models/auth-user';
 import { IMenu } from '../models/menu';
 
+
 export const MENU_ITEMS: IMenu[] = [
-    { label: 'Providers', path: 'providers', roles: [EUserRole.Owner] },
-    { label: 'Profile', path: 'profile', roles: [EUserRole.Employee] },
-    { label: 'Services', path: 'services', roles: [EUserRole.Employee] },
-    // {
-    //     label: 'Settings', path: '#', roles: [EUserRole.Employee, EUserRole.Owner],
-    //     children:
-    //      [{ label: 'Changed Password', path: 'changed-password', roles: [EUserRole.Owner, EUserRole.Employee] }]
-    // }
+    { label: 'Providers', path: 'providers', icon: 'file-protect', roles: [EUserRole.Owner] },
+    { label: 'Profile', path: 'profile', icon: 'user', roles: [EUserRole.Employee] },
+    { label: 'Services', path: 'services', icon: 'customer-service', roles: [EUserRole.Employee] },
+    { label: 'Timesheet', path: `timesheet/9/9`, icon: 'field-time', roles: [EUserRole.Employee] },
+    {
+        label: 'Setting', icon: 'setting', roles: [EUserRole.Employee, EUserRole.Owner],
+        children: [{ label: 'Change Password', path: 'changed-password', icon: 'edit', roles: [EUserRole.Employee, EUserRole.Owner]},
+        { label: 'Language', icon: 'edit', roles: [EUserRole.Employee, EUserRole.Owner]}
+    ]
+    }
 
 ];

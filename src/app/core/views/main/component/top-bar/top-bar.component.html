@@ -3,21 +3,20 @@
         <img src="assets/icons/menu-icon.PNG" class="tob-bar-icon menu-icon" (click)="onClickIsOpen()">
         <img src="assets/icons/menu-icon.PNG" class="tob-bar-icon response-icon" (click)="onClickOpenResponseMenu()">
         <p class="title header-title">{{title}}</p>
-        <img src="assets/icons/log-out.PNG" class="tob-bar-icon" (click)="onClickLogOut()">
-
+        <i nz-icon nzType="logout" class="tob-bar-icon" nzTheme="outline" style="color: #d357f8;" (click)="onClickLogOut()"></i>
     </div>
     <div class="wrapper side-bar-response" *ngIf="isOpenResponseMenu">
         <ul nz-menu nzMode="inline" nzTheme="dark">
             <li *ngFor="let item of menuItem" (click)="onClickRouter(item?.path)" nz-menu-item nz-tooltip nzTooltipPlacement="right">
-                <i nz-icon nzType="user"></i>
-                <span>{{item?.label}}</span>
+                <i nz-icon nzType="{{item?.icon}}" style="color: #d357f8;"></i>
+                <span style="color: #d357f8;">{{item?.label}}</span>
             </li>
         </ul>
         <ul nz-menu nzMode="inline">
-            <li nz-submenu nzTitle="Setting" nzIcon="setting">
+            <li nz-submenu nzTitle="Setting" nzIcon="setting" style="color: #d357f8;">
                 <ul>
-                    <li nz-menu-item routerLink="changed-password" routerLinkActive="activeRouter">Change Password</li>
-                    <li nz-menu-item>Languages</li>
+                    <li nz-menu-item routerLink="changed-password" routerLinkActive="activeRouter" style="color: #d357f8;">Change Password</li>
+                    <li nz-menu-item style="color: #d357f8;">Languages</li>
                 </ul>
             </li>
         </ul>

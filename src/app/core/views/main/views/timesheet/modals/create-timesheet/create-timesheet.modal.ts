@@ -59,7 +59,7 @@ export class CreateTimesheetModalComponent implements OnInit, OnDestroy {
 
             },
                 err => {
-                    this.message = err.error;
+                    this.message =  err.message;
                 }
             );
     }

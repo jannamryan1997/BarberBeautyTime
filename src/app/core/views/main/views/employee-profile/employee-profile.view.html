@@ -1,50 +1,50 @@
 <div class="main">
-    <h1 class="main-title">PERSONAL INFROMATION</h1>
+    <h1 class="main-title">{{'PERSONAL INFROMATION' | translate}}</h1>
     <div nz-row>
         <div nz-col nzFlex="2" style="text-align: center;">
+
+            <img nz-image width="200px" class="nz-image" height="200px" nzSrc="error" [src]="localImage" alt="" />
+            <p class="profile-text">{{'With the size of photo suitable for your display (320x240, etc)' | translate}}</p>
             <div class="add-image d-flex">
                 <input class="" type="file" id="file" name="avatar" accept=".png, .jpg, .jpeg, .pdf" (change)="handleFileSelect($event)">
-                <label class="d-flex m-auto" for="file"><span class="material-icons add-icon  m-auto">
-                    cached
-                  </span></label>
+                <label class="d-flex m-auto ant-btn" style="width: 200px;margin: auto;" for="file"> <i nz-icon nzType="file-image" nzTheme="outline"></i>{{'Download' | translate}}</label>
             </div>
-            <img nz-image width="200px" class="nz-image" height="200px" nzSrc="error" [src]="localImage" alt="" />
-
-            <p class="title">{{user?.username}}</p>
+            <!-- <p class="title">{{user?.username}}</p> -->
         </div>
+
         <div nz-col nzFlex="3">
             <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
                 <p class="message">{{message}}</p>
                 <nz-form-item>
-                    <nz-form-label [nzSpan]="4" nzRequired nzFor="name">User Name</nz-form-label>
-                    <nz-form-control [nzSpan]="18" nzErrorTip="Please input your User Name">
-                        <input type="text" nz-input formControlName="username" placeholder="Please input your User Name" />
+                    <nz-form-label [nzSpan]="8" nzRequired nzFor="name">{{'User Name' | translate}}</nz-form-label>
+                    <nz-form-control [nzSpan]="18" nzErrorTip="{{'Please input your User Name!' | translate}}">
+                        <input type="text" nz-input formControlName="username" placeholder="{{'Please input your User Name!' | translate}}" />
                     </nz-form-control>
                 </nz-form-item>
                 <nz-form-item>
-                    <nz-form-label [nzSpan]="4" nzRequired nzFor="name">Email</nz-form-label>
-                    <nz-form-control [nzSpan]="18" nzErrorTip="Please input your email">
-                        <input type="text" nz-input formControlName="email" placeholder="Please input your email" />
+                    <nz-form-label [nzSpan]="8" nzRequired nzFor="name">{{'Email' | translate}}</nz-form-label>
+                    <nz-form-control [nzSpan]="18" nzErrorTip="{{'Please input your email!'  | translate}}">
+                        <input type="text" nz-input formControlName="email" placeholder="{{'Please input your email!'  | translate}}" />
                     </nz-form-control>
                 </nz-form-item>
                 <nz-form-item>
-                    <nz-form-label [nzSpan]="4" nzRequired nzFor="name">First Name</nz-form-label>
-                    <nz-form-control [nzSpan]="18" nzErrorTip="Please input your First Name">
-                        <input type="text" nz-input formControlName="first_name" placeholder="Please input your First Name" />
+                    <nz-form-label [nzSpan]="8" nzRequired nzFor="name">{{'First Name'| translate}}</nz-form-label>
+                    <nz-form-control [nzSpan]="18" nzErrorTip="{{'Please input your First Name!'  | translate}}">
+                        <input type="text" nz-input formControlName="first_name" placeholder="{{'Please input your First Name!' | translate}}" />
                     </nz-form-control>
                 </nz-form-item>
                 <nz-form-item>
-                    <nz-form-label [nzSpan]="4" nzRequired nzFor="name">Last Name</nz-form-label>
-                    <nz-form-control [nzSpan]="18" nzErrorTip="Please input your Last Name">
-                        <input type="text" nz-input formControlName="last_name" placeholder="Please input your Last Name" />
+                    <nz-form-label [nzSpan]="8" nzRequired nzFor="name">{{'Last Name' | translate}}</nz-form-label>
+                    <nz-form-control [nzSpan]="18" nzErrorTip="{{'Please input your Last Name!' | translate}}">
+                        <input type="text" nz-input formControlName="last_name" placeholder="{{'Please input your Last Name!'  | translate}}" />
                     </nz-form-control>
                 </nz-form-item>
             </form>
         </div>
     </div>
     <div style="display: flex; justify-content:flex-end;margin: 20px 0;" class="employe-btn">
-        <button nz-button style="width: 200px;" (click)="onClickChangeEmployeeProfileData()" [disabled]="validateForm.invalid">Change Profile</button>
-        <button nz-button style="width: 200px; margin-left: 20px;" (click)="onClickBooking()">Booking</button>
+        <button nz-button style="width: 200px;" (click)="onClickChangeEmployeeProfileData()" [disabled]="validateForm.invalid">{{'Change Profile' | translate}}</button>
+        <button nz-button style="width: 200px; margin-left: 20px;" (click)="onClickBooking()">{{'Booking'  | translate}}</button>
     </div>
 
 </div>

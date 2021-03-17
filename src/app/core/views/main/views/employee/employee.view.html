@@ -1,13 +1,11 @@
 <div class="employees">
     <header>
-        <button nz-button style="width: 200px" (click)="onClickOpenAddEmployeModal()">Create Employee</button>
+        <button nz-button style="width: 200px" (click)="onClickOpenAddEmployeModal()">{{'Create Employee' | translate}}</button>
     </header>
-    <main>
-        <nz-divider nzOrientation="left" nzText="Employees"></nz-divider>
-        <div nz-row [nzGutter]="16">
-            <div nz-col class="gutter-row" [nzLg]="6" [nzSpan]="10" [nzMd]="6" *ngFor="let item of employeesDetails">
-                <employee-item-app [employeItem]="item" [providerId]="providerId" (deleteEmployee)="onClickDeleteEmployee($event)"></employee-item-app>
-            </div>
+    <nz-divider nzOrientation="left" nzText="{{'Employees' | translate}}"></nz-divider>
+    <div nz-row [nzGutter]="16">
+        <div nz-col class="gutter-row" [nzLg]="6" [nzSpan]="10" [nzMd]="6" *ngFor="let item of employeesDetails">
+            <employee-item-app [employeItem]="item" [providerId]="providerId" (deleteEmployee)="onClickDeleteEmployee($event)"></employee-item-app>
         </div>
-    </main>
+    </div>
 </div>

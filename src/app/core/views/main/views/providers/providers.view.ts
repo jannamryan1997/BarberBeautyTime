@@ -69,6 +69,7 @@ this._menuService.setPageTitle('Providers');
                 this.providersData = data.results;
             },
                 err => {
+                    this.message = err.message;
                 }
             );
 
@@ -86,7 +87,7 @@ this._menuService.setPageTitle('Providers');
 
             },
                 err => {
-                    this.message = err.error;
+                    this.message =  err.message;
                 }
             );
     }
@@ -94,7 +95,7 @@ this._menuService.setPageTitle('Providers');
 
     public onClickOpenCreateProviderModal(): void {
         const dialogRef = this._modalService.create({
-            nzTitle: 'Create Providers',
+            nzTitle: '      ',
             nzContent: CreateProviderModalComponent,
         });
         dialogRef.afterClose.subscribe((data) => {
@@ -106,7 +107,7 @@ this._menuService.setPageTitle('Providers');
 
     public onClickOpenProviderModalById(providerId: number): void {
         const dialogRef = this._modalService.create({
-            nzTitle: 'Create Providers',
+            nzTitle: '      ',
             nzContent: CreateProviderModalComponent,
             nzViewContainerRef: this._viewContainerRef,
             nzComponentParams: { providerId}

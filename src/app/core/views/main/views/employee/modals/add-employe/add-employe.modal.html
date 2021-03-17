@@ -2,27 +2,27 @@
     <p>{{message}}</p>
     <img [src]="loacalImage" class="employe-img">
     <nz-form-item *ngIf="!employeId">
-        <nz-form-label [nzSpan]="7" nzRequired>User Name</nz-form-label>
+        <nz-form-label [nzSpan]="9" nzRequired>{{'User Name' | translate}}</nz-form-label>
         <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="userErrorTpl">
             <input nz-input formControlName="username" placeholder="" />
             <ng-template #userErrorTpl let-control>
                 <ng-container *ngIf="control.hasError('required')">
-                    Please input your User Name!
+                    {{'Please input your User Name!' | translate}}
                 </ng-container>
                 <ng-container *ngIf="control.hasError('username')">
-                    The User Name is redundant!
+                    {{'The Name is redundant!' | translate}}
                 </ng-container>
             </ng-template>
         </nz-form-control>
     </nz-form-item>
 
     <nz-form-item>
-        <nz-form-label [nzSpan]="7" nzRequired>First Name</nz-form-label>
+        <nz-form-label [nzSpan]="9" nzRequired>{{'First Name' | translate}}</nz-form-label>
         <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="firstErrorTpl">
             <input nz-input formControlName="first_name" placeholder="" />
             <ng-template #firstErrorTpl let-control>
                 <ng-container *ngIf="control.hasError('required')">
-                    Please input your First Name!
+                    {{'Please input your First Name!' | translate}}
                 </ng-container>
                 <ng-container *ngIf="control.hasError('first_name')">
                     The First Name is redundant!
@@ -32,12 +32,12 @@
     </nz-form-item>
 
     <nz-form-item>
-        <nz-form-label [nzSpan]="7" nzRequired>Last Name</nz-form-label>
+        <nz-form-label [nzSpan]="9" nzRequired>{{'Last Name' | translate}}</nz-form-label>
         <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="lastErrorTpl">
             <input nz-input formControlName="last_name" placeholder="" />
             <ng-template #lastErrorTpl let-control>
                 <ng-container *ngIf="control.hasError('required')">
-                    Please input your Last Name!
+                    {{'Please input your Last Name!' | translate}}
                 </ng-container>
                 <ng-container *ngIf="control.hasError('last_name')">
                     The Last Name is redundant!
@@ -47,12 +47,12 @@
     </nz-form-item>
 
     <nz-form-item>
-        <nz-form-label [nzSpan]="7" nzRequired>Email</nz-form-label>
+        <nz-form-label [nzSpan]="9" nzRequired>{{'Email' | translate}}</nz-form-label>
         <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="emailErrorTpl">
             <input nz-input formControlName="email" placeholder="" />
             <ng-template #emailErrorTpl let-control>
                 <ng-container *ngIf="control.hasError('required')">
-                    Please input your email!
+                    {{'Please input your email!' | translate}}
                 </ng-container>
                 <ng-container *ngIf="control.hasError('email')">
                     The input is not valid E-mail!
@@ -63,12 +63,12 @@
 
 
     <nz-form-item>
-        <nz-form-label [nzSpan]="7" nzRequired>Password</nz-form-label>
+        <nz-form-label [nzSpan]="9" nzRequired>{{'Password' | translate}}</nz-form-label>
         <nz-form-control [nzSpan]="12" nzHasFeedback nzValidatingTip="Validating..." [nzErrorTip]="passErrorTpl">
             <input nz-input formControlName="password" placeholder="" type="password" />
             <ng-template #passErrorTpl let-control>
                 <ng-container *ngIf="control.hasError('required')">
-                    Please input your Password!
+                    {{'Please input your Password!' | translate}}
                 </ng-container>
                 <ng-container *ngIf="control.hasError('password')">
                     The Password is redundant!
@@ -76,8 +76,7 @@
             </ng-template>
         </nz-form-control>
     </nz-form-item>
-    <button nz-button style="width:200px;margin: auto;" [disabled]="!validateForm.valid" (click)="addEmploye()">Add Employe</button>
-    <!-- <button nz-button style="width:200px;margin: auto;" (click)="patchEmployee()" *ngIf="employeId">Create Employe</button> -->
+    <button nz-button style="width:235px;margin: 0 180px;" [disabled]="!validateForm.valid" (click)="addEmploye()">{{'Add Employe' | translate}}</button>
 </form>
 
 
@@ -85,8 +84,8 @@
     <ng-container>
         <main>
             <img alt="example" [src]="loacalImage" style="height: 200px;width: 200px; display: flex;margin: auto;" />
-            <p><b>First Name:</b>{{employeDetails?.user?.first_name}}</p>
-            <p><b>Last Name:</b>employeDetails?.user.last_name</p>
+            <p><b>{{'First Name' | translate}}:</b>{{employeDetails?.user?.first_name}}</p>
+            <p><b>{{'Last Name' | translate}}:</b>{{employeDetails?.user?.last_name}}</p>
         </main>
     </ng-container>
 </div>

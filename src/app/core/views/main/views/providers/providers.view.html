@@ -1,8 +1,8 @@
 <div class="providers">
-    <button nz-button style="width: 200px" (click)="onClickOpenCreateProviderModal()">Create Providers</button>
+    <button nz-button style="width: 200px" (click)="onClickOpenCreateProviderModal()">{{'Create Providers'| translate}}</button>
     <header>
         <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
-            <input type="text" nz-input placeholder="search" [formControl]="searchCtrl" />
+            <input type="text" nz-input [placeholder]="'Search'| translate" [formControl]="searchCtrl" />
         </nz-input-group>
         <ng-template #suffixIconButton>
             <button nz-button nzSearch style="margin: 0;padding: 0; width: 40px;"><i nz-icon nzType="search"></i></button>
@@ -12,13 +12,13 @@
     <nz-table #nzTable [nzData]="providersData" nzTableLayout="fixed">
         <thead>
             <tr>
-                <th>Index</th>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Rating</th>
-                <th>Edit</th>
-                <th>Delete</th>
-                <th>See employee</th>
+                <th translate>Index</th>
+                <th translate>Name</th>
+                <th translate>Type</th>
+                <th translate>Rating</th>
+                <th translate>Edit</th>
+                <th translate>Delete</th>
+                <th translate>See Employee</th>
             </tr>
         </thead>
         <tbody>

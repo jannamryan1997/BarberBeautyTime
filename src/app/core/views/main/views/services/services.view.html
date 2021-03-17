@@ -1,31 +1,29 @@
 <div class="services">
     <header class="d-flex">
-        <button nz-button style="width: 200px" (click)="onClickOpenCreateServiceModal(null)">Create Service</button>
+        <button nz-button style="width: 200px" (click)="onClickOpenCreateServiceModal(null)">{{'Create Service' | translate}}</button>
     </header>
-    <main>
-        <nz-divider nzOrientation="left" nzText="Services"></nz-divider>
-        <div nz-row [nzGutter]="16">
-            <div nz-col class="gutter-row" [nzLg]="6" [nzSpan]="10" [nzMd]="6" *ngFor="let item of servicesDetails">
-                <nz-card style="width:100%" [nzCover]="coverTemplate" [nzActions]="[actionSetting, actionEdit, actionEllipsis]">
-                    <nz-card-meta nzTitle="{{item?.name}}" nzDescription="{{item?.price}}" [nzAvatar]="avatarTemplate"></nz-card-meta>
-                </nz-card>
-                <ng-template #avatarTemplate>
-                    <nz-avatar nzSrc="/assets/images/services.jpg"></nz-avatar>
-                </ng-template>
-                <ng-template #coverTemplate>
-                    <img alt="example" src="/assets/images/services.jpg" />
-                </ng-template>
-                <ng-template #actionSetting>
-                    <i nz-icon nzType="info-circle" (click)="onClickOpenServiceActionModal(item)"></i>
-                </ng-template>
-                <ng-template #actionEdit>
-                    <i nz-icon nzType="edit" (click)="onClickOpenCreateServiceModal(item?.id)"></i>
-                </ng-template>
-                <ng-template #actionEllipsis>
-                    <i nz-icon nzType="delete" (click)="onClickdeletedServices(item?.id)"></i>
-                </ng-template>
-            </div>
+    <nz-divider nzOrientation="left" nzText="{{'Services' | translate}}"></nz-divider>
+    <div nz-row [nzGutter]="16">
+        <div nz-col class="gutter-row" [nzLg]="6" [nzSpan]="10" [nzMd]="6" *ngFor="let item of servicesDetails">
+            <nz-card style="width:100%" [nzCover]="coverTemplate" [nzActions]="[actionSetting, actionEdit, actionEllipsis]">
+                <nz-card-meta nzTitle="{{item?.name}}" nzDescription="{{item?.price}}" [nzAvatar]="avatarTemplate"></nz-card-meta>
+            </nz-card>
+            <ng-template #avatarTemplate>
+                <nz-avatar nzSrc="/assets/images/services.jpg"></nz-avatar>
+            </ng-template>
+            <ng-template #coverTemplate>
+                <img alt="example" src="/assets/images/services.jpg" />
+            </ng-template>
+            <ng-template #actionSetting>
+                <i nz-icon nzType="info-circle" (click)="onClickOpenServiceActionModal(item)"></i>
+            </ng-template>
+            <ng-template #actionEdit>
+                <i nz-icon nzType="edit" (click)="onClickOpenCreateServiceModal(item?.id)"></i>
+            </ng-template>
+            <ng-template #actionEllipsis>
+                <i nz-icon nzType="delete" (click)="onClickdeletedServices(item?.id)"></i>
+            </ng-template>
         </div>
-    </main>
+    </div>
 </div>
 <i nz-icon nzType="" nzTheme="outline"></i>

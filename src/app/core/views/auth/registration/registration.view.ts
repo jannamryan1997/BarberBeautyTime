@@ -78,8 +78,8 @@ export class RegistrationViewComponent implements OnInit, OnDestroy {
             )
             .subscribe((data) => {
                 this._cookieService.put('accessToken', data.access_token);
-                this._cookieService.put('refreshToken', data.refresh_token)
-                this._router.navigate(['/auth/login'])
+                this._cookieService.put('refreshToken', data.refresh_token);
+                this._router.navigate(['/auth/login']);
 
             },
                 err => {

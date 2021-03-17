@@ -17,6 +17,7 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
     declarations: [ConfirmDeleteModal],
@@ -33,7 +34,8 @@ import { NzPaginationModule } from 'ng-zorro-antd/pagination';
         NzModalModule,
         NzMessageModule,
         NzDropDownModule,
-        NzPaginationModule
+        NzPaginationModule,
+        TranslateModule
 
     ],
     entryComponents: [ConfirmDeleteModal],
@@ -53,6 +55,7 @@ import { NzPaginationModule } from 'ng-zorro-antd/pagination';
         NzDropDownModule,
         NzPaginationModule,
         ConfirmDeleteModal,
+        TranslateModule
     ]
 })
 

@@ -64,7 +64,7 @@ export class EmployeeItemComponent implements OnInit, OnDestroy {
 
     public onClickOpenCreateEmployeModal(): void {
         const dialogRef = this._modalService.create({
-            nzTitle: 'Employe data',
+            nzTitle: '    ',
             nzContent: AddEmployeModalComponent,
             nzFooter: 'false',
             nzViewContainerRef: this._viewContainerRef,

@@ -41,3 +41,13 @@
 nz-time-picker {
     width: 100%;
 }
+
+::ng-deep {
+    .ant-modal-close {
+        color: #d357f8 !important;
+    }
+}
+
+::ng-deep .ant-modal-header {
+    padding: 25px !important;
+}

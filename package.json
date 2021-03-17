@@ -21,6 +21,8 @@
     "@angular/platform-browser": "~10.2.0",
     "@angular/platform-browser-dynamic": "~10.2.0",
     "@angular/router": "~10.2.0",
+    "@ngx-translate/core": "^13.0.0",
+    "@ngx-translate/http-loader": "^6.0.0",
     "moment": "^2.29.1",
     "ng-zorro-antd": "^10.2.2",
     "ng-zorro-antd-mobile": "^4.0.0",

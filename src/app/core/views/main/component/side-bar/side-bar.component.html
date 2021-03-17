@@ -4,16 +4,18 @@
     </header>
     <ul nz-menu nzMode="inline" nzTheme="dark">
         <li *ngFor="let item of menuItem" [routerLink]="item.path" nz-menu-item nz-tooltip nzTooltipPlacement="right" routerLinkActive="activeRouter">
-            <i nz-icon nzType="user"></i>
-            <span>{{item?.label}}</span>
-        </li>
-    </ul>
-    <ul nz-menu nzMode="inline">
-        <li nz-submenu nzTitle="Setting" nzIcon="setting">
+            <i nz-icon nzType="{{item?.icon}}" style="color: #d357f8;"></i>
+            <span style="color: #d357f8;">{{item?.label}}</span>
             <ul>
-                <li nz-menu-item routerLink="changed-password" routerLinkActive="activeRouter">Change Password</li>
-                <li nz-menu-item>Languages</li>
+                <li *ngFor="let chiled of item?.children" [routerLink]="item.path" nz-menu-item nz-tooltip nzTooltipPlacement="right" routerLinkActive="activeRouter">
+                    <i nz-icon nzType="{{item?.icon}}" style="color: #d357f8;"></i>
+                    <span style="color: #d357f8;">{{item?.label}}</span>
+                </li>
             </ul>
         </li>
     </ul>
 </div>
+
+<button (click)="switchLanguage('en')">en</button>
+
+<button (click)="switchLanguage('arm')">arm</button>
