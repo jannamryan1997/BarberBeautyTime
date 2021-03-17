@@ -8,11 +8,6 @@ export const MENU_ITEMS: IMenu[] = [
     { label: 'Profile', path: 'profile', icon: 'user', roles: [EUserRole.Employee] },
     { label: 'Services', path: 'services', icon: 'customer-service', roles: [EUserRole.Employee] },
     { label: 'Timesheet', path: `timesheet/9/9`, icon: 'field-time', roles: [EUserRole.Employee] },
-    {
-        label: 'Setting', icon: 'setting', roles: [EUserRole.Employee, EUserRole.Owner],
-        children: [{ label: 'Change Password', path: 'changed-password', icon: 'edit', roles: [EUserRole.Employee, EUserRole.Owner]},
-        { label: 'Language', icon: 'edit', roles: [EUserRole.Employee, EUserRole.Owner]}
-    ]
-    }
+    // {label: 'Setting', icon: 'setting', roles: [EUserRole.Employee, EUserRole.Owner]}
 
 ];

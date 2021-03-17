@@ -1,8 +1,8 @@
 <ng-container>
     <header>
-        <p class="title">Your Barber will wait for you at </p>
+        <p class="title">{{'Your Barber will wait for you at' | translate}} </p>
         <b class="title" style="display: flex;justify-content:center;font-weight: bold;">{{item?.start_datetime | date :'shortTime'}}</b>
-        <p class="title"> Services that you paid for</p>
+        <p class="title">{{'Services that you paid for' | translate}}</p>
     </header>
     <main>
         <div *ngFor="let action of item.items">
@@ -14,7 +14,7 @@
         </div>
     </main>
     <footer>
-        <p class="title">Your need to pay out in place</p>
+        <p class="title">{{'Your need to pay out in place' | translate}}</p>
         <b class="title" style="display: flex;justify-content:center;font-weight: bold;">{{item?.amount}}AMD</b>
     </footer>
 </ng-container>

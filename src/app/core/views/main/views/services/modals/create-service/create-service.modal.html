@@ -1,29 +1,29 @@
 <form nz-form [formGroup]="serviceForm" class="login-form" (ngSubmit)="submitForm()">
     <p>{{message}}</p>
     <nz-form-item>
-        <nz-form-control nzErrorTip="Please input your action!" nzHasFeedback>
+        <nz-form-control nzErrorTip="{{'Please input your action!'| translate}}" nzHasFeedback>
             <nz-input-group nzPrefixIcon="user">
-                <input type="text" nz-input formControlName="name" placeholder="action" />
+                <input type="text" nz-input formControlName="name" placeholder="{{'Action' | translate}}" />
             </nz-input-group>
         </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-        <nz-form-control nzErrorTip="Please input Price!" nzHasFeedback>
+        <nz-form-control nzErrorTip="{{'Please input Price!' | translate}}" nzHasFeedback>
             <nz-input-group nzPrefixIcon="money-collect">
-                <input type="text" nz-input formControlName="price" placeholder="Price" />
+                <input type="text" nz-input formControlName="price" placeholder="{{'Price' | translate}}" />
             </nz-input-group>
         </nz-form-control>
     </nz-form-item>
 
     <nz-form-item>
-        <nz-form-control nzErrorTip="Please input duration in minutes!" nzHasFeedback>
+        <nz-form-control nzErrorTip="{{'Please input duration in minutes!' | translate}}" nzHasFeedback>
             <nz-input-group nzPrefixIcon="field-time">
-                <input type="text" nz-input formControlName="duration_in_minutes" placeholder="duration in minutes" />
+                <input type="text" nz-input formControlName="duration_in_minutes" placeholder="{{'duration in minutes' | translate}}" />
             </nz-input-group>
         </nz-form-control>
     </nz-form-item>
 
 
-    <button nz-button (click)="onCreateService()" *ngIf="!serviceId" [disabled]="serviceForm.invalid">Create Service</button>
-    <button nz-button (click)="onClickEditService()" *ngIf="serviceId" [disabled]="serviceForm.invalid">Edit Service</button>
+    <button nz-button (click)="onCreateService()" *ngIf="!serviceId" [disabled]="serviceForm.invalid">{{'Create Service' | translate}}</button>
+    <button nz-button (click)="onClickEditService()" *ngIf="serviceId" [disabled]="serviceForm.invalid">{{'Edit Service' | translate}}</button>
 </form>

@@ -34,8 +34,6 @@ export class SideBarComponent implements OnInit, OnDestroy {
     ngOnInit(): void {}
 
     public switchLanguage(language: string): void {
-        console.log(language);
-        
         this._translate.use(language);
       }
 

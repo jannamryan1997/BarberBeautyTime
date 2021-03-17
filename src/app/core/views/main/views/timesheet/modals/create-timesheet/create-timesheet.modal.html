@@ -1,8 +1,8 @@
 <p>{{message}}</p>
-<nz-select nzPlaceHolder="Services" nzMode="multiple" [(ngModel)]="serviceformCtrl">
+<nz-select nzPlaceHolder="{{'Services' | translate}}" nzMode="multiple" [(ngModel)]="serviceformCtrl">
     <nz-option *ngFor="let item of serviceDetails" [nzLabel]="item?.name" [nzValue]="item?.id"></nz-option>
 </nz-select>
 <div class="d-flex" style="justify-content: space-between">
-    <button nz-button (click)="createBooking()" style="width: 200px;">Create Booking</button>
-    <button nz-button (click)="deleteBooking()" style="width: 200px; margin-left: 10px;">Delete Booking</button>
+    <button nz-button (click)="createBooking()" style="width: 200px;">{{'Create Booking' | translate}}</button>
+    <button nz-button (click)="deleteBooking()" style="width: 200px; margin-left: 10px;">{{'Delete Booking' | translate}}</button>
 </div>

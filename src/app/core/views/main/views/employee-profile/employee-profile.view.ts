@@ -10,6 +10,7 @@ import { MenuService } from 'src/app/core/services/menu.service';
 import { EmployeData } from 'src/app/core/models/employees';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { UploadFileResponse } from 'src/app/core/models/upload-file';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-employee-profile',
@@ -26,6 +27,7 @@ export class EmployeeProfileViewComponent implements OnInit, OnDestroy {
     public loading = false;
     public message: string;
     public service_provider_id: string;
+    public successMessage = 'This is a message of success';
 
     constructor(
         private _fb: FormBuilder,
@@ -34,6 +36,7 @@ export class EmployeeProfileViewComponent implements OnInit, OnDestroy {
         private _cookieService: CookieService,
         private _menuService: MenuService,
         private _message: NzMessageService,
+        private _translate: TranslateService,
     ) {
         let service_provider_id = this._cookieService.get('service_provider_id');
         if (service_provider_id) {
@@ -97,8 +100,8 @@ export class EmployeeProfileViewComponent implements OnInit, OnDestroy {
 
                 this._employeeProfileService.uploatEmployeeProfileImage(formData)
                     .subscribe((data: UploadFileResponse) => {
-                         this.localImage = data.url;
-                         this._getEmployee();
+                        this.localImage = data.url;
+                        this._getEmployee();
                     });
             }
         }
@@ -139,7 +142,7 @@ export class EmployeeProfileViewComponent implements OnInit, OnDestroy {
                 })
             )
             .subscribe((data) => {
-                this._message.create('success', `This is a message of success`);
+                this._message.create('success', this._translate.instant(this.successMessage));
                 this._getEmployee();
             },
                 err => {

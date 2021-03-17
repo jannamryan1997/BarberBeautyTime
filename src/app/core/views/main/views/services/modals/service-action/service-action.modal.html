@@ -1,12 +1,12 @@
 <ng-container>
-    <nz-divider nzOrientation="left" nzText="Service" class="driver-title"></nz-divider>
+    <nz-divider nzOrientation="left" nzText="{{'Service' | translate}}" class="driver-title"></nz-divider>
     <header>
-        <p class="title">Your Service</p>
+        <p class="title">{{'Your Service' | translate}}</p>
     </header>
     <main>
         <img alt="example" src="/assets/images/services.jpg" style="height: 200px;width: 200px; display: flex;margin: auto;" />
-        <p><b>Action:</b>{{item?.name}}</p>
-        <p><b>Price:</b>{{item?.price}}</p>
-        <p><b>During In Minutes:</b>{{item?.duration_in_minutes}}</p>
+        <p><b translate>Action</b>:{{item?.name}}</p>
+        <p><b translate>Price</b>:{{item?.price}}</p>
+        <p><b translate>duration in minutes</b>:{{item?.duration_in_minutes}}</p>
     </main>
 </ng-container>

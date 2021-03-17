@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { CookieService } from 'ngx-cookie';
 import { Subject } from 'rxjs';
 import { MENU_ITEMS } from 'src/app/core/globals/menu-items';
@@ -26,12 +27,20 @@ export class TopBarComponent implements OnInit, OnDestroy {
         private _menuService: MenuService,
         private _router: Router,
         private _cookieService: CookieService,
-        private _userService: UserService) {
-        this._menuService.getPageTitle().subscribe((data) => {
-            this.title = data;
-        });
+        private _userService: UserService,
+        private _translate: TranslateService
+    ) {
+        this._menuService.getPageTitle()
+            .subscribe((data) => {
+                if (data) {
+                    data = this._translate.instant(data);
+                }
+                this.title = data;
+
+            });
         this.role = this._userService.getUserSync().role;
         this.menuItem = this.menuItem.filter((v) => v.roles.includes(this.role));
+        _translate.setDefaultLang('arm');
     }
 
     ngOnInit(): void { }
@@ -40,6 +49,10 @@ export class TopBarComponent implements OnInit, OnDestroy {
         this._unsubscribe$.next();
         this._unsubscribe$.complete();
     }
+
+    public switchLanguage(language: string): void {
+        this._translate.use(language);
+      }
 
     public onClickIsOpen(): void {
         this._isOpen = !this._isOpen;

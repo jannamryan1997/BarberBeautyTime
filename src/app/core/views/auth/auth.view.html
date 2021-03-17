@@ -3,10 +3,11 @@
         <div class="auth-main-content">
             <router-outlet></router-outlet>
         </div>
-
+        <div class="language-content">
+            <a (click)="switchLanguage('en')">English (US)</a>
+            <a (click)="switchLanguage('arm')">Հայերեն</a>
+            <a (click)="switchLanguage('fr')">Français (France)</a>
+        </div>
     </div>
 
 </div>
-<button (click)="switchLanguage('en')">en</button>
-
-<button (click)="switchLanguage('arm')">arm</button>

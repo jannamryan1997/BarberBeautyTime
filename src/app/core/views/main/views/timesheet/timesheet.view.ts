@@ -9,6 +9,7 @@ import { ActionModal, CreateTimesheetModalComponent } from './modals';
 import { DatePipe } from '@angular/common';
 import { CookieService } from 'ngx-cookie';
 import { MenuService } from 'src/app/core/services/menu.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-timesheet',
@@ -33,6 +34,7 @@ export class TimesheetViewComponent implements OnInit, OnDestroy {
         private _datePipe: DatePipe,
         private _cookieService: CookieService,
         private _menuService: MenuService,
+        private _translate: TranslateService,
     ) {
         const providerId = this._activatedRoute.snapshot.params?.providerId || null;
         const employId = this._activatedRoute.snapshot.params?.employId || null;
@@ -75,9 +77,10 @@ export class TimesheetViewComponent implements OnInit, OnDestroy {
 
 
     public onClickOpenCreateBookingModal(bookingId: number): void {
+        const nzTitle = this._translate.instant('Create Booking');
         const today = new Date();
         const dialogRef = this._modalSrvice.create({
-            nzTitle: 'Create Booking',
+            nzTitle,
             nzContent: CreateTimesheetModalComponent,
             nzComponentParams: { providerId: this.providerId, employId: this.employId, bookingId }
         });

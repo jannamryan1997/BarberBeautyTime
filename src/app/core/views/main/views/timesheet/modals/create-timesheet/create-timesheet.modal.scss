@@ -1,15 +1,21 @@
-         ::ng-deep {
-            .ant-modal-footer {
-                display: none;
-            }
-        }
-        
-        nz-select {
-            width: 100%;
-        }
-        
-         ::ng-deep {
-            .ant-modal-close {
-                color: #d357f8 !important;
-            }
-        }
+          ::ng-deep {
+             .ant-modal-footer {
+                 display: none;
+             }
+         }
+         
+         nz-select {
+             width: 100%;
+         }
+         
+          ::ng-deep {
+             .ant-modal-close {
+                 color: #d357f8 !important;
+             }
+         }
+         
+          ::ng-deep .ant-modal {
+             padding: 0 !important;
+             margin: auto !important;
+             top: 0 !important;
+         }

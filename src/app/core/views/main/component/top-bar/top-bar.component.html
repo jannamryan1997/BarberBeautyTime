@@ -9,14 +9,21 @@
         <ul nz-menu nzMode="inline" nzTheme="dark">
             <li *ngFor="let item of menuItem" (click)="onClickRouter(item?.path)" nz-menu-item nz-tooltip nzTooltipPlacement="right">
                 <i nz-icon nzType="{{item?.icon}}" style="color: #d357f8;"></i>
-                <span style="color: #d357f8;">{{item?.label}}</span>
+                <span style="color: #d357f8;">{{item?.label | translate}}</span>
             </li>
         </ul>
         <ul nz-menu nzMode="inline">
-            <li nz-submenu nzTitle="Setting" nzIcon="setting" style="color: #d357f8;">
+            <li nz-submenu nzTitle="{{'Setting' | translate}}" nzIcon="setting">
                 <ul>
-                    <li nz-menu-item routerLink="changed-password" routerLinkActive="activeRouter" style="color: #d357f8;">Change Password</li>
-                    <li nz-menu-item style="color: #d357f8;">Languages</li>
+                    <li nz-menu-item routerLink="changed-password" style="color: #d357f8 !important;">{{'Change Password' | translate}}</li>
+
+                    <li nz-submenu nzTitle="{{'Languages' | translate}}">
+                        <ul>
+                            <li nz-menu-item (click)="switchLanguage('en')" style="color: #d357f8 !important;">English (US)</li>
+                            <li nz-menu-item (click)="switchLanguage('arm')" style="color: #d357f8 !important;">Հայերեն</li>
+                            <li nz-menu-item style="color: #d357f8 !important;">Français (France)</li>
+                        </ul>
+                    </li>
                 </ul>
             </li>
         </ul>

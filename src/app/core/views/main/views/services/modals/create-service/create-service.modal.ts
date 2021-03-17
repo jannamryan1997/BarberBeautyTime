@@ -6,6 +6,7 @@ import { finalize, takeUntil } from 'rxjs/operators';
 import { IService } from 'src/app/core/models/service';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { ServicesService } from '../../services.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'create-service',
@@ -20,6 +21,7 @@ export class CreateServiceModalComponent implements OnInit, OnDestroy {
     public serviceForm: FormGroup;
     public loading = false;
     public serviceDetail: IService;
+    public sucssesMessage = 'This is a message of success';
 
     @Input() service_provider_pk: number;
     @Input() employee_pk: number;
@@ -29,7 +31,9 @@ export class CreateServiceModalComponent implements OnInit, OnDestroy {
         private _fb: FormBuilder,
         private _modal: NzModalRef,
         private _message: NzMessageService,
-        private _servicesService: ServicesService) { }
+        private _servicesService: ServicesService,
+        private _translate: TranslateService,
+    ) { }
 
     ngOnInit(): void {
         this._initForm();
@@ -100,7 +104,7 @@ export class CreateServiceModalComponent implements OnInit, OnDestroy {
             )
             .subscribe((data) => {
                 if (data) {
-                    this._message.create('success', `This is a message of success`);
+                    this._message.create('success', this._translate.instant(this.sucssesMessage));
                     this._modal.destroy('createService');
                 }
             },
@@ -129,7 +133,7 @@ export class CreateServiceModalComponent implements OnInit, OnDestroy {
                 })
             )
             .subscribe((data) => {
-                this._message.create('success', `This is a message of success`);
+                this._message.create('success', this._translate.instant(this.sucssesMessage));
                 this._modal.destroy('editService');
 
             },

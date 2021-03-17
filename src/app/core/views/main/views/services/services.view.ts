@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { Subject } from 'rxjs';
 import { finalize, takeUntil } from 'rxjs/operators';
@@ -28,7 +29,8 @@ export class ServicesViewComponent implements OnInit, OnDestroy {
         private _userService: UserService,
         private _modalSrvice: NzModalService,
         private _menuService: MenuService,
-        ) {
+        private _translate: TranslateService
+    ) {
         this.employee_pk = this._userService.getUserSync().additional_data?.employee?.id;
         this.service_provider_pk = this._userService.getUserSync().additional_data?.employee?.service_provider;
         this._menuService.setPageTitle('Services');
@@ -73,8 +75,9 @@ export class ServicesViewComponent implements OnInit, OnDestroy {
 
     }
     public onClickOpenCreateServiceModal(serviceId: number): void {
+        const nzTitle = this._translate.instant('Create Service');
         const dialogRef = this._modalSrvice.create({
-            nzTitle: 'Create Service',
+            nzTitle,
             nzContent: CreateServiceModalComponent,
             nzComponentParams: { service_provider_pk: this.service_provider_pk, employee_pk: this.employee_pk, serviceId }
         });
@@ -98,13 +101,12 @@ export class ServicesViewComponent implements OnInit, OnDestroy {
             }
         });
     }
-    public onClickOpenServiceActionModal(item:IService):void{
-        const dialogRef=this._modalSrvice.create({
-            nzContent:ServiceActionModal,
-            nzFooter:'false',
-            nzComponentParams:{item}
-        })
-        
+    public onClickOpenServiceActionModal(item: IService): void {
+        const dialogRef = this._modalSrvice.create({
+            nzContent: ServiceActionModal,
+            nzFooter: 'false',
+            nzComponentParams: { item }
+        });
     }
 
     ngOnDestroy(): void {

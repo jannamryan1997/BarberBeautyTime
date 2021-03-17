@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -36,6 +37,7 @@ export class EmployeeItemComponent implements OnInit, OnDestroy {
         private _employeeService: EmployeeService,
         private _modalService: NzModalService,
         private _viewContainerRef: ViewContainerRef,
+        private _translate: TranslateService,
     ) {
 
     }
@@ -63,8 +65,9 @@ export class EmployeeItemComponent implements OnInit, OnDestroy {
     }
 
     public onClickOpenCreateEmployeModal(): void {
+        const nzTitle = this._translate.instant('Create Employee');
         const dialogRef = this._modalService.create({
-            nzTitle: '    ',
+            nzTitle,
             nzContent: AddEmployeModalComponent,
             nzFooter: 'false',
             nzViewContainerRef: this._viewContainerRef,
