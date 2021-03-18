@@ -33,9 +33,9 @@ export class TopBarComponent implements OnInit, OnDestroy {
         this._menuService.getPageTitle()
             .subscribe((data) => {
                 if (data) {
-                    data = this._translate.instant(data);
+                    this.title = data;
                 }
-                this.title = data;
+
 
             });
         this.role = this._userService.getUserSync().role;
@@ -52,7 +52,7 @@ export class TopBarComponent implements OnInit, OnDestroy {
 
     public switchLanguage(language: string): void {
         this._translate.use(language);
-      }
+    }
 
     public onClickIsOpen(): void {
         this._isOpen = !this._isOpen;

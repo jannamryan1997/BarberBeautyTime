@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewContainerRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { Subject } from 'rxjs';
 import { finalize, takeUntil } from 'rxjs/operators';
@@ -35,6 +36,7 @@ export class ProvidersViewComponent implements OnInit, OnDestroy {
         private _providersService: ProvidersService,
         private _router: Router,
         private _viewContainerRef: ViewContainerRef,
+        private _translate: TranslateService,
         ) {
 this._menuService.setPageTitle('Providers');
         }

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable()
@@ -7,10 +8,10 @@ export class MenuService {
     private _titleEvent$ = new BehaviorSubject<string>(null);
     private _isOpenEvent$ = new BehaviorSubject<boolean>(true);
 
-    constructor() { }
+    constructor(private _translate: TranslateService) { }
 
     public setPageTitle(title: string): void {
-        this._titleEvent$.next(title);
+        this._titleEvent$.next(this._translate.instant(title));
 
     }
 
