@@ -97,7 +97,7 @@ this._menuService.setPageTitle('Providers');
 
     public onClickOpenCreateProviderModal(): void {
         const dialogRef = this._modalService.create({
-            nzTitle: '      ',
+            nzTitle: this._translate.instant('Create Provider'),
             nzContent: CreateProviderModalComponent,
         });
         dialogRef.afterClose.subscribe((data) => {
@@ -109,7 +109,7 @@ this._menuService.setPageTitle('Providers');
 
     public onClickOpenProviderModalById(providerId: number): void {
         const dialogRef = this._modalService.create({
-            nzTitle: '      ',
+            nzTitle: this._translate.instant('Edit Provider'),
             nzContent: CreateProviderModalComponent,
             nzViewContainerRef: this._viewContainerRef,
             nzComponentParams: { providerId}
