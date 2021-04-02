@@ -23,23 +23,20 @@ export class SideBarComponent implements OnInit, OnDestroy {
     ) {
         this.role = this._userService.getUserSync().role;
         this.menuItem = this.menuItem.filter((v) => v.roles.includes(this.role));
-        
-
-        if(this._cookieService.get('language')){
-            const lng = this._cookieService.get('language')
+        if (this._cookieService.get('language')){
+            const lng = this._cookieService.get('language');
             _translate.setDefaultLang(lng);
         }
         else{
             _translate.setDefaultLang('en');
         }
-       
     }
 
     ngOnInit(): void { }
 
     public switchLanguage(language: string): void {
         this._translate.use(language);
-        this._cookieService.put('language',language)
+        this._cookieService.put('language', language);
     }
 
     ngOnDestroy(): void {

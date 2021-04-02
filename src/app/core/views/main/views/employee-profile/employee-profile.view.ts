@@ -27,7 +27,7 @@ export class EmployeeProfileViewComponent implements OnInit, OnDestroy {
     public loading = false;
     public message: string;
     public service_provider_id: string;
-    public successMessage = 'This is a message of success';
+    public successMessage = 'Personal information successfully changed';
 
     constructor(
         private _fb: FormBuilder,

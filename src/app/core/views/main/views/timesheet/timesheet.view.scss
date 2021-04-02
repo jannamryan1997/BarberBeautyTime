@@ -74,4 +74,13 @@ main {
     .ant-radio-button-wrapper {
         display: none !important;
     }
+    .ant-select-selection-item-remove {
+        display: flex !important;
+    }
+    .ant-select-selection-item {
+        .anticon {
+            align-items: center !important;
+            display: flex !important;
+        }
+    }
 }
