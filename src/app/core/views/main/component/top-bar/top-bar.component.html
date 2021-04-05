@@ -2,7 +2,7 @@
     <div class="nav-bar-content">
         <img src="assets/icons/menu-icon.PNG" class="tob-bar-icon menu-icon" (click)="onClickIsOpen()">
         <img src="assets/icons/menu-icon.PNG" class="tob-bar-icon response-icon" (click)="onClickOpenResponseMenu()">
-        <p class="title header-title">{{title}}</p>
+        <p class="title header-title">{{title | translate}}</p>
         <i nz-icon nzType="logout" class="tob-bar-icon" nzTheme="outline" style="color: #d357f8;" (click)="onClickLogOut()"></i>
     </div>
     <div class="wrapper side-bar-response" *ngIf="isOpenResponseMenu">

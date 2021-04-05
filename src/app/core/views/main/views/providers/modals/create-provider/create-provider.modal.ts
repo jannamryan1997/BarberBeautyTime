@@ -21,9 +21,8 @@ declare const google;
 export class CreateProviderModalComponent implements OnInit, OnDestroy {
 
     private _unsubscribe$ = new Subject<void>();
-    private _latitude = '55.751244';
-    private _longitude = '37.618423';
-    private _map;
+    private _lat: number;
+    private _lng: number;
     private _marker;
     public providerForm: FormGroup;
     public loading = false;
@@ -61,20 +60,31 @@ export class CreateProviderModalComponent implements OnInit, OnDestroy {
         });
     }
 
-
     private _initMap(): void {
-        this._map = new google.maps.Map(document.getElementById('map'), {
-            center: { lat: 55.751244, lng: 37.618423 },
-            zoom: 6,
-            styles: mapStyle
+        const mapElement = document.getElementById('map');
+        const map = new google.maps.Map(mapElement, {
+            center: { lat: 40.19047994699609, lng: 44.51557200000002 },
+            zoom: 8,
         });
-        this._marker = new google.maps.Marker({
-            map: this._map,
-            draggable: true,
-            animation: google.maps.Animation.DROP,
-            position: { lat: -34.397, lng: 150.644 },
-            icon: '/assets/icons/marker.png'
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                const pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+            });
+        }
+        const marker = new google.maps.Marker({
+            position: mapElement,
+            map,
+            title: 'Hello World!'
         });
+        google.maps.event.addListener(map, 'click', (event: any) => {
+            this._lat = event.latLng.lat();
+            this._lng = event.latLng.lng();
+            marker.setPosition(event.latLng);
+        });
+
     }
 
     private _getRegion(): void {
@@ -117,14 +127,9 @@ export class CreateProviderModalComponent implements OnInit, OnDestroy {
         });
     }
 
-    public submitForm(): void {
-        for (const i in this.providerForm.controls) {
-            this.providerForm.controls[i].markAsDirty();
-            this.providerForm.controls[i].updateValueAndValidity();
-        }
-    }
-
     public onClickCreateProvider(): void {
+        const lat = Number(this._lat.toFixed(2));
+        const lng = Number(this._lng.toFixed(2));
         this.loading = true;
         const {
             name,
@@ -133,8 +138,8 @@ export class CreateProviderModalComponent implements OnInit, OnDestroy {
             name,
             type: this.providerForm.value.type.value,
             region: this.providerForm.value.region.id,
-            latitude: this._latitude,
-            longitude: this._longitude,
+            latitude: String(lat),
+            longitude: String(lng),
             open_time: this.providerForm.value.open_time,
             close_time: this.providerForm.value.close_time,
         };
@@ -155,6 +160,8 @@ export class CreateProviderModalComponent implements OnInit, OnDestroy {
     }
 
     public onClickPutchProvider(): void {
+        const lat = Number(this._lat.toFixed(2));
+        const lng = Number(this._lng.toFixed(2));
         this.loading = true;
         const {
             name,
@@ -163,8 +170,8 @@ export class CreateProviderModalComponent implements OnInit, OnDestroy {
             name,
             type: this.providerForm.value.type.value,
             region: this.providerForm.value.region.id,
-            latitude: this._latitude,
-            longitude: this._longitude,
+            latitude: String(lat),
+            longitude: String(lng),
             open_time: this.providerForm.value.open_time,
             close_time: this.providerForm.value.close_time,
         };
@@ -179,12 +186,17 @@ export class CreateProviderModalComponent implements OnInit, OnDestroy {
             },
                 err => {
                     this.message = err.message;
-                    console.log(err);
 
                 }
             );
     }
 
+    public submitForm(): void {
+        for (const i in this.providerForm.controls) {
+            this.providerForm.controls[i].markAsDirty();
+            this.providerForm.controls[i].updateValueAndValidity();
+        }
+    }
 
     ngOnDestroy(): void {
         this._unsubscribe$.next();

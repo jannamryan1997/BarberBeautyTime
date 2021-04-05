@@ -11,7 +11,7 @@ export class MenuService {
     constructor(private _translate: TranslateService) { }
 
     public setPageTitle(title: string): void {
-        this._titleEvent$.next(this._translate.instant(title));
+        this._titleEvent$.next((title));
 
     }
 

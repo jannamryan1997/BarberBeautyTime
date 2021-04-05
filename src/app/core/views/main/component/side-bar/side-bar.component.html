@@ -3,7 +3,7 @@
         <img class="logo" src="assets/icons/logo.PNG">
     </header>
     <ul nz-menu nzMode="inline" nzTheme="dark">
-        <li *ngFor="let item of menuItem" [routerLink]="item.path" nz-menu-item nz-tooltip nzTooltipPlacement="right" routerLinkActive="activeRouter">
+        <li *ngFor="let item of menuItem" [routerLink]="routePath(item)" nz-menu-item nz-tooltip nzTooltipPlacement="right" routerLinkActive="activeRouter">
             <i nz-icon nzType="{{item?.icon}}" style="color: #d357f8;"></i>
             <span style="color: #d357f8;">{{item?.label | translate}}</span>
         </li>

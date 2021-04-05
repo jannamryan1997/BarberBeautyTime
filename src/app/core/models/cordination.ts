@@ -1,4 +1,4 @@
 export interface Icordination{
-    lat:number;
-    lng:number;
+    lat: number;
+    lng: number;
 }
