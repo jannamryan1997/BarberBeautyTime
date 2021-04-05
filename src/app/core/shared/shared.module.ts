@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 
 import { ConfirmDeleteModal } from '../modals';
 
-// import { PaginatorComponent } from '../components/paginator';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzButtonModule } from 'ng-zorro-antd/button';
@@ -35,7 +35,8 @@ import { TranslateModule } from '@ngx-translate/core';
         NzMessageModule,
         NzDropDownModule,
         NzPaginationModule,
-        TranslateModule
+        TranslateModule,
+        MatPaginatorModule
 
     ],
     entryComponents: [ConfirmDeleteModal],
@@ -55,7 +56,8 @@ import { TranslateModule } from '@ngx-translate/core';
         NzDropDownModule,
         NzPaginationModule,
         ConfirmDeleteModal,
-        TranslateModule
+        TranslateModule,
+        MatPaginatorModule
     ]
 })
 

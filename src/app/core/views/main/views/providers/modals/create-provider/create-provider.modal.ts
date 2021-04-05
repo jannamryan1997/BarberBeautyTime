@@ -9,6 +9,7 @@ import { IRegion } from 'src/app/core/models/region';
 import { mapStyle } from 'src/assets/styles/_map_style';
 import { ProvidersService } from '../../providers.service';
 import { DatePipe } from '@angular/common';
+import { Icordination } from 'src/app/core/models/cordination';
 
 declare const google;
 
@@ -24,6 +25,7 @@ export class CreateProviderModalComponent implements OnInit, OnDestroy {
     private _lat: number;
     private _lng: number;
     private _marker;
+    private _map;
     public providerForm: FormGroup;
     public loading = false;
     public message: string;
@@ -62,7 +64,7 @@ export class CreateProviderModalComponent implements OnInit, OnDestroy {
 
     private _initMap(): void {
         const mapElement = document.getElementById('map');
-        const map = new google.maps.Map(mapElement, {
+        this._map = new google.maps.Map(mapElement, {
             center: { lat: 40.19047994699609, lng: 44.51557200000002 },
             zoom: 8,
         });
@@ -74,18 +76,30 @@ export class CreateProviderModalComponent implements OnInit, OnDestroy {
                 };
             });
         }
-        const marker = new google.maps.Marker({
+        this._marker = new google.maps.Marker({
             position: mapElement,
-            map,
+            map: this._map,
             title: 'Hello World!'
         });
-        google.maps.event.addListener(map, 'click', (event: any) => {
+        google.maps.event.addListener(this._map, 'click', (event: any) => {
             this._lat = event.latLng.lat();
             this._lng = event.latLng.lng();
-            marker.setPosition(event.latLng);
+            this._marker.setPosition(event.latLng);
         });
 
     }
+
+
+
+    private _setMarker(coordinates: Icordination): void {
+        const marker = new google.maps.Marker({
+          position: coordinates,
+          map: this._map,
+        });
+        //  this._marker.push(marker);
+      }
+
+
 
     private _getRegion(): void {
         this._providersService.getRegion()
@@ -106,6 +120,7 @@ export class CreateProviderModalComponent implements OnInit, OnDestroy {
                 this.providerDetails = data;
                 if (this.providerDetails) {
                     this._setPatchValue();
+                    this._setMarker({ lat: +this.providerDetails.latitude, lng: +this.providerDetails.longitude });
                 }
             },
                 err => {
