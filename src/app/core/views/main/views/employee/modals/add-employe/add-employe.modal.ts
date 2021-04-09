@@ -22,6 +22,8 @@ export class AddEmployeModalComponent implements OnInit, OnDestroy {
     public loacalImage = '/assets/images/hairdress.jpg';
     @Input() providerId: number;
     @Input() employeId: number;
+
+    public raiting =[1,2,3,4,5];
     constructor(private _fb: FormBuilder, private _employeeService: EmployeeService, private _modal: NzModalRef) { }
 
 
@@ -58,6 +60,11 @@ export class AddEmployeModalComponent implements OnInit, OnDestroy {
                 if (this.employeDetails.user.avatar) {
                     this.loacalImage = this.employeDetails.user.avatar;
                 }
+                // if (this.employeDetails?.rating === +this.raiting.length) {
+                //     console.log(this.employeDetails.rating);
+                // }
+                this.raiting.splice(this.employeDetails?.rating);
+                console.log(this.raiting);
                 this._setPatchValue();
 
             });

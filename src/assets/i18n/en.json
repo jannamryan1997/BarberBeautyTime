@@ -51,7 +51,7 @@
     "Download": "Upload a profile picture",
     "PERSONAL INFROMATION": "PERSONAL INFROMATION",
     "Booking": "Booking",
-    "Change Profile": "Change Profile",
+    "Change Profile": "Save Change",
     "Services": "Services",
     "Create Service": "Create Service",
     "Action": "Action",
@@ -81,5 +81,6 @@
     "Services that you paid for": "Services that you paid for",
     "Your need to pay out in place": "Your need to pay out in place",
     "Languages": "Languages",
-    "Personal information successfully changed": "Personal information successfully changed"
+    "Personal information successfully changed": "Personal information successfully changed",
+    "rating": "Rating"
 }

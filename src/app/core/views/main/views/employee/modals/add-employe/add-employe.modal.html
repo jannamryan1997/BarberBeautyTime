@@ -86,6 +86,7 @@
             <img alt="example" [src]="loacalImage" style="height: 200px;width: 200px; display: flex;margin: auto;" />
             <p><b>{{'First Name' | translate}}:</b>{{employeDetails?.user?.first_name}}</p>
             <p><b>{{'Last Name' | translate}}:</b>{{employeDetails?.user?.last_name}}</p>
+            <p class="star"><b>{{'rating' | translate}}:</b><i nz-icon nzType="star" nzTheme="outline" *ngFor="let item of raiting"></i></p>
         </main>
     </ng-container>
 </div>

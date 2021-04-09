@@ -3,24 +3,24 @@
         <img src="assets/icons/menu-icon.PNG" class="tob-bar-icon menu-icon" (click)="onClickIsOpen()">
         <img src="assets/icons/menu-icon.PNG" class="tob-bar-icon response-icon" (click)="onClickOpenResponseMenu()">
         <p class="title header-title">{{title | translate}}</p>
-        <i nz-icon nzType="logout" class="tob-bar-icon" nzTheme="outline" style="color: #d357f8;" (click)="onClickLogOut()"></i>
+        <i nz-icon nzType="logout" class="tob-bar-icon" nzTheme="outline" style="color: #918bf3;" (click)="onClickLogOut()"></i>
     </div>
     <div class="wrapper side-bar-response" *ngIf="isOpenResponseMenu">
         <ul nz-menu nzMode="inline" nzTheme="dark">
             <li *ngFor="let item of menuItem" [routerLink]="routePath(item)" nz-menu-item nz-tooltip nzTooltipPlacement="right">
-                <i nz-icon nzType="{{item?.icon}}" style="color: #d357f8;"></i>
-                <span style="color: #d357f8;">{{item?.label | translate}}</span>
+                <i nz-icon nzType="{{item?.icon}}" style="color: #918bf3;"></i>
+                <span style="color: #918bf3;">{{item?.label | translate}}</span>
             </li>
         </ul>
         <ul nz-menu nzMode="inline">
             <li nz-submenu nzTitle="{{'Setting' | translate}}" nzIcon="setting">
                 <ul>
-                    <li nz-menu-item routerLink="changed-password" style="color: #d357f8 !important;">{{'Change Password' | translate}}</li>
+                    <li nz-menu-item routerLink="changed-password" style="color: #918bf3 !important;">{{'Change Password' | translate}}</li>
                     <li nz-submenu nzTitle="{{'Languages' | translate}}">
                         <ul>
-                            <li nz-menu-item (click)="switchLanguage('en')" style="color: #d357f8 !important;">English (US)</li>
-                            <li nz-menu-item (click)="switchLanguage('arm')" style="color: #d357f8 !important;">Հայերեն</li>
-                            <li nz-menu-item (click)="switchLanguage('ru')" style="color: #d357f8 !important;">Русский</li>
+                            <li nz-menu-item (click)="switchLanguage('en')" style="color: #918bf3 !important;">English</li>
+                            <li nz-menu-item (click)="switchLanguage('arm')" style="color: #918bf3 !important;">Հայերեն</li>
+                            <li nz-menu-item (click)="switchLanguage('ru')" style="color: #918bf3 !important;">Русский</li>
                         </ul>
                     </li>
                 </ul>
